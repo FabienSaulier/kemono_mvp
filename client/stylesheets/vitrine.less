@@ -1,0 +1,666 @@
+/* POLICES */
+@gris_fonce: #3f3f3f;
+@gris_moyen: #8a8a8a;
+@gris_clair: #f5f5f1;
+@gris_contact: #d9d9d9;
+@saumon: #f8aa8e;
+@framboise: #e84b3d;
+@bordeau: #ba412a;
+@ombrage: #e84b3d;
+/* --------------------- */
+
+
+/* STYLE ITEMS PRINCIPAUX */
+body {
+	background: @gris_clair;
+	padding-top: 0px;
+	font-family: "Open+Sans:400";
+}
+
+/* PENSER A ENLEVER (ZONE DE TEST) */
+
+/* fin de penser a enlever */
+
+
+#espace_fin_partie_1{
+	height: 20px;
+}
+
+/* TRAVAIL DU FOOTER + FRISE */
+#container_footer{
+	background-color: @gris_fonce;
+	color: white;
+}
+
+#frise{
+	background-color: @gris_contact;
+	max-height: 110px;
+}
+
+#container_frise{
+	background-color: @gris_contact;
+}
+
+.img-footer{
+	max-height: 40px;
+}
+
+.footnotes{
+	font-family: "Comfortaa";
+	color: @gris_clair;
+}
+
+/* SOCIAL */
+.social_foot {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.social_foot ul {
+    margin: 0;
+    padding: 5px;
+    padding-top: 70px;
+}
+
+.social_foot ul li {
+    margin: 5px;
+    list-style: none;
+    display: inline-block;
+}
+/* --------------------- */
+
+/* fin FOOTER */
+
+/* TRAVAIL DE LA PARTIE 4 */
+.leftright{
+    color: @framboise;
+    padding-top: 10px;
+}
+
+.leftright:hover{
+	color: @saumon;
+}
+
+#k_contact{
+	height: 60px;
+}
+
+#btn_inscrire_bas:hover, #btn_inscrire_bas:focus, #btn_inscrire_bas:active{
+    color: @gris_clair;
+    background-color: @gris_moyen;
+   	box-shadow: 2px 2px 2px @gris_fonce;
+    border-radius: 2px;
+}
+
+#fleche_bulle
+{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+#spacer_contact{
+	height: 10px;
+}
+#spacer_contact_bas{
+	height: 10px;
+}
+
+#container_contact{
+	background-color: @gris_contact;
+}
+
+.phrase_accroche_3{
+	text-align: center;
+	color: @gris_fonce;
+	font-family: "Comfortaa";
+}
+
+#form_contact{
+	background-color: white;
+	border: 1px solid white;
+	box-shadow: 2px 2px 2px @gris_moyen;
+	border-radius: 4px;
+}
+
+#spacer_form_1 {
+	height: 20px;
+}
+
+#spacer_form_2 {
+	height: 20px;
+}
+
+.formP2{
+	font-family: "Comfortaa";
+	border: 0;
+	border-bottom: 1px solid @gris_moyen;
+	border-radius: 0px;
+	box-shadow: none; 
+}
+
+textarea:focus, input:focus, .uneditable-input:focus {   
+    border-color: rgba(232, 75, 61, 0.8) !important;
+    box-shadow: 0 1px 1px rgba(232, 75, 61, 0.075) inset, 0 0 8px rgba(232, 75, 61, 0.6) !important;
+    outline: 0 none !important;
+}
+
+.noresize {
+  resize: none; 
+}
+
+#form-messages{
+	padding-top: 10px;
+	font-family: "Comfortaa";
+}
+
+/* fin PARTIE 4 */
+
+/* TRAVAIL DE LA PARTIE 2 */
+#backgroundP2{
+	/* background-color: @saumon; */
+	/* background: linear-gradient(rgba(247,170,142,.4), rgba(247,170,142,.4)), url('../img/Leon-PetMed_Large.jpg'); */
+	background: linear-gradient(rgba(247,170,142,.4), rgba(247,170,142,.4)), url('../img/chien_photo.png');
+	background-size: cover;
+	/* background-position: top center; */
+	background-attachment: fixed;
+    background-position: center;
+
+}
+#mainC{
+	box-shadow: 6px 0 4px -4px @gris_fonce , -6px 0 4px  -4px @gris_fonce;
+}
+#spacer_partie_haute, #spacer_partie_mid, #spacer_partie_bottom{
+	height: 10px;
+}
+#FILLER_1{
+	height: 180px;
+}
+#FILLER_2{
+	height: 30px;
+}
+#FILLER_2_TEXTE{
+	height: 30px;
+}
+#FILLER_3{
+	height: 50px;
+}
+#FILLER_3_TEXTE{
+	height: 65px;
+}
+#FILLER_4{
+	height: 0px;
+}
+#FILLER_CAROU{
+	height: 0px;
+}
+#phrase_P2_2{
+	color: @framboise;
+	font-family: "Comfortaa";
+}
+#phrase_P2_1{
+	text-align: center;
+	color: @gris_fonce;
+	font-family: "Comfortaa";
+	padding-bottom: 0px;
+	padding-top: 10px;
+	font-weight: bold;
+}
+#P2_square{
+	background-color: white;
+	border: 1px solid white;
+	box-shadow: 2px 2px 2px @gris_moyen;
+	border-radius: 4px;
+}
+#P2_ul{
+	list-style-image: url('../img/icon_kemono_small2.png');
+}
+#P2_ul > li {
+	color: @gris_moyen;
+	font-family: "Comfortaa";
+	text-align: left;
+	padding-left: 10px;
+}
+
+/* FIN TRAVAIL p2 */
+
+.fleche_bas{
+	display: none;
+}
+
+img.resize{
+ 	max-height: 170px;
+}
+
+img.resize2{
+ 	max-height: 130px;
+}
+
+.phrase_accroche_1{
+	text-align: center;
+	color: @framboise;
+	font-family: "Comfortaa";
+	padding-top: 10px;
+	font-size: 1.5em;
+}
+
+.phrase_accroche_2{
+	text-align: center;
+	color: @gris_moyen;
+	font-family: "Comfortaa";
+}
+
+.phrase_sous_photo{
+	text-align: center;
+	color: @gris_fonce;
+	font-family: "Comfortaa";
+	padding-top: 10px;
+	padding-bottom: 0px;
+	font-weight: bold;
+}
+
+.phrase_sous_photo_2{
+	text-align: justify;
+	color: @gris_moyen;
+	font-family: "Comfortaa";
+	padding-top: 10px;
+	padding-bottom: 0px;
+}
+
+.tiret_photo{
+	height: 3px;
+	width: 50px;
+	background-color: @framboise;
+}
+
+#logo1{
+	padding-left: 12px;
+}
+
+.separateur_1{
+	height: 50px;
+	color: @gris_clair;
+	display: flex;
+    align-items: center;
+
+	/* coloration classique */
+	background: @framboise;
+	/* box-shadow: 0px 4px 4px -1px @gris_fonce, 0px -4px 4px -1px @gris_fonce;
+
+    /* coloration par gradient -> a modifier si hauteur de sepearateur_1 n'est plus egale a 50px */
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e84b3d+0,e84b3d+100&0+1,1+5,1+95,0+100 */
+	/* background: -moz-linear-gradient(top, rgba(232,75,61,0) 0%, rgba(232,75,61,0) 1%, rgba(232,75,61,1) 5%, rgba(232,75,61,1) 95%, rgba(232,75,61,0) 100%); /* FF3.6-15 */
+	/* background: -webkit-linear-gradient(top, rgba(232,75,61,0) 0%,rgba(232,75,61,0) 1%,rgba(232,75,61,1) 5%,rgba(232,75,61,1) 95%,rgba(232,75,61,0) 100%); /* Chrome10-25,Safari5.1-6 */
+	/* background: linear-gradient(to bottom, rgba(232,75,61,0) 0%,rgba(232,75,61,0) 1%,rgba(232,75,61,1) 5%,rgba(232,75,61,1) 95%,rgba(232,75,61,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	/* filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00e84b3d', endColorstr='#00e84b3d',GradientType=0 ); /* IE6-9 */
+}
+
+.separateur_1_texte{
+	color:@gris_clair;
+	font-family: "Comfortaa";
+}
+
+#landing_phrase{
+	color: @framboise;
+	font-family: "Comfortaa";
+}
+
+#landing_phrase_2{
+	color:@gris_fonce;
+    font-size: 1.3em;
+    text-align: justify;
+}
+
+#landing_box{
+	opacity: 1;
+
+}
+
+#ligne1{
+	height: 15px;
+	width: 300px;
+	border-bottom: 3px solid @framboise;
+	margin-bottom: 25px;
+}
+
+#email-input{
+	background-color: @gris_clair;
+	border: 1px solid @gris_clair;
+	box-shadow: 2px 2px 2px @gris_moyen;
+	font-family: "Comfortaa";
+	border-radius: 2px;
+}
+
+#email-input-3{
+	background-color: @gris_clair;
+	font-family: "Comfortaa";
+	border-radius: 2px;
+}
+
+.boutton_basique{
+	color: @gris_clair;
+	background-color: @gris_moyen;
+	border: 1px solid @gris_moyen;
+	box-shadow: 2px 2px 2px @gris_fonce;
+	font-family: "Comfortaa";
+	border-radius: 2px;
+	max-width: 160px;
+}
+
+.boutton_basique_2{
+	color: @gris_fonce;
+	background-color: @gris_clair;
+	font-family: "Comfortaa";
+	border-radius: 2px;
+	max-width: 160px;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
+    color: @gris_clair;
+    border: 1px solid @framboise;
+    background-color: @framboise;
+    box-shadow: 2px 2px 2px @saumon;
+    border-radius: 2px;
+}
+
+/* --------------------- */
+
+#partie1{
+	padding-top: 25px;
+}
+
+/* NAVABAR */
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0px;
+}
+
+.navbar-default {
+    border: 0;
+    background-color: @framboise;
+
+    /* LE GRADIENT DANS LA NAVBAR REND LA POLICE MOCHE */
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e84b3d+0,e84b3d+100&1+0,1+95,0+100 */
+	/* background: -moz-linear-gradient(top, rgba(232,75,61,1) 0%, rgba(232,75,61,1) 95%, rgba(232,75,61,0) 100%); /* FF3.6-15 */
+	/* background: -webkit-linear-gradient(top, rgba(232,75,61,1) 0%,rgba(232,75,61,1) 95%,rgba(232,75,61,0) 100%); /* Chrome10-25,Safari5.1-6 */
+	/* background: linear-gradient(to bottom, rgba(232,75,61,1) 0%,rgba(232,75,61,1) 95%,rgba(232,75,61,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	/* filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e84b3d', endColorstr='#00e84b3d',GradientType=0 ); /* IE6-9 */
+
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: @gris_clair;
+	font-family: "Comfortaa";
+}
+
+.navbar-nav{
+	margin: 0 auto;
+	display: table;
+	table-layout: fixed;
+	float:none;
+	height:75px;
+	padding-top: 20px;
+}
+
+.navbar-default.brand, .navbar-default .nav > li > a:hover {
+	color: @gris_fonce;
+	border-bottom: 2px solid @gris_fonce;
+}
+
+.navbar-default .navbar-header .navbar-toggle .icon-bar {
+    background-color: white;
+}
+
+#partie1{
+	background: linear-gradient(rgba(247,170,142,.4), rgba(247,170,142,.4)), url('../img/chien_photo.png');
+	background-size: cover;
+	/* background-position: top center; */
+	background-attachment: fixed;
+    background-position: center;
+}
+
+/* SOCIAL */
+.social {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.social ul {
+    margin: 0;
+    padding: 5px;
+    padding-top: 70px;
+}
+
+.social ul li {
+    margin: 5px;
+    list-style: none;
+    display: inline-block;
+}
+
+.social i {
+    width: 60px;
+    height: 60px;
+    color: white;
+    border: 3px solid white;
+    background-color: rgba(255, 255, 255, 0.2);
+    font-size: 22px;
+    text-align:center;
+    padding-top: 20px;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -o-border-radius: 50%;
+    transition: all ease 0.3s;
+    -moz-transition: all ease 0.3s;
+    -webkit-transition: all ease 0.3s;
+    -o-transition: all ease 0.3s;
+    -ms-transition: all ease 0.3s;
+}
+
+.social i:hover{
+	color: @framboise;
+	border: 3px solid @framboise;
+	background-color: rgba(232, 75, 61, 0.2);
+}
+/* --------------------- */
+
+#space_2{
+	/* corrige placement pour ecran petit */
+	padding-bottom: 30px;
+}
+
+/* RESPONSIVE DESIGN */
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+		.boutton_basique{
+		margin-bottom: 20px;
+		}
+
+		img.resize{
+		 	max-height: 140px;
+		}
+
+		.fleche_bas{
+			display: block;
+		}
+
+		#fleche_bas_contact{
+			display: none;
+		}
+
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+		
+		#k_contact{
+			height: 120px;
+		}
+
+		#col_btn_bas{
+			padding-bottom: 5px;
+		}
+
+		#col_mail_bas{
+			padding-top: 5px;
+		}
+
+		/* en enleve tous les fillers de la partie d'explication */
+		#FILLER_1, #FILLER_2, #FILLER_3, #FILLER_3_TEXTE, #FILLER_4{
+			display: none;
+		}
+
+		.pic_hide{
+			display: none;
+		}
+
+		.fleche_bas{
+			display: block;
+		}
+
+		.boutton_basique{
+			margin-bottom: 30px;
+		}
+
+		img.resize{
+		 	max-height: 140px;
+		}
+
+		.social ul {
+		    padding-top: 10px;
+		   	padding-bottom: 10px;
+		}
+
+		#space_2{
+		padding-bottom: 0px;
+		}
+
+		.navbar-default .navbar-collapse {
+			background-color: @framboise;
+		}
+	
+	/* pour modifier le point de collapse NAVBAR*/
+		/* ci-dessous, modifications esthetiques JDE */
+		#logo1{
+		width: 60%;
+		}
+
+		#partie1{
+		padding-top: 25px;
+		}
+
+		.navbar-nav{
+		padding-bottom: 30px;
+		}
+
+		/* ci-dessous, le code minimal*/
+		.navbar-header {
+		  float: none;
+		}
+		.navbar-left,.navbar-right {
+		  float: none !important;
+		}
+		.navbar-toggle {
+		  display: block;
+		}
+		.navbar-collapse {
+		  border-top: 1px solid transparent;
+		  box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+		}
+		.navbar-fixed-top {
+		  top: 0;
+		  border-width: 0 0 1px;
+		}
+		.navbar-collapse.collapse {
+		  display: none!important;
+		}
+		.navbar-nav {
+		  float: none!important;
+		  margin-top: 7.5px;
+		}
+		.navbar-nav>li {
+		  float: none;
+		}
+		.navbar-nav>li>a {
+		  padding-top: 10px;
+		  padding-bottom: 10px;
+		}
+		.collapse.in{
+		  display:block !important;
+		}
+	/* --------------------- */
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+	.social ul {
+	    padding-top: 10px;
+	   	padding-bottom: 10px;
+	}
+
+	#space_2{
+	padding-bottom: 0px;
+	}
+
+	.boutton_basique{
+		margin-bottom: 30px;
+	}
+
+	img.resize{
+	 	max-height: 140px;
+	}	
+
+	.fleche_bas{
+	display: block;
+	}
+
+	/* en enleve tous les fillers de la partie d'explication */
+	#FILLER_1, #FILLER_2, #FILLER_2_TEXTE, #FILLER_3, #FILLER_3_TEXTE, #FILLER_4{
+		display: none;
+	}
+
+	.pic_hide{
+		display: none;
+	}
+
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (max-width : 480px) {
+
+	.social ul {
+		padding-top: 10px;
+	   	padding-bottom: 10px;
+	}
+
+	#space_2{
+	padding-bottom: 0px;
+	}
+
+	.boutton_basique{
+		margin-bottom: 30px;
+	}
+
+	img.resize{
+	 	max-height: 140px;
+	}	
+
+	/* en enleve tous les fillers de la partie d'explication */
+	#FILLER_1, #FILLER_2, #FILLER_2_TEXTE , #FILLER_3, #FILLER_3_TEXTE, #FILLER_4{
+		display: none;
+	}
+	.pic_hide{
+		display: none;
+	}
+}
+
+/* Custom, iPhone Retina */ 
+@media only screen and (max-width : 320px) {
+
+}
+/* --------------------- */
+
