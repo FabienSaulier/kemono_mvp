@@ -17,7 +17,7 @@ import ResetPassword from '../../ui/pages/ResetPassword.js';
 import Signup from '../../ui/pages/Signup.js';
 
 import Pets from '../../ui/pages/Pets.js';
-import Profil from '../../ui/pages/Profil.js';
+import ProfilPage from '../../ui/profil/ProfilPage.js';
 import Account from '../../ui/pages/Account.js';
 import CampaignsList from '../../ui/pages/CampaignsList.js';
 
@@ -45,7 +45,7 @@ Meteor.startup(() => {
         <Route name="signup" path="/signup" component={ Signup } />
 
         <Route name="pets" path="/pets" component={ Pets } onEnter={ authenticate } />
-        <Route name="profil" path="/profil" component={ Profil } onEnter={ authenticate } />
+        <Route name="profil" path="/profil" component={ ProfilPage } onEnter={ authenticate } />
         <Route name="account" path="/account" component={ Account } onEnter={ authenticate } />
         <Route name="campaignsList" path="/campaignsList" component={ CampaignsList } onEnter={ authenticate } />
 

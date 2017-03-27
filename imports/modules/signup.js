@@ -11,10 +11,8 @@ const getUserData = () => ({
   email: document.querySelector('[name="emailAddress"]').value,
   password: document.querySelector('[name="password"]').value,
   profile: {
-    name: {
-      first: document.querySelector('[name="firstName"]').value,
-      last: document.querySelector('[name="lastName"]').value,
-    },
+    firstName: document.querySelector('[name="firstName"]').value,
+    lastName: document.querySelector('[name="lastName"]').value
   },
 });
 
