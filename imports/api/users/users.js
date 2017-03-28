@@ -8,14 +8,65 @@ Meteor.users.deny({
 
 Schema = {};
 
+AddressSchema = new SimpleSchema({
+  street: {
+    type: String,
+    max: 100
+  },
+  city: {
+    type: String,
+    max: 50
+  },
+  country: {
+    type: String
+  },
+  zip: {
+    type: Number
+  }
+});
+
+VetSchema = new SimpleSchema({
+  firstName: {
+    type: String,
+    optional: true
+  },
+  lastName: {
+    type: String,
+    optional: true
+  },
+  phone:{
+    type: String
+  },
+  adress:{
+    type:AddressSchema
+  }
+})
+
 Schema.UserProfile = new SimpleSchema({
     firstName: {
-        type: String,
-        optional: true
+      type: String,
+      optional: true
     },
     lastName: {
-        type: String,
-        optional: true
+      type: String,
+      optional: true
+    },
+    birthday:{
+      type: Date,
+      optional: true
+    },
+    picture:{
+      type: String,
+      optional: true
+    },
+    phone:{
+      type: String
+    }
+    adress:{
+      type:AddressSchema
+    },
+    vet:{
+      type:VetSchema
     }
 });
 
