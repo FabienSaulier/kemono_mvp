@@ -27,6 +27,9 @@ import { Link } from 'react-router'
             <Grid.Column>
               {userProfile.firstName} {userProfile.lastName} <br />
               {userMail}  <br />
+              {userProfile.birthday}  <br />
+              {userProfile.picture}  <br />
+              {userProfile.phone}  <br />
             </Grid.Column>
 
           </Grid.Row>
