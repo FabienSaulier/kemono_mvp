@@ -9,18 +9,19 @@ import Documents from '../../ui/pages/Documents.js';
 import NewDocument from '../../ui/pages/NewDocument.js';
 import EditDocument from '../../ui/containers/EditDocument.js';
 import ViewDocument from '../../ui/containers/ViewDocument.js';
-import Index from '../../ui/pages/Index.js';
 import Login from '../../ui/pages/Login.js';
 import NotFound from '../../ui/pages/NotFound.js';
 import RecoverPassword from '../../ui/pages/RecoverPassword.js';
 import ResetPassword from '../../ui/pages/ResetPassword.js';
 import Signup from '../../ui/pages/Signup.js';
 
+import IndexContainer from '../../ui/containers/IndexContainer.js';
 import Pets from '../../ui/pages/Pets.js';
 import ProfilPage from '../../ui/profil/ProfilPage.js';
 import EditProfilContainer from '../../ui/profil/EditProfilContainer.js';
 import Account from '../../ui/pages/Account.js';
 import CampaignsList from '../../ui/pages/CampaignsList.js';
+
 
 const authenticate = (nextState, replace) => {
   if (!Meteor.loggingIn() && !Meteor.userId()) {
@@ -31,11 +32,14 @@ const authenticate = (nextState, replace) => {
   }
 };
 
+/**
+TODO: Index if authenticate = dashboard otherwise page exterieure
+**/
 Meteor.startup(() => {
   render(
     <Router history={ browserHistory }>
       <Route path="/" component={ App }>
-        <IndexRoute name="index" component={ Index } />
+        <IndexRoute name="index" component={ IndexContainer } />
         <Route name="documents" path="/documents" component={ Documents } onEnter={ authenticate } />
         <Route name="newDocument" path="/documents/new" component={ NewDocument } onEnter={ authenticate } />
         <Route name="editDocument" path="/documents/:_id/edit" component={ EditDocument } onEnter={ authenticate } />

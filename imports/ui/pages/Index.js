@@ -4,7 +4,7 @@ import { Jumbotron } from 'react-bootstrap';
 import { Segment, Label} from 'semantic-ui-react'
 
 
-const Index = () => (
+export const Index = () => (
 
   Meteor.userId() ?
    (
@@ -34,6 +34,3 @@ const Index = () => (
 
 )
 );
-
-
-export default Index;
