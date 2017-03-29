@@ -1,6 +1,7 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Button, Header, Form, Input } from 'semantic-ui-react'
+import { browserHistory } from 'react-router';
 //import DatePicker from 'react-datepicker'
 //import moment from 'moment'
 //import 'react-datepicker/dist/react-datepicker.css';
@@ -37,7 +38,7 @@ import { Button, Header, Form, Input } from 'semantic-ui-react'
           Bert.alert(error.reason, 'danger');
         } else {
           Bert.alert(res, 'success');
-          console.log(this.state.birthday);
+          browserHistory.push('/profil');
         }
       });
   }
@@ -53,7 +54,7 @@ import { Button, Header, Form, Input } from 'semantic-ui-react'
           </Form.Field>
           <Form.Field   >
             <label>Photo de profil</label>
-            <Input placeholder='picture' required  name='picture' value={this.state.picture} onChange={this.handleInputChange}/>
+            <Input type="file" id="fileinput"  name='picture' value={this.state.picture} onChange={this.handleInputChange} />
           </Form.Field>
           <Form.Field  >
             <label>N° de téléphone</label>
