@@ -9,10 +9,6 @@ const Index = () => (
   Meteor.userId() ?
    (
   <div className="Index">
-    <Jumbotron className="text-center">
-      <h2>Dashboardzzz</h2>
-    </Jumbotron>
-
     <Segment padded='very' raised>
       <Label attached='top left' style={{'fontSize':'14px'}}>En cours</Label>
       Le coût des soins vétérinaires peut être très élevé.
