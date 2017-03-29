@@ -1,10 +1,9 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
+import { browserHistory , Link} from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import { Meteor } from 'meteor/meteor';
 import { Menu, Dropdown } from 'semantic-ui-react'
-
 
 const handleLogout = () => Meteor.logout(() => browserHistory.push('/login'));
 
@@ -15,50 +14,33 @@ const userName = () => {
 };
 
 const AuthenticatedNavigation = () => (
-
   <Menu.Menu position='right'>
-  <Dropdown item text='actions'>
-    <Dropdown.Menu>
-      <Dropdown.Item>
-        <LinkContainer to='/'>
-          <NavItem href="/">Dashboard</NavItem>
-        </LinkContainer>
-      </Dropdown.Item>
-      <Dropdown.Item>
-        <LinkContainer to='/documents'>
-          <NavItem href="/documents">Documents</NavItem>
-        </LinkContainer>
-      </Dropdown.Item>
-      <Dropdown.Item>
-        <LinkContainer to='/pets'>
-          <NavItem href="/pets">Pets</NavItem>
-        </LinkContainer>
-      </Dropdown.Item>
-      <Dropdown.Item>
-        <LinkContainer to='/campaignsList'>
-          <NavItem href="/campaignsList">Campagnes</NavItem>
-        </LinkContainer>
-      </Dropdown.Item>
-      <Dropdown.Item>
-        <LinkContainer to='/profil'>
-          <NavItem href="/profil">Profil</NavItem>
-        </LinkContainer>
-      </Dropdown.Item>
-      <Dropdown.Item>
-        <LinkContainer to='/account'>
-          <NavItem href="/account">Account</NavItem>
-        </LinkContainer>
-      </Dropdown.Item>
-      <Dropdown.Item>
-        <LinkContainer to='#'>
-          <NavItem href="#" onClick={ handleLogout }>Logout</NavItem>
-        </LinkContainer>
-      </Dropdown.Item>
-    </Dropdown.Menu>
-  </Dropdown>
+    <Dropdown item text='actions'>
+      <Dropdown.Menu>
+        <Dropdown.Item as={Link} to='/' >
+          Dashboard
+        </Dropdown.Item>
+        <Dropdown.Item as={Link} to='/documents'>
+          Documents
+        </Dropdown.Item>
+        <Dropdown.Item as={Link} to='/pets'>
+          Pets
+        </Dropdown.Item>
+        <Dropdown.Item as={Link} to='/campaignsList'>
+          Campagnes
+        </Dropdown.Item>
+        <Dropdown.Item as={Link} to='/profil'>
+          Profil
+        </Dropdown.Item>
+        <Dropdown.Item as={Link} to='/account'>
+          Account
+        </Dropdown.Item>
+        <Dropdown.Item as={Link} to='/' onClick={ handleLogout } >
+          Logout
+        </Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
 </Menu.Menu>
-
-
 );
 
 export default AuthenticatedNavigation;

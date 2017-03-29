@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu, Segment } from 'semantic-ui-react'
+import { Menu, Segment , Container} from 'semantic-ui-react'
 import { Link } from 'react-router'
 import { Meteor } from 'meteor/meteor'
 

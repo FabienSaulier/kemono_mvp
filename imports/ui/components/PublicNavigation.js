@@ -2,6 +2,7 @@ import React from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Nav, NavItem } from 'react-bootstrap';
 import { Menu, Icon, Dropdown} from 'semantic-ui-react'
+import { Link } from 'react-router';
 import MediaQuery from 'react-responsive';
 
 const PublicNavigation = () => (
@@ -11,33 +12,24 @@ const PublicNavigation = () => (
       if (matches) {
         return (
           */
-          <Menu.Menu  position='right'>
-            <Menu.Item>
-              <LinkContainer to='/'>
-                <NavItem href="/">J'AI UN ANIMAL</NavItem>
-              </LinkContainer>
-            </Menu.Item>
-            <Menu.Item>
-              <LinkContainer to='/'>
-                <NavItem href="/">JE VEUX AIDER LES ANIMAUX</NavItem>
-              </LinkContainer>
-            </Menu.Item>
-            <Menu.Item>
-              <LinkContainer to='/'>
-                <NavItem href="/">JE SUIS V&Eacute;T&Eacute;RINAIRE</NavItem>
-              </LinkContainer>
-            </Menu.Item>
-            <Menu.Item>
-              <LinkContainer to="login">
-                <NavItem href="/login">CONNEXION</NavItem>
-              </LinkContainer>
-            </Menu.Item>
-            <Menu.Item>
-              <LinkContainer to="signup">
-                <NavItem  href="/login">INSCRIPTION</NavItem>
-              </LinkContainer>
-            </Menu.Item>
-          </Menu.Menu>
+
+      <span style={{'display':'flex'}}>
+        <Menu.Item  as={Link} to='/' >
+            J'AI UN ANIMAL
+        </Menu.Item>
+        <Menu.Item  as={Link} to='/' >
+            JE VEUX AIDER LES ANIMAUX
+        </Menu.Item>
+        <Menu.Item  as={Link} to='/' >
+            JE SUIS V&Eacute;T&Eacute;RINAIRE
+        </Menu.Item>
+        <Menu.Item  as={Link} to='/login'>
+            CONNEXION
+        </Menu.Item>
+        <Menu.Item as={Link} to='/signup'>
+            INSCRIPTION
+        </Menu.Item>
+      </span>
           /*
         );
       } else {
