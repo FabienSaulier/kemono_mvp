@@ -21,7 +21,7 @@ const AppNavigation = ({ hasUser }) => (
         <h1 style={{'marginLeft':'15px'}}>Kemono</h1>
       </Menu.Item>
       { renderNavigation(hasUser) }
-      
+
     </Container>
   </Menu>
 );

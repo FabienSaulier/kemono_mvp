@@ -5,14 +5,16 @@ import { Menu, Icon, Dropdown} from 'semantic-ui-react'
 import MediaQuery from 'react-responsive';
 
 const PublicNavigation = () => (
+  /*
   <MediaQuery minWidth={1170}>
     {(matches) => {
       if (matches) {
         return (
-          <Menu.Menu position='right'>
+          */
+          <Menu.Menu  position='right'>
             <Menu.Item>
-              <LinkContainer to='#'>
-                <NavItem href="#">J'AI UN ANIMAL</NavItem>
+              <LinkContainer to='/'>
+                <NavItem href="/">J'AI UN ANIMAL</NavItem>
               </LinkContainer>
             </Menu.Item>
             <Menu.Item>
@@ -36,6 +38,7 @@ const PublicNavigation = () => (
               </LinkContainer>
             </Menu.Item>
           </Menu.Menu>
+          /*
         );
       } else {
         return (
@@ -56,6 +59,7 @@ const PublicNavigation = () => (
       }
     }}
   </MediaQuery>
+  */
 );
 
 export default PublicNavigation;
