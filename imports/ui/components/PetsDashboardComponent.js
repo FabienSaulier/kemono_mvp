@@ -6,7 +6,7 @@ import { Link } from 'react-router'
 const PetsDashboardComponent = ({ user }) => (
   <div>
     <Icon color='teal' size='big' name='add circle' />
-    <Link to="/pets">Ajouter un animal</Link>
+    <Link to="/pets/edit">Ajouter un animal</Link>
   </div>
   /**
   documents.length > 0 ? <ListGroup className="DocumentsList">
