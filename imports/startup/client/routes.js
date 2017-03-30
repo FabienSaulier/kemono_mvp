@@ -17,6 +17,7 @@ import Signup from '../../ui/pages/Signup.js';
 
 import IndexContainer from '../../ui/containers/IndexContainer.js';
 import Pets from '../../ui/pages/Pets.js';
+import EditPetContainer from '../../ui/pets/EditPetContainer.js';
 import ProfilPage from '../../ui/profil/ProfilPage.js';
 import EditProfilContainer from '../../ui/profil/EditProfilContainer.js';
 import Account from '../../ui/pages/Account.js';
@@ -50,6 +51,9 @@ Meteor.startup(() => {
         <Route name="signup" path="/signup" component={ Signup } />
 
         <Route name="pets" path="/pets" component={ Pets } onEnter={ authenticate } />
+        <Route name="editPet" path="/pets/edit" component={ EditPetContainer } onEnter={ authenticate } />
+
+
         <Route name="editProfil" path="/profil/edit/" component={ EditProfilContainer } onEnter={ authenticate } />
 
         <Route name="profil" path="/profil" component={ ProfilPage } onEnter={ authenticate } />

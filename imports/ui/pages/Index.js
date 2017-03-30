@@ -3,8 +3,9 @@ import { Meteor } from 'meteor/meteor';
 import { Jumbotron } from 'react-bootstrap';
 import { Segment, Label} from 'semantic-ui-react'
 
+import PetsDashboardComponent from '../components/PetsDashboardComponent'
 
-export const Index = () => (
+export const Index = ({user}) => (
 
   Meteor.userId() ?
    (
@@ -18,7 +19,7 @@ export const Index = () => (
     </Segment>
     <Segment padded='very' raised>
       <Label attached='top left' style={{'fontSize':'14px'}}>Mes compagnons</Label>
-      Pellentesque habitant morbi tristique senectus.
+      <PetsDashboardComponent user={user}/>
     </Segment>
     <Segment padded='very'>
       <Label attached='top left' style={{'fontSize':'14px'}}>Les campagnes en cours sur Kemono</Label>
