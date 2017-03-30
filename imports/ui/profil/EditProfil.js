@@ -72,9 +72,8 @@ import { browserHistory } from 'react-router';
             <label>Code postal</label>
             <Input placeholder='addressZip'  name='addressZip' onChange={this.handleInputChange} />
           </Form.Field>
-          <Form.Field  >
-            <label>Pays</label>
-            <Input placeholder='addressCountry'     name='addressCountry' onChange={this.handleInputChange}/>
+          <Form.Field  name='addressCountry' label='Pays' control='select' >
+            <option value='France' onChange={this.handleInputChange} >France</option>
           </Form.Field>
           <Button type='submit' onClick={this.save}  size='big'>Enregistrer</Button>
         </Form>
