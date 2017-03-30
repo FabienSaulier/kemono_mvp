@@ -17,13 +17,18 @@ import { browserHistory } from 'react-router';
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.save = this.save.bind(this);
+    this.handleSexChange = this.handleSexChange.bind(this);
   }
 
 
-  handleChange = (e, { value }) => {
-    console.log(e);
-    console.log(value);
-    this.setState({ value })
+
+  handleSexChange(event){
+    console.log(event.currentTarget.value);
+
+    this.setState({
+      sex: event.currentTarget.value
+    });
+    console.log(this.state.sex);
   }
 
   handleInputChange(event) {
@@ -70,16 +75,22 @@ import { browserHistory } from 'react-router';
             <label>Photo</label>
             <Input type="file" id="fileinput"  name='picture' value={this.state.picture} onChange={this.handleInputChange} />
           </Form.Field>
-          <Form.Field  required name='type' label='Type' control='select' >
-            <option value='dog' onChange={this.handleInputChange} >Chien</option>
-            <option value='cat' onChange={this.handleInputChange} >Chat</option>
-            <option value='nac' onChange={this.handleInputChange} >Nac</option>
+
+
+          <Form.Field   >
+            <label>Sex</label>
+            <input type="radio" name="sex"
+                       value='male'
+                       checked={this.state.sex === 'male'}
+                       onChange={this.handleSexChange} />male
+
+                       <input type="radio" name="sex"
+                                  value='female'
+                                  checked={this.state.sex === 'female'}
+                                  onChange={this.handleSexChange} />femelle
           </Form.Field>
-          <Form.Group inline>
-            <label>Sexe</label>
-            <Form.Field control={Radio} label='Mâle' value='male' checked={sex === 'male'} onChange={this.handleChange} />
-            <Form.Field control={Radio} label='Femelle' value='female' checked={sex === 'female'} onChange={this.handleChange} />
-          </Form.Group>
+
+
 
           <Form.Field   required >
             <label>Date de naissance</label>
