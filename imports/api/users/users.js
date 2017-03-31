@@ -21,7 +21,8 @@ AddressSchema = new SimpleSchema({
     type: String
   },
   zip: {
-    type: Number
+    type: String,
+    regEx: SimpleSchema.RegEx.ZipCode
   }
 });
 

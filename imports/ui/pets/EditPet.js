@@ -26,12 +26,18 @@ import { browserHistory } from 'react-router';
 
   handleInputChange(event) {
     const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
+    let value = null;
+    console.log(target.type);
+    console.log(target.value);
+    if(target.type ==='radio' && (target.value == 'true' || target.value == 'false' ))
+      value = (target.value == 'true');
+    else
+      value =  target.value;
+
     this.setState({
-      [name]: value
+      [target.name]: value
     });
-      console.log(this.state);
+    console.log(this.state);
   }
 
 
@@ -39,19 +45,19 @@ import { browserHistory } from 'react-router';
     event.preventDefault();
     console.log("save");
     console.log(this.state);
-    /*
-    let userToUpdate = this.state;
-    Meteor.call('updateUserProfil',
-      {userProfil: userToUpdate}
+
+    let pet = this.state;
+    Meteor.call('pets.upsert',
+      pet
       , (error, res) => {
         if (error) {
+          console.log(error);
           Bert.alert(error.reason, 'danger');
         } else {
           Bert.alert(res, 'success');
-          browserHistory.push('/profil');
         }
       });
-      */
+
   }
 
   render() {
@@ -68,10 +74,10 @@ import { browserHistory } from 'react-router';
             <label>Photo</label>
             <Input type="file" id="fileinput"  name='picture' value={this.state.picture} onChange={this.handleInputChange} />
           </Form.Field>
-          <Form.Field  name='type' label="Type d'animal" control='select' required>
-            <option value='dog' onChange={this.handleInputChange} >Chien</option>
-            <option value='cat' onChange={this.handleInputChange} >Chat</option>
-            <option value='nac' onChange={this.handleInputChange} >NAC</option>
+          <Form.Field  name='type' label="Type d'animal" control='select' onChange={this.handleInputChange}  required>
+            <option value='dog' >Chien</option>
+            <option value='cat' >Chat</option>
+            <option value='nac' >NAC</option>
           </Form.Field>
           <Form.Field   required>
             <label>Sex</label>
@@ -85,28 +91,28 @@ import { browserHistory } from 'react-router';
             <label>Date de naissance</label>
             <Input placeholder="DD/MM/YYYY"  name="birthday" value={this.state.birthday} onChange={this.handleInputChange} />
           </Form.Field>
-          <Form.Field  name='origin' label="Origine de l'animal" control='select' required >
-            <option value='breeding' onChange={this.handleInputChange} >&Eacute;levage</option>
-            <option value='shelter' onChange={this.handleInputChange} >Refuge</option>
-            <option value='hostFamily' onChange={this.handleInputChange} >Famille d'acceuil</option>
-            <option value='given' onChange={this.handleInputChange} >Donné contre bons soins</option>
-            <option value='found' onChange={this.handleInputChange} >Trouvé</option>
-            <option value='other' onChange={this.handleInputChange} >Autre</option>
+          <Form.Field  name='origin' label="Origine de l'animal" control='select' onChange={this.handleInputChange}   required >
+            <option value='breeding'>&Eacute;levage</option>
+            <option value='shelter'>Refuge</option>
+            <option value='hostFamily'>Famille d'acceuil</option>
+            <option value='given'>Donné contre bons soins</option>
+            <option value='found'>Trouvé</option>
+            <option value='other'>Autre</option>
           </Form.Field>
           <Form.Field   required>
             <label>Animal stérilisé?</label>
-          <input type="radio" name="sterilized" value='true' checked={this.state.sterilized === 'true'} onChange={this.handleInputChange} />
+          <input type="radio" name="sterilized" value={true} checked={this.state.sterilized === true} onChange={this.handleInputChange} />
             <span>&nbsp;&nbsp;Oui</span>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="radio" name="sterilized" value='false' checked={this.state.sterilized === 'false'} onChange={this.handleInputChange} />
+            <input type="radio" name="sterilized" value={false} checked={this.state.sterilized === false} onChange={this.handleInputChange} />
             <span>&nbsp;&nbsp;Non</span>
           </Form.Field>
           <Form.Field   required>
             <label>Vaccins a jour?</label>
-            <input type="radio" name="vaccines" value='true' checked={this.state.vaccine === 'true'} onChange={this.handleInputChange} />
+            <input type="radio" name="vaccines" value={true} checked={this.state.vaccines === true} onChange={this.handleInputChange} />
             <span>&nbsp;&nbsp;Oui</span>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="radio" name="vaccines" value='false' checked={this.state.vaccine === 'false'} onChange={this.handleInputChange} />
+            <input type="radio" name="vaccines" value={false} checked={this.state.vaccines === false} onChange={this.handleInputChange} />
             <span>&nbsp;&nbsp;Non</span>
           </Form.Field>
           <Form.Field  required >
