@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Button, Header, Form, Input, Radio, Select } from 'semantic-ui-react'
+import { Button, Header, Form, Input, Radio, Select , Label} from 'semantic-ui-react'
 import { browserHistory } from 'react-router';
 
 
@@ -20,19 +20,9 @@ import { browserHistory } from 'react-router';
     this.handleSexChange = this.handleSexChange.bind(this);
   }
 
-
-
-  handleSexChange(event){
-    console.log(event.currentTarget.value);
-
-    this.setState({
-      sex: event.currentTarget.value
-    });
-    console.log(this.state.sex);
-  }
-
   handleInputChange(event) {
     const target = event.target;
+    console.log(event);
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
     this.setState({
@@ -75,27 +65,23 @@ import { browserHistory } from 'react-router';
             <label>Photo</label>
             <Input type="file" id="fileinput"  name='picture' value={this.state.picture} onChange={this.handleInputChange} />
           </Form.Field>
-
-
-          <Form.Field   >
+          <Form.Field   required>
             <label>Sex</label>
-            <input type="radio" name="sex"
-                       value='male'
-                       checked={this.state.sex === 'male'}
-                       onChange={this.handleSexChange} />male
-
-                       <input type="radio" name="sex"
-                                  value='female'
-                                  checked={this.state.sex === 'female'}
-                                  onChange={this.handleSexChange} />femelle
+            <input type="radio" name="sex" value='male' checked={this.state.sex === 'male'} onChange={this.handleInputChange} />
+            <span>&nbsp;&nbsp;Mâle</span>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="sex" value='female' checked={this.state.sex === 'female'} onChange={this.handleInputChange} />
+            <span>&nbsp;&nbsp;Femelle</span>
           </Form.Field>
-
-
-
           <Form.Field   required >
             <label>Date de naissance</label>
             <Input placeholder="DD/MM/YYYY"  name="birthday" value={this.state.birthday} onChange={this.handleInputChange} />
           </Form.Field>
+
+
+
+
+
           <Button type='submit' onClick={this.save}  size='big'>Enregistrer mon animal</Button>
         </Form>
       </div>
