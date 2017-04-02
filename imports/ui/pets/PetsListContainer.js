@@ -13,11 +13,12 @@ const composer = ({ params }, onData) => {
 
     const subscription = Meteor.subscribe('userPets', Meteor.user().pets_id);
     if (subscription.ready()) {
-      console.log()
+      console.log("sub to user pete rdy");
       // Pets.find
       const petsCursor = Pets.find({_id:{$in:Meteor.user().pets_id}});
       const pets = petsCursor.fetch();
-      onData(null, pets);
+      console.log(pets);
+      onData(null, {pets:pets});
     }
   }
 
