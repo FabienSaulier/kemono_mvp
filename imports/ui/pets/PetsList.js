@@ -8,6 +8,7 @@ import { Link } from 'react-router'
     console.log(props);
     super(props);
   }
+  
 
   render() {
     return(

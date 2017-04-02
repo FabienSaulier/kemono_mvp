@@ -5,6 +5,7 @@ import Loading from '../components/Loading.js';
 
 const composer = ({ params }, onData) => {
 
+  onData(null, Meteor.user());
 
 /*
   let currentUser = Meteor.user();
