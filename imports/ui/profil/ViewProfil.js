@@ -14,6 +14,7 @@ import { Link } from 'react-router'
     let display = "";
     if(this.props.pets_id && this.props.pets_id.length != 0){
       for(petId of this.props.pets_id){
+        display += petId+"   ";
       }
     } else {
       display = "Vous n'avez pas encore enregistré d'animaux de compagnie."
