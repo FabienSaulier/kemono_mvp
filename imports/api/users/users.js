@@ -139,6 +139,10 @@ Schema.User = new SimpleSchema({
     heartbeat: {
         type: Date,
         optional: true
+    },
+    pets_id:{
+      type: [String],
+      optional: true
     }
 });
 

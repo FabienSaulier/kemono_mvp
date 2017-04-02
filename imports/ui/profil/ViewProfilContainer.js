@@ -9,7 +9,7 @@ const composer = ({ params }, onData) => {
   let currentUser = Meteor.user();
   if(currentUser){
     console.log(currentUser);
-    onData(null, {currentUser});
+    onData(null, currentUser);
 
   }
 

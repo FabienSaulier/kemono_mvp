@@ -7,11 +7,16 @@ import { Link } from 'react-router'
   constructor(props) {
     console.log(props);
     super(props);
+    this.displayUserPets = this.displayUserPets.bind(this);
   }
 
+  displayUserPets(){
+
+    return "user pets <br />";
+  }
   render() {
-    let userProfile = this.props.currentUser.profile;
-    let userMail = this.props.currentUser.emails[0].address;
+    let userProfile = this.props.profile;
+    let userMail = this.props.emails[0].address;
     console.log(userMail);
 
     return (
@@ -30,6 +35,7 @@ import { Link } from 'react-router'
               {userProfile.birthday}  <br />
               {userProfile.picture}  <br />
               {userProfile.phone}  <br />
+              {this.displayUserPets()}
             </Grid.Column>
 
           </Grid.Row>

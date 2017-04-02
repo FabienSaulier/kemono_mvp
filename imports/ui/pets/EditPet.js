@@ -9,13 +9,16 @@ import { browserHistory } from 'react-router';
     super(props);
     console.log(props);
 
+    const SELECT_INIT_VALUE_TYPE = "dog";
+    const SELECT_INIT_VALUE_ORIGIN = "breeding";
+
     this.state = {
       name:'',
       picture:'',
-      type:'',
+      type:SELECT_INIT_VALUE_TYPE,
       sex:'',
       birthday:'',
-      origin:'',
+      origin:SELECT_INIT_VALUE_ORIGIN,
       sterilized:'',
       vaccines:'',
       vaccinesPics:''
