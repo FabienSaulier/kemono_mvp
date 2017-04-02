@@ -11,9 +11,16 @@ import { Link } from 'react-router'
   }
 
   displayUserPets(){
-
-    return "user pets <br />";
+    let display = "";
+    if(this.props.pets_id && this.props.pets_id.length != 0){
+      for(petId of this.props.pets_id){
+      }
+    } else {
+      display = "Vous n'avez pas encore enregistré d'animaux de compagnie."
+    }
+    return display;
   }
+
   render() {
     let userProfile = this.props.profile;
     let userMail = this.props.emails[0].address;

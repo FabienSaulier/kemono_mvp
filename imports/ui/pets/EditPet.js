@@ -58,6 +58,7 @@ import { browserHistory } from 'react-router';
           Bert.alert(error.reason, 'danger');
         } else {
           Bert.alert(res, 'success');
+          browserHistory.push('/pets');
         }
       });
 

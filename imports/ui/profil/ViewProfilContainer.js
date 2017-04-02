@@ -4,16 +4,10 @@ import {ViewProfil} from './ViewProfil';
 import Loading from '../components/Loading.js';
 
 const composer = ({ params }, onData) => {
-
-
-  let currentUser = Meteor.user();
-  if(currentUser){
-    console.log(currentUser);
-    onData(null, currentUser);
-
+  const subscription = Meteor.subscribe('userData');
+  if (subscription.ready()) {
+    onData(null, Meteor.user() );
   }
-
-
 };
 
 export default ViewProfilContainer = composeWithTracker(composer, Loading)(ViewProfil);

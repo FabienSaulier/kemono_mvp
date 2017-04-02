@@ -8,7 +8,6 @@ export const updateUserProfil = new ValidatedMethod({
   run({userProfil}) {
     console.log(userProfil);
     Meteor.users.update(Meteor.userId(), {$set: {profile: userProfil}});
-
   }
 });
 

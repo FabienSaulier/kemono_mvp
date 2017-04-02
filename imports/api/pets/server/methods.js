@@ -15,13 +15,8 @@ export const upsertPet = new ValidatedMethod({
   name: 'pets.upsert',
   validate: Pets.schema.validator(),
   run(pet) {
-    console.log(pet);
-
     const result =  Pets.upsert({ _id: pet._id }, { $set: pet });
-    console.log(result.insertedId);
-    
     const res = Meteor.users.update(Meteor.userId(), {$push: {pets_id: result.insertedId}});
-    console.log(res);
   },
 });
 
