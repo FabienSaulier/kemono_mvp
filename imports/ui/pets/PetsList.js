@@ -18,14 +18,24 @@ import { Link } from 'react-router'
 
         {this.props.pets.map(function(pet, i){
             return (
+            <div key={i} style={{width:'650px'}}>
+              <Grid key={i}  columns={2} >
+                <Grid.Row>
+                  <Grid.Column>
+                    <Image src='/img/chien3.jpg' size="medium" />
+                  </Grid.Column>
+                  <Grid.Column>
+                    <div>{pet.name}</div>
+                    <div>{pet.type}</div>
+                    <div>{pet.sex}</div>
+                    <div>{pet.birthday}</div>
+                    <div>{pet.origin}</div>
+                    <div>{pet.sterilized}</div>
+                  </Grid.Column>
+                </Grid.Row>
 
-              <div key={i}>
-                <div>{pet.name}</div>
-                <div>{pet.type}</div>
-                <div>{pet.sex}</div>
-                <div>{pet.birthday}</div>
-                <div>{pet.origin}</div>
-                <div>{pet.sterilized}</div>
+              </Grid>
+
                 <Divider />
               </div>
 
