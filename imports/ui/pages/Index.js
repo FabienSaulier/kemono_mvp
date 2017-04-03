@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { Jumbotron } from 'react-bootstrap';
 import { Segment, Label, Card, Icon, Image } from 'semantic-ui-react'
 
-import PetsDashboardComponent from '../components/PetsDashboardComponent'
+import PetsDashboardContainer from '../components/PetsDashboardContainer'
 import CampaignsDashboardComponent from '../components/CampaignsDashboardComponent'
 
 export const Index = ({user}) => (
@@ -15,9 +15,9 @@ export const Index = ({user}) => (
       <Label attached='top left' style={{'fontSize':'14px'}}>En cours</Label>
       Vous n'avez pas d'opération en cours.
     </Segment>
-    <Segment padded='very' raised>
+    <Segment padded raised>
       <Label attached='top left' style={{'fontSize':'14px'}}>Mes compagnons</Label>
-      <PetsDashboardComponent user={user}/>
+      <PetsDashboardContainer/>
     </Segment>
     <Segment padded='very'>
       <Label attached='top left' style={{'fontSize':'14px'}}>Les campagnes en cours sur Kemono</Label>
