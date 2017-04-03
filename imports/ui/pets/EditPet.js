@@ -65,7 +65,7 @@ import { browserHistory } from 'react-router';
   }
 
   render() {
-     const { sex } = this.state
+     
     return (
       <Container>
         <Header size='large'>Ajouter un compagnon</Header>

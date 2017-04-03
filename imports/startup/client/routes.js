@@ -54,10 +54,8 @@ Meteor.startup(() => {
         <Route name="pets" path="/pets" component={ PetsListContainer } onEnter={ authenticate } />
         <Route name="editPet" path="/pets/edit" component={ EditPetContainer } onEnter={ authenticate } />
 
-
-        <Route name="editProfil" path="/profil/edit/" component={ EditProfilContainer } onEnter={ authenticate } />
-
         <Route name="profil" path="/profil" component={ ViewProfilContainer } onEnter={ authenticate } />
+        <Route name="editProfil" path="/profil/edit/" component={ EditProfilContainer } onEnter={ authenticate } />
 
         <Route name="account" path="/account" component={ Account } onEnter={ authenticate } />
         <Route name="campaignsList" path="/campaignsList" component={ CampaignsList } onEnter={ authenticate } />

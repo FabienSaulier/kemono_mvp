@@ -9,8 +9,8 @@ Publish user Pets
 Meteor.publish('userPets', function (userPetsId) {
   console.log("pubbbbbb");
   console.log(userPetsId);
+  check(userPetsId, [String]);
   if(userPetsId){
-    check(userPetsId, [String]);
 
     if (this.userId) {
       return Pets.find({_id: {$in: userPetsId }});
