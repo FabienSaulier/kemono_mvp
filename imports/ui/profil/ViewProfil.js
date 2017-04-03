@@ -1,9 +1,11 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Button, Header, Item, Grid , Image} from 'semantic-ui-react'
+import { Container, Button, Header, Item, Grid , Image} from 'semantic-ui-react'
 import { Link } from 'react-router'
 
- export class ViewProfil extends React.Component {
+
+
+export class ViewProfil extends React.Component {
   constructor(props) {
     console.log(props);
     super(props);
@@ -25,17 +27,14 @@ import { Link } from 'react-router'
   render() {
     let userProfile = this.props.profile;
     let userMail = this.props.emails[0].address;
-    console.log(userMail);
 
     return (
-      <div>
+      <Container>
         <Header size='large'>Mon profil</Header>
-
-
         <Grid columns='4' >
           <Grid.Row>
             <Grid.Column>
-              <Image size='medium' src='/img/snoden.jpg'  />
+              <ProfilPicture src={userProfile.picture}/>
             </Grid.Column>
             <Grid.Column>
               {userProfile.firstName} {userProfile.lastName} <br />
@@ -51,7 +50,14 @@ import { Link } from 'react-router'
         </Grid>
 
         <Button as={Link} to='/profil/edit/' name='editProfil' content='Modifier' icon='edit' size='big' labelPosition='left' />
-      </div>
+      </Container>
     )
   }
 };
+
+const ProfilPicture = ({src}) => {
+  if(!src){
+    src = 'noImage.png';
+  }
+  return  <Image size='medium' shape='rounded'  src={'/img/'+src}  />
+}

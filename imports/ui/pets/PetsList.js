@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Button, Divider, Header, Item, Grid , Image} from 'semantic-ui-react'
+import {Container,  Button, Divider, Header, Item, Grid , Image} from 'semantic-ui-react'
 import { Link } from 'react-router'
 
  export class PetsList extends React.Component {
@@ -12,10 +12,8 @@ import { Link } from 'react-router'
 
   render() {
     return(
-      <div>
+      <Container>
         <Header as='h2'>Mes animaux de compagnie</Header>
-
-
         {this.props.pets.map(function(pet, i){
             return (
             <div key={i} style={{width:'650px'}}>
@@ -33,16 +31,13 @@ import { Link } from 'react-router'
                     <div>{pet.sterilized}</div>
                   </Grid.Column>
                 </Grid.Row>
-
               </Grid>
-
-                <Divider />
-              </div>
-
+              <Divider />
+            </div>
             );
         })}
 
-      </div>
+      </Container>
 
     )
   }

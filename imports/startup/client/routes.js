@@ -19,7 +19,7 @@ import IndexContainer from '../../ui/containers/IndexContainer.js';
 import Pets from '../../ui/pages/Pets.js';
 import PetsListContainer from '../../ui/pets/PetsListContainer.js';
 import EditPetContainer from '../../ui/pets/EditPetContainer.js';
-import ProfilPage from '../../ui/profil/ProfilPage.js';
+import ViewProfilContainer from '../../ui/profil/ViewProfilContainer.js';
 import EditProfilContainer from '../../ui/profil/EditProfilContainer.js';
 import Account from '../../ui/pages/Account.js';
 import CampaignsList from '../../ui/pages/CampaignsList.js';
@@ -57,7 +57,7 @@ Meteor.startup(() => {
 
         <Route name="editProfil" path="/profil/edit/" component={ EditProfilContainer } onEnter={ authenticate } />
 
-        <Route name="profil" path="/profil" component={ ProfilPage } onEnter={ authenticate } />
+        <Route name="profil" path="/profil" component={ ViewProfilContainer } onEnter={ authenticate } />
 
         <Route name="account" path="/account" component={ Account } onEnter={ authenticate } />
         <Route name="campaignsList" path="/campaignsList" component={ CampaignsList } onEnter={ authenticate } />

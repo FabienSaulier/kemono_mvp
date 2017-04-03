@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Button, Header, Form, Input } from 'semantic-ui-react'
+import { Container, Button, Header, Form, Input } from 'semantic-ui-react'
 import { browserHistory } from 'react-router';
 //import DatePicker from 'react-datepicker'
 //import moment from 'moment'
@@ -45,7 +45,7 @@ import { browserHistory } from 'react-router';
 
   render() {
     return (
-      <div>
+      <Container>
         <Header size='large'>Modifier le profil</Header>
         <Form style={{width:'400px'}} size='huge'>
           <Form.Field   required >
@@ -77,7 +77,7 @@ import { browserHistory } from 'react-router';
           </Form.Field>
           <Button type='submit' onClick={this.save}  size='big'>Enregistrer</Button>
         </Form>
-      </div>
+      </Container>
     )
   }
 };

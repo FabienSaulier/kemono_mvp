@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Button, Header, Form, Input, Radio, Select , Label} from 'semantic-ui-react'
+import {Container, Button, Header, Form, Input, Radio, Select , Label} from 'semantic-ui-react'
 import { browserHistory } from 'react-router';
 
 
@@ -67,7 +67,7 @@ import { browserHistory } from 'react-router';
   render() {
      const { sex } = this.state
     return (
-      <div>
+      <Container>
         <Header size='large'>Ajouter un compagnon</Header>
         <Form style={{width:'400px'}} size='huge'>
           <Form.Field   required >
@@ -125,7 +125,7 @@ import { browserHistory } from 'react-router';
           </Form.Field>
           <Button type='submit' onClick={this.save}  size='big'>Enregistrer mon animal</Button>
         </Form>
-      </div>
+      </Container>
     )
   }
 };
