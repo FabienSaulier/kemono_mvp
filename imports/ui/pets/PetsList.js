@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import {Container,  Button, Divider, Header, Item, Grid , Image} from 'semantic-ui-react'
+import {Container,  Button, Divider, Header, Item, Grid , Image, Icon} from 'semantic-ui-react'
 import { Link } from 'react-router'
 
  export class PetsList extends React.Component {
@@ -22,7 +22,10 @@ import { Link } from 'react-router'
 
           );
       })}
-
+      <div>
+        <Icon color='teal' size='big' name='add circle' />
+        <Link to="/pets/edit">Ajouter un animal</Link>
+      </div>
       </Container>
 
     )

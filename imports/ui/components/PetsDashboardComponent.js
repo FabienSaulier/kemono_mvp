@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router'
 import { Icon , Button} from 'semantic-ui-react'
 import { Link } from 'react-router'
 
-const PetsDashboardComponent = ({ user }) => (
+const PetsDashboardComponent = ({ pets }) => (
   <div>
     <Icon color='teal' size='big' name='add circle' />
     <Link to="/pets/edit">Ajouter un animal</Link>
