@@ -27,6 +27,7 @@ export class ViewProfil extends React.Component {
   render() {
     let userProfile = this.props.profile;
     let userMail = this.props.emails[0].address;
+    console.log(userProfile);
 
     return (
       <Container>

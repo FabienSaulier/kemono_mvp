@@ -19,7 +19,7 @@ export const Index = ({user}) => (
       <Label attached='top left' style={{'fontSize':'14px'}}>Mes compagnons</Label>
       <PetsDashboardContainer/>
     </Segment>
-    <Segment padded='very'>
+    <Segment padded raised>
       <Label attached='top left' style={{'fontSize':'14px'}}>Les campagnes en cours sur Kemono</Label>
       <CampaignsDashboardComponent />
     </Segment>
