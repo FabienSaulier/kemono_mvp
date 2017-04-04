@@ -3,7 +3,6 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { Nav, NavItem } from 'react-bootstrap';
 import { Menu, Icon, Dropdown} from 'semantic-ui-react'
 import { Link } from 'react-router';
-import MediaQuery from 'react-responsive';
 
 const PublicNavigation = () => (
   /*
