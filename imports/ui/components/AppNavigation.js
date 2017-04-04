@@ -4,9 +4,9 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { Menu , Image, Container} from 'semantic-ui-react'
 
 import PublicNavigation from './PublicNavigation.js';
-import AuthenticatedNavigation from './AuthenticatedNavigation.js';
+import AuthenticatedNavigationContainer from './AuthenticatedNavigationContainer.js';
 
-const renderNavigation = hasUser => (hasUser ? <AuthenticatedNavigation /> : <PublicNavigation />);
+const renderNavigation = hasUser => (hasUser ? <AuthenticatedNavigationContainer /> : <PublicNavigation />);
 
 const AppNavigation = ({ hasUser }) => (
 

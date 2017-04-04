@@ -5,13 +5,11 @@ import { Link } from 'react-router'
 
  export class PetsList extends React.Component {
   constructor(props) {
-    console.log(props.pets);
     super(props);
   }
 
 
   render() {
-    console.log(this.props.pets);
     return(
       <Container>
         <Header as='h2'>Mes animaux de compagnie</Header>
