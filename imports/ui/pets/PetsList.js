@@ -15,22 +15,28 @@ import { Link } from 'react-router'
     return(
       <Container>
         <Header as='h2'>Mes animaux de compagnie</Header>
-
-        {this.props.pets.map(function(pet, i){
-          return (
-            <PetComponent pet={pet} key={i}/>
-
-          );
-      })}
-      <div>
-        <Icon color='teal' size='big' name='add circle' />
-        <Link to="/pets/edit">Ajouter un animal</Link>
-      </div>
+        <PetGroup pets={this.props.pets} />
+        <div>
+          <Icon color='teal' size='big' name='add circle' />
+          <Link to="/pets/edit">Ajouter un animal</Link>
+        </div>
       </Container>
-
     )
   }
 };
+
+
+const PetGroup = ({pets}) =>{
+  if(pets){
+    return(
+      pets.map(function(pet, i){
+        return (
+          <PetComponent pet={pet} key={i}/>
+        );
+      })
+    )
+  } else return null;
+}
 
 const PetComponent = ({pet}) =>{
   return(

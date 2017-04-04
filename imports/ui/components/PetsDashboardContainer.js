@@ -12,8 +12,7 @@ const composer = ({ params }, onData) => {
   if (subscription.ready()) {
 
     if(!Meteor.user().pets_id){
-      onData(null, {pets:{}});
-
+      onData(null, {pets:null});
     } else {
       const subscription = Meteor.subscribe('userPets', Meteor.user().pets_id);
       if (subscription.ready()) {

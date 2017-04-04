@@ -7,7 +7,6 @@ import PetsDashboardContainer from '../components/PetsDashboardContainer'
 import CampaignsDashboardComponent from '../components/CampaignsDashboardComponent'
 
 export const Index = ({user}) => (
-
   Meteor.userId() ?
    (
   <div className="Index">

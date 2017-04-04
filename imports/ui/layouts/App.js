@@ -1,12 +1,12 @@
 import React from 'react';
 import { Grid } from 'react-bootstrap';
 
-import AppNavigation from '../containers/AppNavigation.js';
+import AppNavigationContainer from '../containers/AppNavigationContainer.js';
 import InsiderMenu from '../components/InsiderMenu.js';
 
 const App = ({ children }) => (
   <div>
-    <AppNavigation />
+    <AppNavigationContainer />
     <Grid>
       <InsiderMenu />
       { children }

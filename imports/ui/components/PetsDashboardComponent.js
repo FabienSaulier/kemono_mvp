@@ -13,8 +13,18 @@ const PetsDashboardComponent = ({ pets }) => {
 }
 
 const PetGroupCards = ({pets}) => {
-  if(!pets || pets.length == 0)
-    return null;
+
+  if(!pets || pets.length == 0){
+      return (
+      <Image.Group>
+        <Image size='big'>
+          <Icon color='teal' size='big' name='add circle' />
+          <Link to="/pets/edit">Ajouter un animal</Link>
+        </Image>
+      </Image.Group>
+    )
+  }
+
   else
     return(
       <Image.Group>
