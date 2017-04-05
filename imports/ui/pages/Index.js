@@ -14,7 +14,6 @@ export const Index = ({user}) => (
    (
   <div className="Index">
     <Panel header='En cours' bsStyle="warning" >
-      <Label attached='top left' style={{'fontSize':'14px'}}>En cours</Label>
       Vous n'avez pas d'opération en cours.
     </Panel>
     <Panel header='Mes compagnons' bsStyle="warning">

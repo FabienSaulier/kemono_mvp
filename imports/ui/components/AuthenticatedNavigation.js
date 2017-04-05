@@ -6,46 +6,50 @@ import { Meteor } from 'meteor/meteor';
 
 const handleLogout = () => Meteor.logout(() => browserHistory.push('/login'));
 
-const trigger = (user) => {
-  console.log(user.profile.firstName);
-  return(
-    <span>
-      <Image  avatar src='/img/fabien.jpg' /> {user.profile.firstName}
-    </span>
-  )
-}
 
 const AuthenticatedNavigation = ({user}) => {
-  return(<div>toto</div>
-    /*
-    <Menu.Menu position='right'>
-      <Dropdown trigger={trigger(user)}  icon={null}>
-        <Dropdown.Menu>
-          <Dropdown.Item as={Link} to='/' >
-            Dashboard
-          </Dropdown.Item>
-          <Dropdown.Item as={Link} to='/documents'>
-            Documents
-          </Dropdown.Item>
-          <Dropdown.Item as={Link} to='/pets'>
-            Pets
-          </Dropdown.Item>
-          <Dropdown.Item as={Link} to='/campaignsList'>
-            Campagnes
-          </Dropdown.Item>
-          <Dropdown.Item as={Link} to='/profil'>
-            Profil
-          </Dropdown.Item>
-          <Dropdown.Item as={Link} to='/account'>
-            Account
-          </Dropdown.Item>
-          <Dropdown.Item as={Link} to='/' onClick={ handleLogout } >
-            Logout
-          </Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
-  </Menu.Menu>
-  */
+  console.log(user);
+  return(
+
+      <Nav pullRight>
+        <NavDropdown title={user.profile.firstName+' '+user.profile.lastName} id="basic-nav-dropdown">
+          <MenuItem >
+            <LinkContainer to="/">
+              <NavItem  href="/">Tableau de bord</NavItem>
+            </LinkContainer>
+          </MenuItem>
+          <MenuItem >
+            <LinkContainer to="/documents">
+              <NavItem  href="/documents">Documents</NavItem>
+            </LinkContainer>
+          </MenuItem>
+          <MenuItem >
+            <LinkContainer to="/pets">
+              <NavItem  href="/pets">Mes animaux</NavItem>
+            </LinkContainer>
+          </MenuItem>
+          <MenuItem >
+            <LinkContainer to="/campaignsList">
+              <NavItem  href="/campaignsList">Mes remboursements</NavItem>
+            </LinkContainer>
+          </MenuItem>
+          <MenuItem >
+            <LinkContainer to="/profil">
+              <NavItem  href="/profil">Mon profil</NavItem>
+            </LinkContainer>
+          </MenuItem>
+          <MenuItem >
+            <LinkContainer to="/documents">
+              <NavItem  href="/documents">Documents</NavItem>
+            </LinkContainer>
+          </MenuItem>
+          <MenuItem >
+            <LinkContainer to="/">
+              <NavItem  href="/" onClick={ handleLogout } >Déconnexion</NavItem>
+            </LinkContainer>
+          </MenuItem>
+        </NavDropdown>
+      </Nav>
   )
 }
 

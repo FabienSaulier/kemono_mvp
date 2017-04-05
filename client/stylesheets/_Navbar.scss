@@ -1,4 +1,17 @@
 
+/** Auth nav: dropdown menu**/
+.dropdown-menu{
+  background-color: $gris_clair;
+}
+
+#basic-nav-dropdown{
+  background-color: $framboise;
+  color:$gris_fonce;
+}
+
+
+/** Public NavBar **/
+
 .navbar {
     margin-bottom: 0;
     border-radius: 0px;
@@ -23,11 +36,10 @@
 .navbar-default .navbar-nav>.active>a:focus{
   background-color: $framboise;
 }
+
  .navbar-default .navbar-nav>.active>a:hover{
   background-color: $framboise;
 }
-
-
 
 .navbar-default .navbar-nav > li > a {
   color: $gris_clair;

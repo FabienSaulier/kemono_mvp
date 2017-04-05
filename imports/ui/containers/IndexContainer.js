@@ -9,5 +9,4 @@ const composer = ({ params }, onData) => {
 
 };
 
-
 export default IndexContainer = composeWithTracker(composer, Loading)(Index);
