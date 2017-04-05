@@ -16,6 +16,7 @@ const composer = ({ params }, onData) => {
       if (subscription.ready()) {
         const petsCursor = Pets.find({_id:{$in:Meteor.user().pets_id}});
         const pets = petsCursor.fetch();
+        console.log(pets);
         onData(null, {pets:pets});
       }
     }

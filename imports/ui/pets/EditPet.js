@@ -3,9 +3,6 @@ import { Meteor } from 'meteor/meteor';
 import {Container, Button, Header, Form, Input, Radio, Select , Label} from 'semantic-ui-react'
 import { browserHistory } from 'react-router';
 
-
-
-
  export class EditPet extends React.Component {
   constructor(props) {
     super(props);

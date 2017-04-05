@@ -1,33 +1,35 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import {Container,  Button, Divider, Header, Item, Grid , Image, Icon} from 'semantic-ui-react'
-import { Link } from 'react-router'
+import {PageHeader , Glyphicon , Grid, Row, Col, Image} from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap';
+import { Link } from 'react-router';
 
  export class PetsList extends React.Component {
   constructor(props) {
     super(props);
   }
 
-
   render() {
     return(
-      <Container>
-        <Header as='h2'>Mes animaux de compagnie</Header>
-        <PetGroup pets={this.props.pets} />
-        <div>
-          <Icon color='teal' size='big' name='add circle' />
-          <Link to="/pets/edit">Ajouter un animal</Link>
+      <div>
+        <PageHeader as='h2'>Mes animaux de compagnie</PageHeader>
+
+        {displayPets(this.props.pets)}
+        <div><Glyphicon glyph="star" />
+          <LinkContainer to="/pets/edit">
+             <Link to="/pets/edit" >Ajouter un animal</Link>
+          </LinkContainer>
         </div>
-      </Container>
+      </div>
     )
   }
 };
 
-
-const PetGroup = ({pets}) =>{
+const displayPets = (pets) =>{
   if(pets){
     return(
       pets.map(function(pet, i){
+        console.log(pet);
         return (
           <PetComponent pet={pet} key={i}/>
         );
@@ -39,22 +41,22 @@ const PetGroup = ({pets}) =>{
 const PetComponent = ({pet}) =>{
   return(
   <div  style={{width:'650px'}}>
-    <Grid  columns={2} >
-      <Grid.Row>
-        <Grid.Column>
+    <Grid  >
+      <Row>
+        <Col>
           <ProfilPicture src='chien3.jpg' />
-        </Grid.Column>
-        <Grid.Column>
+        </Col>
+        <Col>
           <div>{pet.name}</div>
           <div>{pet.type}</div>
           <div>{pet.sex}</div>
           <div>{pet.birthday}</div>
           <div>{pet.origin}</div>
           <div>{pet.sterilized}</div>
-        </Grid.Column>
-      </Grid.Row>
+        </Col>
+      </Row>
     </Grid>
-    <Divider />
+    <hr />
   </div>
   )
 }
@@ -63,5 +65,5 @@ const ProfilPicture = ({src}) => {
   if(!src){
     src = 'noImage.png';
   }
-  return  <Image size='medium' shape='rounded'  src={'/img/'+src}  />
+  return  <Image responsive rounded src={'/img/'+src}  />
 }

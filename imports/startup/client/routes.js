@@ -16,10 +16,11 @@ import ResetPassword from '../../ui/pages/ResetPassword.js';
 import Signup from '../../ui/pages/Signup.js';
 
 import IndexContainer from '../../ui/containers/IndexContainer.js';
-/*
-import Pets from '../../ui/pages/Pets.js';
+
 import PetsListContainer from '../../ui/pets/PetsListContainer.js';
 import EditPetContainer from '../../ui/pets/EditPetContainer.js';
+
+/*
 import ViewProfilContainer from '../../ui/profil/ViewProfilContainer.js';
 import EditProfilContainer from '../../ui/profil/EditProfilContainer.js';
 import Account from '../../ui/pages/Account.js';
@@ -38,6 +39,9 @@ const authenticate = (nextState, replace) => {
 
 /**
 TODO: Index if authenticate = dashboard otherwise page exterieure
+
+
+
 
 <Route name="pets" path="/pets" component={ PetsListContainer } onEnter={ authenticate } />
 <Route name="editPet" path="/pets/edit" component={ EditPetContainer } onEnter={ authenticate } />
@@ -63,7 +67,8 @@ Meteor.startup(() => {
         <Route name="reset-password" path="/reset-password/:token" component={ ResetPassword } />
         <Route name="signup" path="/signup" component={ Signup } />
 
-
+        <Route name="pets" path="/pets" component={ PetsListContainer } onEnter={ authenticate } />
+        <Route name="editPet" path="/pets/edit" component={ EditPetContainer } onEnter={ authenticate } />
 
         <Route path="*" component={ NotFound } />
       </Route>
