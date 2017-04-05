@@ -30,7 +30,7 @@ export default class Login extends React.Component {
                   ref="emailAddress"
                   name="emailAddress"
                   placeholder="Email Address"
-                  className="login-input"
+                  className="shadowed-input"
                 />
               </FormGroup>
               <FormGroup>
@@ -42,7 +42,7 @@ export default class Login extends React.Component {
                   type="password"
                   ref="password"
                   name="password"
-                  placeholder="Password" className="login-input"
+                  placeholder="Password" className="shadowed-input"
                 />
               </FormGroup>
               <Button type="submit" className="dark" bsStyle="success">Connexion</Button>

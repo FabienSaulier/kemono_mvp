@@ -31,6 +31,7 @@ export default class Signup extends React.Component {
                       ref="firstName"
                       name="firstName"
                       placeholder="Prénom"
+                      className="shadowed-input"
                     />
                   </FormGroup>
                 </Col>
@@ -42,6 +43,7 @@ export default class Signup extends React.Component {
                       ref="lastName"
                       name="lastName"
                       placeholder="Nom"
+                      className="shadowed-input"
                     />
                   </FormGroup>
                 </Col>
@@ -53,6 +55,7 @@ export default class Signup extends React.Component {
                   ref="emailAddress"
                   name="emailAddress"
                   placeholder="Email"
+                  className="shadowed-input"
                 />
               </FormGroup>
               <FormGroup>
@@ -62,11 +65,12 @@ export default class Signup extends React.Component {
                   ref="password"
                   name="password"
                   placeholder="Mot de passe"
+                  className="shadowed-input"
                 />
               </FormGroup>
               <Button type="submit" bsStyle="success">Inscription</Button>
             </form>
-            <p>Vous avez déjà un compte? <Link to="/login">Connexion</Link>.</p>
+            <p style={{marginTop:'15px'}}>Vous avez déjà un compte? <Link to="/login">Connexion</Link>.</p>
           </Col>
         </Row>
       </div>

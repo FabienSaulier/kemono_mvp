@@ -43,7 +43,7 @@ textarea:focus, input:focus, .uneditable-input:focus {
     outline: 0 none !important;
 }
 
-.login-input{
+.shadowed-input{
 	background-color: $gris_clair;
 	border: 1px solid $gris_clair;
 	box-shadow: 2px 2px 2px $gris_moyen;
