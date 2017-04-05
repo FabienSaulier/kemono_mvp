@@ -5,10 +5,9 @@ import Loading from '../components/Loading.js';
 
 const composer = ({ params }, onData) => {
   let currentUser = Meteor.user();
-  console.log(currentUser);
-  if(currentUser){
-    onData(null, {currentUser});
-  }
+  onData(null, {currentUser});
+
 };
+
 
 export default IndexContainer = composeWithTracker(composer, Loading)(Index);

@@ -1,0 +1,53 @@
+
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0px;
+}
+
+.navbar-default {
+    border: 0;
+    background-color: $framboise;
+    /* LE GRADIENT DANS LA NAVBAR REND LA POLICE MOCHE */
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e84b3d+0,e84b3d+100&1+0,1+95,0+100 */
+	/* background: -moz-linear-gradient(top, rgba(232,75,61,1) 0%, rgba(232,75,61,1) 95%, rgba(232,75,61,0) 100%); /* FF3.6-15 */
+	/* background: -webkit-linear-gradient(top, rgba(232,75,61,1) 0%,rgba(232,75,61,1) 95%,rgba(232,75,61,0) 100%); /* Chrome10-25,Safari5.1-6 */
+	/* background: linear-gradient(to bottom, rgba(232,75,61,1) 0%,rgba(232,75,61,1) 95%,rgba(232,75,61,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	/* filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e84b3d', endColorstr='#00e84b3d',GradientType=0 ); /* IE6-9 */
+}
+
+.navbar-default .navbar-nav>.active>a{
+  background-color: $framboise;
+  color: $gris_clair;
+}
+
+.navbar-default .navbar-nav>.active>a:focus{
+  background-color: $framboise;
+}
+ .navbar-default .navbar-nav>.active>a:hover{
+  background-color: $framboise;
+}
+
+
+
+.navbar-default .navbar-nav > li > a {
+  color: $gris_clair;
+	font-family: "Comfortaa";
+}
+
+.navbar-nav{
+	margin: 0 auto;
+	display: table;
+	table-layout: fixed;
+	float:none;
+	height:75px;
+	padding-top: 20px;
+}
+
+.navbar-default.brand, .navbar-default .nav > li > a:hover {
+	color: $gris_fonce;
+	border-bottom: 2px solid $gris_fonce;
+}
+
+.navbar-default .navbar-header .navbar-toggle .icon-bar {
+    background-color: white;
+}

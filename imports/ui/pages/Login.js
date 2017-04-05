@@ -30,21 +30,22 @@ export default class Login extends React.Component {
                   ref="emailAddress"
                   name="emailAddress"
                   placeholder="Email Address"
+                  className="login-input"
                 />
               </FormGroup>
               <FormGroup>
                 <ControlLabel>
-                  <span className="pull-left">Mot de passe</span>
+                  <span className="pull-left">Mot de passe&nbsp;&nbsp;&nbsp;</span>
                   <Link className="pull-right" to="/recover-password">Mot de passe oublié?</Link>
                 </ControlLabel>
                 <FormControl
                   type="password"
                   ref="password"
                   name="password"
-                  placeholder="Password"
+                  placeholder="Password" className="login-input"
                 />
               </FormGroup>
-              <Button type="submit" bsStyle="success">Connexion</Button>
+              <Button type="submit" className="dark" bsStyle="success">Connexion</Button>
             </form>
           </Col>
         </Row>

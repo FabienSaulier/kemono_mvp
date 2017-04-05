@@ -7,6 +7,9 @@ BrowserPolicy.content.allowFontDataUrl();
 BrowserPolicy.content.allowOriginForAll("www.google-analytics.com");
 
 BrowserPolicy.content.allowStyleOrigin("fonts.googleapis.com");
+BrowserPolicy.content.allowStyleOrigin("maxcdn.bootstrapcdn.com");
+BrowserPolicy.content.allowFontOrigin("maxcdn.bootstrapcdn.com");
+
 BrowserPolicy.content.allowFontOrigin("fonts.gstatic.com");
 
 BrowserPolicy.content.allowStyleOrigin("cdnjs.cloudflare.com");

@@ -1,18 +1,52 @@
 
 
+/* STYLE ITEMS PRINCIPAUX */
 
-body{
-  font-size:14px;
-  font-family: "Comfortaa";
+body {
+	background: $gris_clair;
+	padding-top: 0px;
+	font-family: "comfortaa";//"Open+Sans:400";
 }
 
+a {
 
-.ui.segment{
-  font-size:14px;
-  font-family: "Comfortaa";
 }
 
-.ui.label{
-  font-size:14px;
-  font-family: "Comfortaa";
+.btn{
+	color: $gris_clair;
+	background-color: $gris_moyen;
+	border: 1px solid $gris_moyen;
+	box-shadow: 2px 2px 2px $gris_fonce;
+	border-radius: 2px;
+	max-width: 160px;
+	.dark{
+		color: $gris_fonce;
+		background-color: $gris_clair;
+		border-radius: 2px;
+		max-width: 160px;
+	}
+}
+
+.btn:hover, .btn:focus, .btn:active, .btn.active, .open>.dropdown-toggle.btn {
+    color: $gris_clair;
+    border: 1px solid $framboise;
+    background-color: $framboise;
+    box-shadow: 2px 2px 2px $saumon;
+    border-radius: 2px;
+}
+
+/** FORM **/
+
+textarea:focus, input:focus, .uneditable-input:focus {
+    border-color: rgba(232, 75, 61, 0.8) !important;
+    box-shadow: 0 1px 1px rgba(232, 75, 61, 0.075) inset, 0 0 8px rgba(232, 75, 61, 0.6) !important;
+    outline: 0 none !important;
+}
+
+.login-input{
+	background-color: $gris_clair;
+	border: 1px solid $gris_clair;
+	box-shadow: 2px 2px 2px $gris_moyen;
+	font-family: "Comfortaa";
+	border-radius: 2px;
 }

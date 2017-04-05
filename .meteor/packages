@@ -22,7 +22,6 @@ check@1.2.5
 audit-argument-checks@1.0.7
 browser-policy@1.1.0
 
-fourseven:scss@4.5.0
 aldeed:collection2
 alanning:roles
 themeteorchef:bert
@@ -37,3 +36,4 @@ shell-server@0.2.3
 msavin:mongol
 momentjs:moment
 dburles:collection-helpers
+fourseven:scss

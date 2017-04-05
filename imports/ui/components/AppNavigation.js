@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
-import { Menu , Image, Container} from 'semantic-ui-react'
+import {Navbar, NavItem } from 'react-bootstrap'
+
 
 import PublicNavigation from './PublicNavigation.js';
 import AuthenticatedNavigationContainer from './AuthenticatedNavigationContainer.js';
@@ -9,16 +10,15 @@ import AuthenticatedNavigationContainer from './AuthenticatedNavigationContainer
 const renderNavigation = hasUser => (hasUser ? <AuthenticatedNavigationContainer /> : <PublicNavigation />);
 
 const AppNavigation = ({ hasUser }) => (
-
-  <Menu size='massive'  borderless  className="navMenu">
-    <Container>
-      <Menu.Item>
-        <Image src='/img/icons/patte_kemono_blanc.png' />
-        <h1 style={{'marginLeft':'15px'}}>Kemono</h1>
-      </Menu.Item>
+  <Navbar>
+    <Navbar.Header>
+      <a className="navbar-brand" href="/"><img src="img/logo_kemono_blanc2.png" id="logo1" /></a>
+      <Navbar.Toggle />
+    </Navbar.Header>
+    <Navbar.Collapse>
       { renderNavigation(hasUser) }
-    </Container>
-  </Menu>
+    </Navbar.Collapse>
+  </Navbar>
 );
 
 AppNavigation.propTypes = {

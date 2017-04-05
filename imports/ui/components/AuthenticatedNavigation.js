@@ -3,7 +3,6 @@ import { browserHistory , Link} from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import { Meteor } from 'meteor/meteor';
-import { Menu, Dropdown, Image} from 'semantic-ui-react'
 
 const handleLogout = () => Meteor.logout(() => browserHistory.push('/login'));
 
@@ -17,7 +16,8 @@ const trigger = (user) => {
 }
 
 const AuthenticatedNavigation = ({user}) => {
-  return(
+  return(<div>toto</div>
+    /*
     <Menu.Menu position='right'>
       <Dropdown trigger={trigger(user)}  icon={null}>
         <Dropdown.Menu>
@@ -45,6 +45,7 @@ const AuthenticatedNavigation = ({user}) => {
         </Dropdown.Menu>
       </Dropdown>
   </Menu.Menu>
+  */
   )
 }
 

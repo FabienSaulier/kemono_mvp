@@ -1,56 +1,27 @@
 import React from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Nav, NavItem } from 'react-bootstrap';
-import { Menu, Icon, Dropdown} from 'semantic-ui-react'
-import { Link } from 'react-router';
 
 const PublicNavigation = () => (
-  /*
-  <MediaQuery minWidth={1170}>
-    {(matches) => {
-      if (matches) {
-        return (
-          */
 
-      <span style={{'display':'flex'}}>
-        <Menu.Item  as={Link} to='/' >
-            J'AI UN ANIMAL
-        </Menu.Item>
-        <Menu.Item  as={Link} to='/' >
-            JE VEUX AIDER LES ANIMAUX
-        </Menu.Item>
-        <Menu.Item  as={Link} to='/' >
-            JE SUIS V&Eacute;T&Eacute;RINAIRE
-        </Menu.Item>
-        <Menu.Item  as={Link} to='/login'>
-            CONNEXION
-        </Menu.Item>
-        <Menu.Item as={Link} to='/signup'>
-            INSCRIPTION
-        </Menu.Item>
-      </span>
-          /*
-        );
-      } else {
-        return (
-          <MediaQuery maxWidth={1170} >
-            <Menu.Menu  vertical>
+  <Nav pullRight>
+    <LinkContainer to="/">
+      <NavItem eventKey={ 2 } href="/">J'AI UN ANIMAL</NavItem>
+    </LinkContainer>
+    <LinkContainer to="/">
+      <NavItem eventKey={ 3 } href="/">JE VEUX AIDER LES ANIMAUX</NavItem>
+    </LinkContainer>
+    <LinkContainer to="/">
+      <NavItem eventKey={ 4 } href="/">JE SUIS V&Eacute;T&Eacute;RINAIRE</NavItem>
+    </LinkContainer>
+    <LinkContainer to="/login">
+      <NavItem eventKey={ 6 } href="/login">CONNEXION</NavItem>
+    </LinkContainer>
+    <LinkContainer to="/signup">
+      <NavItem eventKey={ 7 } href="/signup">INSCRIPTION</NavItem>
+    </LinkContainer>
+  </Nav>
 
-              <Dropdown item text='Categories'>
-                <Dropdown.Menu>
-                  <Dropdown.Item>Electronics</Dropdown.Item>
-                  <Dropdown.Item>Automotive</Dropdown.Item>
-                  <Dropdown.Item>Home</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-
-            </Menu.Menu>
-          </MediaQuery>
-        );
-      }
-    }}
-  </MediaQuery>
-  */
 );
 
 export default PublicNavigation;
