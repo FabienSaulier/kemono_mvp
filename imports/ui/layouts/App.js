@@ -9,9 +9,11 @@ const App = ({ children }) => (
   <div>
     <AppNavigationContainer />
     <InsiderMenu />
+    <br />
     <Grid>
       { children }
     </Grid>
+    <br />
     <Navbar id="navbar-footer">
       <div className="container-fluid">
         <Row  >

@@ -14,13 +14,8 @@ const AuthenticatedNavigation = ({user}) => {
       <Nav pullRight>
         <NavDropdown title={user.profile.firstName+' '+user.profile.lastName} id="basic-nav-dropdown">
           <MenuItem >
-            <LinkContainer to="/">
-              <NavItem  href="/">Tableau de bord</NavItem>
-            </LinkContainer>
-          </MenuItem>
-          <MenuItem >
-            <LinkContainer to="/documents">
-              <NavItem  href="/documents">Documents</NavItem>
+            <LinkContainer to="/dashboard">
+              <NavItem  href="/dashboard">Tableau de bord</NavItem>
             </LinkContainer>
           </MenuItem>
           <MenuItem >

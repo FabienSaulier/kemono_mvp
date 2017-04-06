@@ -3,11 +3,10 @@ import { Meteor } from 'meteor/meteor';
 import { Jumbotron , Panel} from 'react-bootstrap';
 
 //import PetsDashboardContainer from '../components/PetsDashboardContainer'
-//import CampaignsDashboardComponent from '../components/CampaignsDashboardComponent'
+import CampaignsDashboardComponent from '../components/CampaignsDashboardComponent'
 
 // <PetsDashboardContainer/>
 
-// <CampaignsDashboardComponent />
 
 export const Index = ({user}) => (
   Meteor.userId() ?
@@ -20,7 +19,7 @@ export const Index = ({user}) => (
       Ajouter le PetsDashboardContainer
     </Panel>
     <Panel header='Les campagnes en cours sur Kemono' bsStyle="warning">
-      Ajouter le CampaignsDashboardComponent
+      <CampaignsDashboardComponent />
     </Panel>
   </div>
 ) : (
