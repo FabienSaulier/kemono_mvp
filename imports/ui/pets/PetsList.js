@@ -17,7 +17,7 @@ import { Link } from 'react-router';
         {displayPets(this.props.pets)}
         <div><Glyphicon glyph="star" />
           <LinkContainer to="/pets/edit">
-             <Link to="/pets/edit" >Ajouter un animal</Link>
+             <Link >Ajouter un animal</Link>
           </LinkContainer>
         </div>
       </div>

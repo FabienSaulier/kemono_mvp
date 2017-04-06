@@ -39,8 +39,8 @@ const AuthenticatedNavigation = ({user}) => {
             </LinkContainer>
           </MenuItem>
           <MenuItem >
-            <LinkContainer to="/documents">
-              <NavItem  href="/documents">Documents</NavItem>
+            <LinkContainer to="/account">
+              <NavItem  href="/account">Mon compte</NavItem>
             </LinkContainer>
           </MenuItem>
           <MenuItem >

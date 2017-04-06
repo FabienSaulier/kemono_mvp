@@ -1,8 +1,7 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Button, Header, Item, Grid , Image} from 'semantic-ui-react'
-import { Link } from 'react-router'
-
+import {PageHeader, Grid, Col, Row, Image, Button} from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
 
 
 export class ViewProfil extends React.Component {
@@ -30,28 +29,32 @@ export class ViewProfil extends React.Component {
     console.log(userProfile);
 
     return (
-      <Container>
-        <Header size='large'>Mon profil</Header>
-        <Grid columns='4' >
-          <Grid.Row>
-            <Grid.Column>
+      <div>
+        <PageHeader size='large'>Mon profil</PageHeader>
+        <Grid >
+          <Row>
+            <Col>
               <ProfilPicture src={userProfile.picture}/>
-            </Grid.Column>
-            <Grid.Column>
+            </Col>
+            <Col>
               {userProfile.firstName} {userProfile.lastName} <br />
               {userMail}  <br />
               {userProfile.birthday}  <br />
               {userProfile.picture}  <br />
               {userProfile.phone}  <br />
               {this.displayUserPets()}
-            </Grid.Column>
+            </Col>
 
-          </Grid.Row>
+          </Row>
 
         </Grid>
 
-        <Button as={Link} to='/profil/edit/' name='editProfil' content='Modifier' icon='edit' size='big' labelPosition='left' />
-      </Container>
+
+          <LinkContainer to="/">
+            <Button>Tableau de bord  </Button>
+          </LinkContainer>
+
+      </div>
     )
   }
 };

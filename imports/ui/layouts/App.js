@@ -17,8 +17,8 @@ const App = ({ children }) => (
     </Grid>
     <Navbar id="navbar-footer">
       <div className="container-fluid">
-        <Row  align="center">
-          <Col col-xs-12 col-sm-12 col-md-12 col-lg-12>
+        <Row  >
+          <Col >
             <div className="social_foot">
               <ul>
                 <li><a href="#" target="_blank"><img src="/img/facebook-logo-button_white.png" className="img-responsive img-footer"/></a></li>

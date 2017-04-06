@@ -118,7 +118,7 @@ import {Form, PageHeader, FormGroup, FormControl, Col, Checkbox, Button, Control
               Date de naissance
             </Col>
             <Col sm={1} style={{marginRight:'32px'}}>
-              <FormControl componentClass="select" inline >
+              <FormControl componentClass="select"  >
                 <option value={0}>Jour</option>
                 <option value={1}>1</option>
                 <option value={2}>2</option>
@@ -154,7 +154,7 @@ import {Form, PageHeader, FormGroup, FormControl, Col, Checkbox, Button, Control
               </FormControl>
             </Col>
             <Col sm={1} style={{marginRight:'32px'}}>
-              <FormControl componentClass="select" inline>
+              <FormControl componentClass="select" >
                 <option value={0}>Mois</option>
                 <option value={1}>Janvier</option>
                 <option value={2}>Février</option>
@@ -171,7 +171,7 @@ import {Form, PageHeader, FormGroup, FormControl, Col, Checkbox, Button, Control
               </FormControl>
             </Col>
             <Col sm={1} style={{marginRight:'32px'}}>
-              <FormControl componentClass="select" inline>
+              <FormControl componentClass="select" >
                 <option value={0}>Année</option>
                 <option value={1990}>1990</option>
                 <option value={1991}>1991</option>
@@ -211,7 +211,7 @@ import {Form, PageHeader, FormGroup, FormControl, Col, Checkbox, Button, Control
               Origine de l'animal
             </Col>
             <Col sm={4}>
-              <FormControl componentClass="select" inline placeholder="select">
+              <FormControl componentClass="select"  placeholder="select">
                 <option value='breeding'>&Eacute;levage</option>
                 <option value='shelter'>Refuge</option>
                 <option value='hostFamily'>Famille d'acceuil</option>
@@ -253,8 +253,8 @@ import {Form, PageHeader, FormGroup, FormControl, Col, Checkbox, Button, Control
 
           <FormGroup>
             <Col smOffset={2} sm={4}>
-              <Button type="submit">
-                Sign in
+              <Button type="submit" style={{minWidth:'200px'}}>
+                Enregistrer mon animal
               </Button>
             </Col>
           </FormGroup>
