@@ -15,8 +15,8 @@ const App = ({ children }) => (
 
       { children }
     </Grid>
-    <Navbar fixedBottom>
-      <div className="container-fluid" id="container_footer">
+    <Navbar id="navbar-footer">
+      <div className="container-fluid">
         <Row  align="center">
           <Col col-xs-12 col-sm-12 col-md-12 col-lg-12>
             <div className="social_foot">
