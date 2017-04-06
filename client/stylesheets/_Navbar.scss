@@ -1,4 +1,36 @@
 
+
+/** Insider menu **/
+.insider-menu.navbar-inverse{
+  background-color: $gris_fonce;
+  color: $gris_clair;
+  border: none;
+  min-height:40px;
+
+  .navbar-collapse{
+    padding-top:10px;
+  }
+
+  .a{
+    color:$gris_clair
+  }
+
+  .navbar-nav{
+    height:40px;
+    display:inline;
+    .active>a{
+      background-color:$gris_fonce;
+      color: $gris_clair;
+      padding-top:0px;
+      padding-bottom:0px;
+    }
+  }
+  .nav>li>a{
+    display:inline;
+  }
+}
+
+
 /** Auth nav: dropdown menu**/
 .dropdown-menu{
   background-color: $gris_clair;

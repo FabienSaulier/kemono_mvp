@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Menu, Segment , Container} from 'semantic-ui-react'
 import { Link } from 'react-router'
 import { Meteor } from 'meteor/meteor'
+import {Navbar, Nav, NavItem} from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap';
 
 export default class InsiderMenu extends Component {
   state = {}
@@ -14,24 +15,18 @@ export default class InsiderMenu extends Component {
     if(!Meteor.userId())
       return null;
 
-    return (
-        <Menu inverted stackable>
-          <Menu.Item as={Link} to='/' name='index' active={activeItem === 'index'} onClick={this.handleItemClick} >
-            Tableau de bord
-          </Menu.Item>
-          <Menu.Item as={Link} to='/pets' name='pets' active={activeItem === 'pets'} onClick={this.handleItemClick} >
-            Mes animaux
-          </Menu.Item>
-          <Menu.Item as={Link} to='/campaignsList' name='campaignsList' active={activeItem === 'campaignsList'} onClick={this.handleItemClick} >
-            Mes remboursements
-          </Menu.Item>
-          <Menu.Item as={Link} to='/profil' name='profil' active={activeItem === 'profil'} onClick={this.handleItemClick} >
-            Profil
-          </Menu.Item>
-          <Menu.Item as={Link} to='/account' name='account' active={activeItem === 'account'} onClick={this.handleItemClick}  >
-            Mon Compte
-          </Menu.Item>
-        </Menu>
+    return(
+      <Navbar inverse collapseOnSelect className="insider-menu">
+        <Navbar.Collapse>
+          <Nav>
+            <LinkContainer to="/dashboard"><NavItem>Tableau de bord</NavItem></LinkContainer>
+            <LinkContainer to="/pets"><NavItem>Mes animaux</NavItem></LinkContainer>
+            <LinkContainer to="/campaignsList"><NavItem>Mes remboursements</NavItem></LinkContainer>
+            <LinkContainer to="/profil"><NavItem>Profil</NavItem></LinkContainer>
+            <LinkContainer to="/account"><NavItem>Compte</NavItem></LinkContainer>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
     )
   }
 }

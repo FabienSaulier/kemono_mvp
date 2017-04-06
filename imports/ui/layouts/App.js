@@ -2,17 +2,14 @@ import React from 'react';
 import { Row, Col, Grid, Navbar} from 'react-bootstrap';
 
 import AppNavigationContainer from '../containers/AppNavigationContainer.js';
-//import InsiderMenu from '../components/InsiderMenu.js';
 
-
-
-// <InsiderMenu />
+import InsiderMenu from '../components/InsiderMenu.js';
 
 const App = ({ children }) => (
   <div>
     <AppNavigationContainer />
+    <InsiderMenu />
     <Grid>
-
       { children }
     </Grid>
     <Navbar id="navbar-footer">
