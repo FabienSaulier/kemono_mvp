@@ -44,16 +44,11 @@ export class ViewProfil extends React.Component {
               {userProfile.phone}  <br />
               {this.displayUserPets()}
             </Col>
-
           </Row>
-
         </Grid>
-
-
-          <LinkContainer to="/">
-            <Button>Tableau de bord  </Button>
-          </LinkContainer>
-
+        <LinkContainer to="/profil/edit/">
+          <Button>Modifier mon profil</Button>
+        </LinkContainer>
       </div>
     )
   }

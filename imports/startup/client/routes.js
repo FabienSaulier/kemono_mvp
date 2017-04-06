@@ -23,15 +23,9 @@ import EditPetContainer from '../../ui/pets/EditPetContainer.js';
 import CampaignsList from '../../ui/pages/CampaignsList.js';
 
 import ViewProfilContainer from '../../ui/profil/ViewProfilContainer.js';
-
-
-import Account from '../../ui/pages/Account.js';
-
-
-/*
 import EditProfilContainer from '../../ui/profil/EditProfilContainer.js';
 
-*/
+import Account from '../../ui/pages/Account.js';
 
 const authenticate = (nextState, replace) => {
   if (!Meteor.loggingIn() && !Meteor.userId()) {
@@ -42,14 +36,7 @@ const authenticate = (nextState, replace) => {
   }
 };
 
-/**
-TODO: Index if authenticate = dashboard otherwise page exterieure
 
-
-<Route name="editProfil" path="/profil/edit/" component={ EditProfilContainer } onEnter={ authenticate } />
-
-
-**/
 Meteor.startup(() => {
   render(
     <Router history={ browserHistory }>
@@ -71,6 +58,7 @@ Meteor.startup(() => {
         <Route name="campaignsList" path="/campaignsList" component={ CampaignsList } onEnter={ authenticate } />
 
         <Route name="profil" path="/profil" component={ ViewProfilContainer } onEnter={ authenticate } />
+        <Route name="editProfil" path="/profil/edit/" component={ EditProfilContainer } onEnter={ authenticate } />
 
         <Route name="account" path="/account" component={ Account } onEnter={ authenticate } />
 
