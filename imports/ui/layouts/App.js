@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Grid } from 'react-bootstrap';
+import { Row, Col, Grid, Navbar} from 'react-bootstrap';
 
 import AppNavigationContainer from '../containers/AppNavigationContainer.js';
 //import InsiderMenu from '../components/InsiderMenu.js';
@@ -15,7 +15,7 @@ const App = ({ children }) => (
 
       { children }
     </Grid>
-    <footer>
+    <Navbar fixedBottom>
       <div className="container-fluid" id="container_footer">
         <Row  align="center">
           <Col col-xs-12 col-sm-12 col-md-12 col-lg-12>
@@ -32,7 +32,7 @@ const App = ({ children }) => (
           <p className="footnotes">© 2017 Kemono <br/></p>
         </Row>
       </div>
-    </footer>
+    </Navbar>
   </div>
 );
 
