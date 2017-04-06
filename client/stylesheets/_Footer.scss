@@ -1,0 +1,46 @@
+/* TRAVAIL DU FOOTER + FRISE */
+#container_footer{
+	background-color: $gris_fonce;
+	color: white;
+}
+
+#frise{
+	background-color: $gris_contact;
+	max-height: 110px;
+}
+
+#container_frise{
+	background-color: $gris_contact;
+}
+
+.img-footer{
+	max-height: 40px;
+}
+
+.footnotes{
+	font-family: "Comfortaa";
+	color: $gris_clair;
+	text-align: center;
+}
+
+/* SOCIAL */
+.social_foot {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.social_foot ul {
+    margin: 0;
+    padding: 5px;
+    padding-top: 70px;
+}
+
+.social_foot ul li {
+    margin: 5px;
+    list-style: none;
+    display: inline-block;
+}
+/* --------------------- */
+
+/* fin FOOTER */
