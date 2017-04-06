@@ -12,7 +12,7 @@ const renderNavigation = hasUser => (hasUser ? <AuthenticatedNavigationContainer
 const AppNavigation = ({ hasUser }) => (
   <Navbar>
     <Navbar.Header>
-      <a className="navbar-brand" href="/"><img src="img/logo_kemono_blanc2.png" id="logo1" /></a>
+      <a className="navbar-brand" href="/"><img src="/img/logo_kemono_blanc2.png" id="logo1" /></a>
       <Navbar.Toggle />
     </Navbar.Header>
     <Navbar.Collapse>
