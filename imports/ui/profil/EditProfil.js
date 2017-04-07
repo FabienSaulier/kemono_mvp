@@ -1,34 +1,37 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import {Form, PageHeader, FormGroup, FormControl,Row, Grid, Col, Checkbox, Button, ControlLabel, Radio, Panel} from 'react-bootstrap'
+import {Form, PageHeader, FormGroup, FormControl,Row, Grid, Col, Checkbox, Button, ControlLabel, Radio, Panel, Image} from 'react-bootstrap'
 import { browserHistory } from 'react-router';
+import  moment from 'moment';
 
  export class EditProfil extends React.Component {
   constructor(props) {
     super(props);
     let userProfile = props.currentUser.profile;
+    let bdDay = moment(userProfile.birthday).date();
+    let bdMonth = moment(userProfile.birthday).month();
+    let bdYear = moment(userProfile.birthday).year();
     this.state = {
       'lastName':userProfile.lastName,
       'firstName':userProfile.firstName,
       'sex': userProfile.sex,
-      'birthday': userProfile.birthday,
+      'bdDay': bdDay,
+      'bdMonth': bdMonth,
+      'bdYear': bdYear,
       'address': userProfile.address,
       'zipCode':userProfile.zipCode,
       'city': userProfile.city,
-      'country': userProfile.country,
+      'country': 'France',
       'phone': userProfile.phone,
       'picture': userProfile.picture,
       'description': userProfile.description
     };
+
     this.handleInputChange = this.handleInputChange.bind(this);
     this.save = this.save.bind(this);
   }
 
   handleInputChange(event) {
-    console.log(event.target);
-console.log(event.target.name);
-console.log(event.target.value);
-
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
@@ -40,14 +43,15 @@ console.log(event.target.value);
   save(event){
     event.preventDefault();
     let userToUpdate = this.state;
+    let birthday = moment({year:this.state.bdYear,month:this.state.bdMonth, day:this.state.bdDay}).toDate();
+    userToUpdate.birthday = birthday;
     Meteor.call('updateUserProfil',
       {userProfil: userToUpdate}
       , (error, res) => {
         if (error) {
           Bert.alert(error.reason, 'danger');
         } else {
-          Bert.alert(res, 'success');
-          browserHistory.push('/profil');
+          Bert.alert("Enregistré avec succès", 'success');
         }
       });
   }
@@ -56,12 +60,12 @@ console.log(event.target.value);
     return (
       <Grid>
       <Col sm={2}>
-        image avatar
+        <Image responsive rounded src='/img/no_picture.png'  />
       </Col>
       <Col sm={10}>
         <Form horizontal>
 
-          <Panel header="Informations privées - Cela reste entre vous et nous !" bsStyle="info" >
+          <Panel header="Informations privées - Cela reste entre vous et nous !"  >
             <FormGroup controlId="formHorizontalEmail" bsSize="small">
               <Col componentClass={ControlLabel} sm={2}>
                 Nom
@@ -83,8 +87,8 @@ console.log(event.target.value);
                 Sexe
               </Col>
               <Col sm={6}>
-                <Radio inline  name='sex' value={this.state.sex} onChange={this.handleInputChange} >Homme</Radio>
-                <Radio inline  name='sex' value={this.state.sex} onChange={this.handleInputChange} >Femme</Radio>
+                <Radio inline  name='sex' value="man" checked={"man" == this.state.sex} onChange={this.handleInputChange} >Homme</Radio>
+                <Radio inline  name='sex' value="woman" checked={"woman" == this.state.sex}  onChange={this.handleInputChange} >Femme</Radio>
               </Col>
             </FormGroup>
             <FormGroup controlId="formControlsSelect" bsSize="small">
@@ -92,7 +96,7 @@ console.log(event.target.value);
                 Date de naissance
               </Col>
               <Col sm={1} style={{marginRight:'32px'}}>
-                <FormControl componentClass="select" value={this.state.birthday} onChange={this.handleInputChange} >
+                <FormControl componentClass="select" name="bdDay" value={this.state.bdDay} onChange={this.handleInputChange} >
                   <option value={0}>Jour</option>
                   <option value={1}>1</option>
                   <option value={2}>2</option>
@@ -128,24 +132,24 @@ console.log(event.target.value);
                 </FormControl>
               </Col>
               <Col sm={1} style={{marginRight:'32px'}}>
-                <FormControl componentClass="select" >
-                  <option value={0}>Mois</option>
-                  <option value={1}>Janvier</option>
-                  <option value={2}>Février</option>
-                  <option value={3}>Mars</option>
-                  <option value={4}>Avril</option>
-                  <option value={5}>Mai</option>
-                  <option value={6}>Juin</option>
-                  <option value={7}>Juillet</option>
-                  <option value={8}>Août</option>
-                  <option value={9}>Septembre</option>
-                  <option value={10}>Octobre</option>
-                  <option value={11}>Novembre</option>
-                  <option value={12}>Décembre</option>
+                <FormControl componentClass="select" name="bdMonth" value={this.state.bdMonth} onChange={this.handleInputChange}  >
+                  <option value={-1}>Mois</option>
+                  <option value={0}>Janvier</option>
+                  <option value={1}>Février</option>
+                  <option value={2}>Mars</option>
+                  <option value={3}>Avril</option>
+                  <option value={4}>Mai</option>
+                  <option value={5}>Juin</option>
+                  <option value={6}>Juillet</option>
+                  <option value={7}>Août</option>
+                  <option value={8}>Septembre</option>
+                  <option value={9}>Octobre</option>
+                  <option value={10}>Novembre</option>
+                  <option value={11}>Décembre</option>
                 </FormControl>
               </Col>
               <Col sm={1} style={{marginRight:'32px'}}>
-                <FormControl componentClass="select" >
+                <FormControl componentClass="select" name="bdYear" value={this.state.bdYear} onChange={this.handleInputChange} >
                   <option value={0}>Année</option>
                   <option value={1990}>1990</option>
                   <option value={1991}>1991</option>
@@ -224,13 +228,13 @@ console.log(event.target.value);
             </FormGroup>
           </Panel>
 
-          <Panel header="Votre profil public – Ce que les visiteurs du site Kemono peuvent voir à propos de vous." bsStyle="info" >
+          <Panel header="Votre profil public – Ce que les visiteurs du site Kemono peuvent voir à propos de vous." >
             <FormGroup controlId="formHorizontalEmail" bsSize="small">
               <Col componentClass={ControlLabel} sm={2}>
                 Photo portrait
               </Col>
               <Col sm={6}>
-                <FormControl type="file" placeholder="Photo portrait" name='picture' value={this.state.picture} onChange={this.handleInputChange}  />
+                <FormControl type="file" placeholder="Photo portrait" name='picture' onChange={this.handleInputChange}  />
               </Col>
             </FormGroup>
             <FormGroup controlId="formControlsTextarea" bsSize="small">
