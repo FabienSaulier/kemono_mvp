@@ -45,17 +45,15 @@ VetSchema = new SimpleSchema({
 
 Schema.UserProfile = new SimpleSchema({
     firstName: {
-      type: String,
-      optional: true
+      type: String
     },
     lastName: {
-      type: String,
-      optional: true
+      type: String
     },
     sex:{
       type:String,
       allowedValues: ['male', 'female']
-    }
+    },
     birthday:{
       type: Date,
       optional: true
@@ -83,10 +81,12 @@ Schema.UserProfile = new SimpleSchema({
       regEx: SimpleSchema.RegEx.ZipCode
     },
     description:{
-      type:String
+      type:String,
+      optional:true
     },
     vet:{
-      type:VetSchema
+      type:VetSchema,
+      optional:true
     }
 });
 

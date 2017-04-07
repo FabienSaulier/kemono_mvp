@@ -29,8 +29,8 @@ const AuthenticatedNavigation = ({user}) => {
             </LinkContainer>
           </MenuItem>
           <MenuItem >
-            <LinkContainer to="/profil/edit">
-              <NavItem  href="/profil/edit">Mon profil</NavItem>
+            <LinkContainer to="/profil/edit/">
+              <NavItem  href="/profil/edit/">Mon profil</NavItem>
             </LinkContainer>
           </MenuItem>
           <MenuItem >

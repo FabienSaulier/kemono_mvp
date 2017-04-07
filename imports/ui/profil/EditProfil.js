@@ -8,9 +8,15 @@ import  moment from 'moment';
   constructor(props) {
     super(props);
     let userProfile = props.currentUser.profile;
-    let bdDay = moment(userProfile.birthday).date();
-    let bdMonth = moment(userProfile.birthday).month();
-    let bdYear = moment(userProfile.birthday).year();
+    let bdDay = -1;
+    let bdMonth = -1;
+    let bdYear = -1;
+    if(userProfile.birthday){
+      let bdDay = moment(userProfile.birthday).date();
+      let bdMonth = moment(userProfile.birthday).month();
+      let bdYear = moment(userProfile.birthday).year();
+    }
+
     this.state = {
       'lastName':userProfile.lastName,
       'firstName':userProfile.firstName,
@@ -29,6 +35,7 @@ import  moment from 'moment';
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.save = this.save.bind(this);
+    this.getBdDate = this.getBdDate.bind(this);
   }
 
   handleInputChange(event) {
@@ -40,13 +47,34 @@ import  moment from 'moment';
     });
   }
 
+  getBdDate(){
+    if(!this.state.bdYear || !this.state.bdMonth || !this.state.bdDay)
+      return null;
+    else{
+      let bdDate = moment({year:this.state.bdYear,month:this.state.bdMonth, day:this.state.bdDay}).toDate();
+      console.log(moment(bdDate).isValid());
+      if(moment(bdDate).isValid())
+        return bdDate;
+      else
+        return null;
+    }
+  }
+
   save(event){
+    console.log(this.state);
     event.preventDefault();
-    let userToUpdate = this.state;
-    let birthday = moment({year:this.state.bdYear,month:this.state.bdMonth, day:this.state.bdDay}).toDate();
-    userToUpdate.birthday = birthday;
-    Meteor.call('updateUserProfil',
-      {userProfil: userToUpdate}
+    let userToUpdate = {};
+    userToUpdate = Object.assign(userToUpdate, this.state)
+
+    userToUpdate.birthday = this.getBdDate();
+
+    delete userToUpdate.bdDay;
+    delete userToUpdate.bdMonth;
+    delete userToUpdate.bdYear;
+
+console.log(userToUpdate);
+    Meteor.call('updateUserProfile',
+      userToUpdate
       , (error, res) => {
         if (error) {
           Bert.alert(error.reason, 'danger');
