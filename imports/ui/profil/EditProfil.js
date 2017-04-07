@@ -249,7 +249,6 @@ import  moment from 'moment';
           </Panel>
 
           <Button type='submit' onClick={this.save}  size='big'>Enregistrer</Button>
-
         </Form>
       </Col>
       </Grid>

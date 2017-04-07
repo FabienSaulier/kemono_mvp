@@ -6,13 +6,16 @@ import AppNavigationContainer from '../containers/AppNavigationContainer.js';
 import InsiderMenu from '../components/InsiderMenu.js';
 
 const App = ({ children }) => (
-  <div>
-    <AppNavigationContainer />
-    <InsiderMenu />
-    <br />
-    <Grid>
-      { children }
-    </Grid>
+  <div >
+    <div style={{marginBottom:'35px', minHeight:'82vh'}}>
+      <AppNavigationContainer />
+      <InsiderMenu />
+      <br />
+      <Grid>
+        { children }
+      </Grid>
+      <br />
+    </div>
     <br />
     <Navbar id="navbar-footer">
       <div className="container-fluid">

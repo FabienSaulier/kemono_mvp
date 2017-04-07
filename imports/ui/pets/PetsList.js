@@ -10,6 +10,8 @@ import { Link } from 'react-router';
   }
 
   render() {
+    return <PageHeader as='h4'>Work in progress</PageHeader>
+    /*
     return(
       <div>
         <PageHeader as='h2'>Mes animaux de compagnie</PageHeader>
@@ -22,6 +24,7 @@ import { Link } from 'react-router';
         </div>
       </div>
     )
+    */
   }
 };
 

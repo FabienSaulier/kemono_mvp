@@ -2,6 +2,11 @@
 
 #navbar-footer{
 	background-color: $gris_fonce;
+	clear: both;
+position: relative;
+z-index: 10;
+
+margin-top: -3em;
 }
 
 #container_footer{
