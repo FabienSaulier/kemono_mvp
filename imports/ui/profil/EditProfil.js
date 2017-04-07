@@ -12,9 +12,10 @@ import  moment from 'moment';
     let bdMonth = -1;
     let bdYear = -1;
     if(userProfile.birthday){
-      let bdDay = moment(userProfile.birthday).date();
-      let bdMonth = moment(userProfile.birthday).month();
-      let bdYear = moment(userProfile.birthday).year();
+      console.log(userProfile.birthday);
+      bdDay = moment(userProfile.birthday).date();
+      bdMonth = moment(userProfile.birthday).month();
+      bdYear = moment(userProfile.birthday).year();
     }
 
     this.state = {
@@ -124,8 +125,9 @@ console.log(userToUpdate);
                 Date de naissance
               </Col>
               <Col sm={1} style={{marginRight:'32px'}}>
-                <FormControl componentClass="select" name="bdDay" value={this.state.bdDay} onChange={this.handleInputChange} >
-                  <option value={0}>Jour</option>
+                <FormControl componentClass="select" name="bdDay"
+                  value={this.state.bdDay != -1 ? this.state.bdDay : -1} onChange={this.handleInputChange} >
+                  <option value={-1}>Jour</option>
                   <option value={1}>1</option>
                   <option value={2}>2</option>
                   <option value={3}>3</option>
@@ -160,7 +162,8 @@ console.log(userToUpdate);
                 </FormControl>
               </Col>
               <Col sm={1} style={{marginRight:'32px'}}>
-                <FormControl componentClass="select" name="bdMonth" value={this.state.bdMonth} onChange={this.handleInputChange}  >
+                <FormControl componentClass="select" name="bdMonth" value={this.state.bdMonth} onChange={this.handleInputChange}
+                  value={this.state.bdMonth != -1 ? this.state.bdMonth : -1}>
                   <option value={-1}>Mois</option>
                   <option value={0}>Janvier</option>
                   <option value={1}>Février</option>
@@ -177,8 +180,9 @@ console.log(userToUpdate);
                 </FormControl>
               </Col>
               <Col sm={1} style={{marginRight:'32px'}}>
-                <FormControl componentClass="select" name="bdYear" value={this.state.bdYear} onChange={this.handleInputChange} >
-                  <option value={0}>Année</option>
+                <FormControl componentClass="select" name="bdYear" value={this.state.bdYear} onChange={this.handleInputChange}
+                  value={this.state.bdYear != -1 ? this.state.bdYear : -1}>
+                  <option value={null}>Année</option>
                   <option value={1990}>1990</option>
                   <option value={1991}>1991</option>
                   <option value={1992}>1992</option>
