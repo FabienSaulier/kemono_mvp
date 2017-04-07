@@ -52,6 +52,10 @@ Schema.UserProfile = new SimpleSchema({
       type: String,
       optional: true
     },
+    sex:{
+      type:String,
+      allowedValues: ['male', 'female']
+    }
     birthday:{
       type: Date,
       optional: true
@@ -62,9 +66,24 @@ Schema.UserProfile = new SimpleSchema({
     },
     phone:{
       type: String
-    }
-    adress:{
-      type:AddressSchema
+    },
+    address: {
+      type: String,
+      max: 100
+    },
+    city: {
+      type: String,
+      max: 50
+    },
+    country: {
+      type: String
+    },
+    zipCode: {
+      type: String,
+      regEx: SimpleSchema.RegEx.ZipCode
+    },
+    description:{
+      type:String
     },
     vet:{
       type:VetSchema

@@ -6,11 +6,19 @@ import { browserHistory } from 'react-router';
  export class EditProfil extends React.Component {
   constructor(props) {
     super(props);
-    let userProfil = props.currentUser.profile;
+    let userProfile = props.currentUser.profile;
     this.state = {
-      'picture': userProfil.picture,
-      'phone': userProfil.phone,
-      'birthday': userProfil.birthday
+      'lastName':userProfile.lastName,
+      'firstName':userProfile.firstName,
+      'sex': userProfile.sex,
+      'birthday': userProfile.birthday,
+      'address': userProfile.address,
+      'zipCode':userProfile.zipCode,
+      'city': userProfile.city,
+      'country': userProfile.country,
+      'phone': userProfile.phone,
+      'picture': userProfile.picture,
+      'description': userProfile.description
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.save = this.save.bind(this);
@@ -58,7 +66,7 @@ console.log(event.target.value);
               <Col componentClass={ControlLabel} sm={2}>
                 Nom
               </Col>
-              <Col sm={4}>
+              <Col sm={6}>
                 <FormControl type="text" placeholder="Nom" name='lastName' value={this.state.lastName} onChange={this.handleInputChange} />
               </Col>
             </FormGroup>
@@ -66,7 +74,7 @@ console.log(event.target.value);
               <Col componentClass={ControlLabel} sm={2}>
                 Prénom
               </Col>
-              <Col sm={4}>
+              <Col sm={6}>
                 <FormControl type="text" placeholder="Prénom" name='firstName' value={this.state.firstName} onChange={this.handleInputChange} />
               </Col>
             </FormGroup>
@@ -74,7 +82,7 @@ console.log(event.target.value);
               <Col componentClass={ControlLabel} sm={2}>
                 Sexe
               </Col>
-              <Col sm={4}>
+              <Col sm={6}>
                 <Radio inline  name='sex' value={this.state.sex} onChange={this.handleInputChange} >Homme</Radio>
                 <Radio inline  name='sex' value={this.state.sex} onChange={this.handleInputChange} >Femme</Radio>
               </Col>
@@ -173,35 +181,35 @@ console.log(event.target.value);
 
             <FormGroup controlId="formHorizontalEmail" bsSize="small">
               <Col componentClass={ControlLabel} sm={2}>
-                Adresse
+                N° et rue
               </Col>
-              <Col sm={4}>
-                <FormControl type="text" placeholder="addressStreet" name='address' value={this.state.address} onChange={this.handleInputChange} />
-              </Col>
-            </FormGroup>
-            <FormGroup controlId="formHorizontalEmail" bsSize="small">
-              <Col componentClass={ControlLabel} sm={2}>
-                Ville
-              </Col>
-              <Col sm={4}>
-                <FormControl type="text" placeholder="addressStreet" name='city' value={this.state.city} onChange={this.handleInputChange} />
+              <Col sm={6}>
+                <FormControl type="text" placeholder="N° et rue" name='address' value={this.state.address} onChange={this.handleInputChange} />
               </Col>
             </FormGroup>
             <FormGroup controlId="formHorizontalEmail" bsSize="small">
               <Col componentClass={ControlLabel} sm={2}>
                 Code postal
               </Col>
-              <Col sm={4}>
-                <FormControl type="text" placeholder="Code postal" name='addressZip' value={this.state.addressZip} onChange={this.handleInputChange} />
+              <Col sm={6}>
+                <FormControl type="text" placeholder="Code postal" name='zipCode' value={this.state.zipCode} onChange={this.handleInputChange} />
+              </Col>
+            </FormGroup>
+            <FormGroup controlId="formHorizontalEmail" bsSize="small">
+              <Col componentClass={ControlLabel} sm={2}>
+                Ville
+              </Col>
+              <Col sm={6}>
+                <FormControl type="text" placeholder="Ville" name='city' value={this.state.city} onChange={this.handleInputChange} />
               </Col>
             </FormGroup>
             <FormGroup controlId="formControlsSelect" bsSize="small">
               <Col componentClass={ControlLabel} sm={2}>
                 Pays
               </Col>
-              <Col sm={4}>
+              <Col sm={6}>
                 <FormControl disabled componentClass="select" placeholder="Pays" name='country' value={this.state.country} onChange={this.handleInputChange} >
-                  <option value='france' selected >France</option>
+                  <option value='france' >France</option>
                 </FormControl>
               </Col>
             </FormGroup>
@@ -210,8 +218,8 @@ console.log(event.target.value);
               <Col componentClass={ControlLabel} sm={2}>
                 Téléphone
               </Col>
-              <Col sm={4}>
-                <FormControl type="text" placeholder="Nom" name='phone' value={this.state.phone} onChange={this.handleInputChange} />
+              <Col sm={6}>
+                <FormControl type="text" placeholder="Téléphone mobile ou fixe" name='phone' value={this.state.phone} onChange={this.handleInputChange} />
               </Col>
             </FormGroup>
           </Panel>
@@ -221,16 +229,16 @@ console.log(event.target.value);
               <Col componentClass={ControlLabel} sm={2}>
                 Photo portrait
               </Col>
-              <Col sm={4}>
-                <FormControl type="file" placeholder="Photo de portrait" name='picture' value={this.state.picture} onChange={this.handleInputChange}  />
+              <Col sm={6}>
+                <FormControl type="file" placeholder="Photo portrait" name='picture' value={this.state.picture} onChange={this.handleInputChange}  />
               </Col>
             </FormGroup>
             <FormGroup controlId="formControlsTextarea" bsSize="small">
               <Col componentClass={ControlLabel} sm={2}>
                 Description
               </Col>
-              <Col sm={4}>
-                <FormControl componentClass="textarea" placeholder="Si vous le souhaitez, vous pouvez nous laisser quelques lignes pour les autres Kemonautes."
+              <Col sm={6}>
+                <FormControl rows="10" componentClass="textarea" placeholder="Si vous le souhaitez, vous pouvez nous laisser quelques lignes pour les autres Kemonautes."
                   name='description' value={this.state.description} onChange={this.handleInputChange}  />
               </Col>
             </FormGroup>

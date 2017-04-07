@@ -12,6 +12,13 @@ a {
 
 }
 
+.panel-info{
+	border-color:$saumon;
+	>.panel-heading{
+		background-color:$saumon;
+	}
+}
+
 .btn{
 	color: $gris_clair;
 	background-color: $gris_moyen;
