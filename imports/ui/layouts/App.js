@@ -23,10 +23,10 @@ const App = ({ children }) => (
           <Col >
             <div className="social_foot">
               <ul>
-                <li><a href="#" target="_blank"><img src="/img/facebook-logo-button_white.png" className="img-responsive img-footer"/></a></li>
+                <li><a href="https://www.facebook.com/KemonoFR/" target="_blank"><img src="/img/facebook-logo-button_white.png" className="img-responsive img-footer"/></a></li>
                 <li><a href="#" target="_blank"><img src="/img/twitter-logo-button_white.png" className="img-responsive img-footer"/></a></li>
                 <li><a href="#" target="_blank"><img src="/img/google-plus-logo-button_white.png" className="img-responsive img-footer"/></a></li>
-                <li><a href="#" target="_blank"><img src="/img/linkedin-logo-button_white.png" className="img-responsive img-footer"/></a></li>
+                <li><a href="https://www.linkedin.com/company-beta/11067846/" target="_blank"><img src="/img/linkedin-logo-button_white.png" className="img-responsive img-footer"/></a></li>
                 <li><a href="#" target="_blank"><img src="/img/instagram-logo_white.png" className="img-responsive img-footer"/></a></li>
               </ul>
             </div>
