@@ -89,7 +89,7 @@ console.log(userToUpdate);
     return (
       <Grid>
       <Col sm={2}>
-        <Image responsive rounded src='/img/no_picture.png'  />
+        <Image responsive rounded src='/img/no_pic_human.png'  />
       </Col>
       <Col sm={10}>
         <Form horizontal>
