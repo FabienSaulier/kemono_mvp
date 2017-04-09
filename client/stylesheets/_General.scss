@@ -9,7 +9,7 @@ body {
 }
 
 a {
-
+	color:$framboise;
 }
 
 .panel{
@@ -27,12 +27,23 @@ a {
 	box-shadow: 2px 2px 2px $gris_fonce;
 	border-radius: 2px;
 	max-width: 160px;
+	:active{
+		color:white;
+		border:black;
+	}
 	.dark{
 		color: $gris_fonce;
 		background-color: $gris_clair;
 		border-radius: 2px;
 		max-width: 160px;
 	}
+}
+
+button.dark.btn.btn-success:active{
+	background-color:$saumon;
+}
+button.btn.btn-success:active{
+	background-color:$saumon;
 }
 
 .btn:hover, .btn:focus, .btn:active, .btn.active, .open>.dropdown-toggle.btn {
