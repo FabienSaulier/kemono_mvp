@@ -2,11 +2,8 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Jumbotron , Panel} from 'react-bootstrap';
 
-//import PetsDashboardContainer from '../components/PetsDashboardContainer'
+import PetsDashboardContainer from '../components/PetsDashboardContainer'
 import CampaignsDashboardComponent from '../components/CampaignsDashboardComponent'
-
-// <PetsDashboardContainer/>
-
 
 export const Index = ({user}) => (
   Meteor.userId() ?
@@ -16,7 +13,7 @@ export const Index = ({user}) => (
       Vous n'avez pas d'opération en cours.
     </Panel>
     <Panel header='Mes compagnons' bsStyle="warning">
-      Ajouter le PetsDashboardContainer
+      <PetsDashboardContainer/>
     </Panel>
     <Panel header='Les campagnes en cours sur Kemono' bsStyle="warning">
       <CampaignsDashboardComponent />

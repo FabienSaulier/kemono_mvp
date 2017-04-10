@@ -1,16 +1,15 @@
 import React from 'react'
 import { browserHistory } from 'react-router'
-import { Card, Image,Icon , Button, Label} from 'semantic-ui-react'
+import { Button, Glyphicon, Image, Media} from 'react-bootstrap'
 import { Link } from 'react-router'
 
 const PetsDashboardComponent = ({ pets }) => {
   console.log(pets);
   return(
-    <div>
-      <PetGroupCards pets={pets} />
-    </div>
+    <AddAnimal />
   )
 }
+
 
 const PetGroupCards = ({pets}) => {
 
@@ -45,10 +44,17 @@ const PetGroupCards = ({pets}) => {
 const PetCard = ({pet}) => {
   return(
 
-      <Image src='/img/chat1.jpg' size='small' shape='circular' />
+      <Image src='/img/no_pic_cat.jpg' size='small' shape='circular' />
 
   )
 }
+
+const AddAnimal = ()  =>(
+  <div>
+    <Glyphicon glyph="glyphicon glyphicon-plus-sign" style={{fontSize:'15px', marginRight:'5px'}}/>
+    <Link to="/pets/edit">Ajouter un animal</Link>
+  </div>
+)
 
 
 export default PetsDashboardComponent;
