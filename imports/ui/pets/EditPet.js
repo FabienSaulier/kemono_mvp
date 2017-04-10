@@ -8,49 +8,84 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
     super(props);
     console.log(props);
 
-    const SELECT_INIT_VALUE_TYPE = "dog";
-    const SELECT_INIT_VALUE_ORIGIN = "breeding";
+    //let userProfile = props.currentUser.profile;
+    let bdDay = -1;
+    let bdMonth = -1;
+    let bdYear = -1;
+    /*
+    if(userProfile.birthday){
+      console.log(userProfile.birthday);
+      bdDay = moment(userProfile.birthday).date();
+      bdMonth = moment(userProfile.birthday).month();
+      bdYear = moment(userProfile.birthday).year();
+    }
+    */
+    const SELECT_INIT_VALUE_TYPE = "DOG";
+    const SELECT_INIT_VALUE_ORIGIN = "BREEDING";
+    const SELECT_INIT_VALUE_LIVING_AREA = "INSIDE_AND_OUTSIDE"
 
     this.state = {
       name:'',
-      picture:'',
       type:SELECT_INIT_VALUE_TYPE,
       sex:'',
+      bdDay: bdDay,
+      bdMonth: bdMonth,
+      bdYear: bdYear,
       birthday:'',
       origin:SELECT_INIT_VALUE_ORIGIN,
+      race:'',
       sterilized:'',
       vaccines:'',
-      vaccinesPics:''
+      vaccinesPics:'',
+      healthProblem:'',
+      healthProblemDesc:'',
+      picture:'',
+      livingArea:SELECT_INIT_VALUE_LIVING_AREA,
+      description:''
     };
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.getBdDate = this.getBdDate.bind(this);
     this.save = this.save.bind(this);
   }
 
   handleInputChange(event) {
     const target = event.target;
-    let value = null;
-    console.log(target.type);
-    console.log(target.value);
-    if(target.type ==='radio' && (target.value == 'true' || target.value == 'false' ))
-      value = (target.value == 'true');
-    else
-      value =  target.value;
-
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
     this.setState({
-      [target.name]: value
+      [name]: value
     });
-    console.log(this.state);
   }
 
+  getBdDate(){
+    if(!this.state.bdYear || !this.state.bdMonth || !this.state.bdDay)
+      return null;
+    else{
+      let bdDate = moment({year:this.state.bdYear,month:this.state.bdMonth, day:this.state.bdDay}).toDate();
+      console.log(moment(bdDate).isValid());
+      if(moment(bdDate).isValid())
+        return bdDate;
+      else
+        return null;
+    }
+  }
 
   save(event){
     event.preventDefault();
     console.log("save");
-    console.log(this.state);
 
-    let pet = this.state;
+    let petToUpsert = {};
+    petToUpsert = Object.assign(petToUpsert, this.state)
+
+    petToUpsert.birthday = this.getBdDate();
+
+    delete petToUpsert.bdDay;
+    delete petToUpsert.bdMonth;
+    delete petToUpsert.bdYear;
+
+    console.log(petToUpsert);
     Meteor.call('pets.upsert',
-      pet
+      petToUpsert
       , (error, res) => {
         if (error) {
           console.log(error);
@@ -78,7 +113,7 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
                 Nom
               </Col>
               <Col sm={4}>
-                <FormControl type="text" placeholder="Nom" />
+                <FormControl type="text" placeholder="Nom" name='name' value={this.state.name} onChange={this.handleInputChange} />
               </Col>
             </FormGroup>
 
@@ -87,10 +122,11 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
                 Type
               </Col>
               <Col sm={4}>
-                <FormControl componentClass="select" placeholder="select">
-                  <option value='dog' >Chien</option>
-                  <option value='cat' >Chat</option>
-                  <option value='nac' >NAC</option>
+                <FormControl componentClass="select" name="type" placeholder="select"  onChange={this.handleInputChange}
+                  value={this.state.type} >
+                  <option value='DOG' >Chien</option>
+                  <option value='CAT' >Chat</option>
+                  <option value='NAC' >NAC</option>
                 </FormControl>
               </Col>
             </FormGroup>
@@ -99,9 +135,9 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
               <Col componentClass={ControlLabel} sm={2}>
                 Sexe
               </Col>
-              <Col sm={4}>
-                <Radio inline>Mâle</Radio>
-                <Radio inline>Femelle</Radio>
+              <Col sm={6}>
+                <Radio inline  name='sex' value="MALE" checked={"MALE" == this.state.sex} onChange={this.handleInputChange} >Mâle</Radio>
+                <Radio inline  name='sex' value="FEMALE" checked={"FEMALE" == this.state.sex}  onChange={this.handleInputChange} >Femelle</Radio>
               </Col>
             </FormGroup>
 
@@ -110,8 +146,9 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
                 Date de naissance
               </Col>
               <Col sm={1} style={{marginRight:'32px'}}>
-                <FormControl componentClass="select"  >
-                  <option value={0}>Jour</option>
+                <FormControl componentClass="select" name="bdDay"
+                  value={this.state.bdDay != -1 ? this.state.bdDay : -1} onChange={this.handleInputChange} >
+                  <option value={-1}>Jour</option>
                   <option value={1}>1</option>
                   <option value={2}>2</option>
                   <option value={3}>3</option>
@@ -146,25 +183,27 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
                 </FormControl>
               </Col>
               <Col sm={1} style={{marginRight:'32px'}}>
-                <FormControl componentClass="select" >
-                  <option value={0}>Mois</option>
-                  <option value={1}>Janvier</option>
-                  <option value={2}>Février</option>
-                  <option value={3}>Mars</option>
-                  <option value={4}>Avril</option>
-                  <option value={5}>Mai</option>
-                  <option value={6}>Juin</option>
-                  <option value={7}>Juillet</option>
-                  <option value={8}>Août</option>
-                  <option value={9}>Septembre</option>
-                  <option value={10}>Octobre</option>
-                  <option value={11}>Novembre</option>
-                  <option value={12}>Décembre</option>
+                <FormControl componentClass="select" name="bdMonth" value={this.state.bdMonth} onChange={this.handleInputChange}
+                  value={this.state.bdMonth != -1 ? this.state.bdMonth : -1}>
+                  <option value={-1}>Mois</option>
+                  <option value={0}>Janvier</option>
+                  <option value={1}>Février</option>
+                  <option value={2}>Mars</option>
+                  <option value={3}>Avril</option>
+                  <option value={4}>Mai</option>
+                  <option value={5}>Juin</option>
+                  <option value={6}>Juillet</option>
+                  <option value={7}>Août</option>
+                  <option value={8}>Septembre</option>
+                  <option value={9}>Octobre</option>
+                  <option value={10}>Novembre</option>
+                  <option value={11}>Décembre</option>
                 </FormControl>
               </Col>
               <Col sm={1} style={{marginRight:'32px'}}>
-                <FormControl componentClass="select" >
-                  <option value={null}>Année</option>
+                <FormControl componentClass="select" name="bdYear" value={this.state.bdYear} onChange={this.handleInputChange}
+                  value={this.state.bdYear != -1 ? this.state.bdYear : -1}>
+                  <option value={-1}>Année</option>
                   <option value={2017}>2017</option>
                   <option value={2016}>2016</option>
                   <option value={2015}>2015</option>
@@ -202,13 +241,14 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
                 Origine de l'animal
               </Col>
               <Col sm={4}>
-                <FormControl componentClass="select"  placeholder="select">
-                  <option value='breeding'>&Eacute;levage</option>
-                  <option value='shelter'>Refuge</option>
-                  <option value='hostFamily'>Famille d'acceuil</option>
-                  <option value='given'>Donné contre bons soins</option>
-                  <option value='found'>Trouvé</option>
-                  <option value='other'>Autre</option>
+                <FormControl componentClass="select" name="origin" placeholder="select"  onChange={this.handleInputChange}
+                  value={this.state.origin} >
+                  <option value='BREEDING'>&Eacute;levage</option>
+                  <option value='SHELTER'>Refuge</option>
+                  <option value='HOSTFAMILY'>Famille d'acceuil</option>
+                  <option value='GIVEN'>Donné contre bons soins</option>
+                  <option value='FOUND'>Trouvé</option>
+                  <option value='OTHER'>Autre</option>
                 </FormControl>
               </Col>
             </FormGroup>
@@ -218,7 +258,7 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
                 Race
               </Col>
               <Col sm={4}>
-                <FormControl type="text" placeholder="Race" />
+                <FormControl type="text" placeholder="Race" name='race' value={this.state.race} onChange={this.handleInputChange} />
               </Col>
             </FormGroup>
 
@@ -227,8 +267,8 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
                 Animal stérilisé?
               </Col>
               <Col sm={4}>
-                <Radio inline>Oui</Radio>
-                <Radio inline>Non</Radio>
+                <Radio inline  name='sterilized' value={true} checked={true == this.state.sex} onChange={this.handleInputChange} >Oui</Radio>
+                <Radio inline  name='sterilized' value={false} checked={false == this.state.sex} onChange={this.handleInputChange} >Non</Radio>
               </Col>
             </FormGroup>
 
@@ -237,8 +277,8 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
                 Vaccins à jour?
               </Col>
               <Col sm={4}>
-                <Radio inline>Oui</Radio>
-                <Radio inline>Non</Radio>
+                <Radio inline  name='vaccines' value={true} checked={true == this.state.vaccines} onChange={this.handleInputChange} >Oui</Radio>
+                <Radio inline  name='vaccines' value={false} checked={false == this.state.vaccines} onChange={this.handleInputChange} >Non</Radio>
               </Col>
             </FormGroup>
 
@@ -247,7 +287,7 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
                 Copie de la page 1 du carnet de santé
               </Col>
               <Col sm={4}>
-                <FormControl type="file" placeholder="Carnet de vaccins" />
+                <FormControl type="file" name="vaccinesPics" placeholder="Carnet de vaccins" onChange={this.handleInputChange} />
               </Col>
             </FormGroup>
 
@@ -256,8 +296,8 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
                 Animal ne présente aucune maladie?
               </Col>
               <Col sm={4}>
-                <Radio inline>Oui</Radio>
-                <Radio inline>Non</Radio>
+                <Radio inline  name='healthProblem' value={true} checked={true == this.state.healthProblem} onChange={this.handleInputChange} >Oui</Radio>
+                <Radio inline  name='healthProblem' value={false} checked={false == this.state.healthProblem} onChange={this.handleInputChange} >Non</Radio>
               </Col>
             </FormGroup>
 
@@ -267,7 +307,7 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
               </Col>
               <Col sm={6}>
                 <FormControl rows="10" componentClass="textarea" placeholder="Décrivez ici les problèmes de santés que rencontre votre animal."
-                  name='healthProblemDesc' value={this.state.description} onChange={this.handleInputChange}  />
+                  name='healthProblemDesc' value={this.state.healthProblemDesc} onChange={this.handleInputChange}  />
               </Col>
             </FormGroup>
           </Panel>
@@ -278,7 +318,7 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
                 Photo de portrait
               </Col>
               <Col sm={4}>
-                <FormControl type="file" placeholder="Photo de portrait" />
+                <FormControl type="file" name='picture' placeholder="Photo de portrait" onChange={this.handleInputChange} />
               </Col>
             </FormGroup>
             <FormGroup controlId="formControlsSelect" bsSize="small">
@@ -286,7 +326,7 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
                 Zone de vie
               </Col>
               <Col sm={4}>
-                <FormControl componentClass="select" placeholder="Zone de vie">
+                <FormControl name="livingArea" componentClass="select" placeholder="Zone de vie" onChange={this.handleInputChange} value={this.state.livingArea} >
                   <option value='INSIDE_AND_OUTSIDE' >Intérieur et extéreur</option>
                   <option value='INSIDE_ONLY' >Intérieur uniquement</option>
                   <option value='OUTSIDE_ONLY' >Extérieur uniquement</option>

@@ -4,27 +4,31 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 const Pets = new Mongo.Collection('Pets');
 export default Pets;
 
+
 Pets.schema = new SimpleSchema({
   name: {
-    type: String
-  },
-  picture: {
     type: String,
-    optional: true
+    min:3
   },
   type: {
-    type: String
+    type: String,
+    allowedValues: ['DOG', 'CAT', 'NAC']
   },
   sex: {
     type: String,
-    allowedValues: ['male', 'female']
+    allowedValues: ['MALE', 'FEMALE']
   },
   birthday: {
     type: String,
     regEx: /([0-9]{2})\/([0-9]{2})\/([0-9]{4})/
   },
   origin: {
-    type: String
+    type: String,
+    allowedValues: ['BREEDING', 'SHELTER', 'HOSTFAMILY', 'GIVEN', 'FOUND', 'OTHER']
+  },
+  race: {
+    type: String,
+    optional:true
   },
   sterilized: {
     type: Boolean
@@ -35,6 +39,25 @@ Pets.schema = new SimpleSchema({
   },
   vaccinesPics: {
     type: String
+  },
+  healthProblem: {
+    type: Boolean
+  },
+  healthProblemDesc: {
+    type: String,
+    optional:true
+  },
+  picture: {
+    type: String,
+    optional: true
+  },
+  livingArea: {
+    type: String,
+    allowedValues: ['INSIDE_AND_OUTSIDE', 'INSIDE_ONLY', 'OUTSIDE_ONLY']
+  },
+  description: {
+    type: String,
+    optional:true
   }
 });
 

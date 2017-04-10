@@ -182,7 +182,7 @@ console.log(userToUpdate);
               <Col sm={1} style={{marginRight:'32px'}}>
                 <FormControl componentClass="select" name="bdYear" value={this.state.bdYear} onChange={this.handleInputChange}
                   value={this.state.bdYear != -1 ? this.state.bdYear : -1}>
-                  <option value={null}>Année</option>
+                  <option value={-1}>Année</option>
                   <option value={2017}>2017</option>
                   <option value={2016}>2016</option>
                   <option value={2015}>2015</option>
