@@ -34,8 +34,8 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
       birthday:'',
       origin:SELECT_INIT_VALUE_ORIGIN,
       race:'',
-      sterilized:'',
-      vaccines:'',
+      sterilized:true,
+      vaccines:true,
       vaccinesPics:'',
       healthProblem:'',
       healthProblemDesc:'',
@@ -50,7 +50,30 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
 
   handleInputChange(event) {
     const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+    console.log(target);
+
+    console.log(target.value);
+
+    let value = null;
+    switch(target.type){
+      case 'checkbox':{
+        value = target.checked;
+        break;
+      }
+      case 'radio':{
+        if(target.value == 'true' || target.value == 'false') // case "Male" / "Female"
+          value = (target.value == 'true');
+        else
+          value = target.value;
+        break;
+      }
+      default:{
+        value = target.value;
+        break;
+      }
+    }
+
+//    const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
     this.setState({
       [name]: value
@@ -91,7 +114,7 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
           console.log(error);
           Bert.alert(error.reason, 'danger');
         } else {
-          Bert.alert(res, 'success');
+          Bert.alert("Enregistré avec succès", 'success');
           browserHistory.push('/pets');
         }
       });
@@ -267,8 +290,8 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
                 Animal stérilisé?
               </Col>
               <Col sm={4}>
-                <Radio inline  name='sterilized' value={true} checked={true == this.state.sex} onChange={this.handleInputChange} >Oui</Radio>
-                <Radio inline  name='sterilized' value={false} checked={false == this.state.sex} onChange={this.handleInputChange} >Non</Radio>
+                <Radio inline  name='sterilized' value={true} checked={true == this.state.sterilized} onChange={this.handleInputChange} >Oui</Radio>
+                <Radio inline  name='sterilized' value={false} checked={false == this.state.sterilized} onChange={this.handleInputChange} >Non</Radio>
               </Col>
             </FormGroup>
 

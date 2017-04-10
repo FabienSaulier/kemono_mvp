@@ -19,8 +19,7 @@ Pets.schema = new SimpleSchema({
     allowedValues: ['MALE', 'FEMALE']
   },
   birthday: {
-    type: String,
-    regEx: /([0-9]{2})\/([0-9]{2})\/([0-9]{4})/
+    type: Date
   },
   origin: {
     type: String,
