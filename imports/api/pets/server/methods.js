@@ -17,10 +17,12 @@ export const upsertPet = new ValidatedMethod({
   run(pet) {
     console.log(pet);
     const result =  Pets.upsert({ _id: pet._id }, { $set: pet });
-    console.log(result);
-    //TODO check if result ok
-    console.log("check if result is ok before update user");
-    const res = Meteor.users.update(Meteor.userId(), {$push: {pets_id: result.insertedId}});
+
+    if(numberAffected == 1 && insertedId){
+      console.log("add "+insertedId+" to user pet list");
+      const res = Meteor.users.update(Meteor.userId(), {$push: {pets_id: result.insertedId}});
+      console.log(res);
+    }
   },
 });
 

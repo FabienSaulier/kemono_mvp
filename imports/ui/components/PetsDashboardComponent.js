@@ -51,7 +51,7 @@ const PetCard = ({pet}) => {
 
 const AddAnimal = ()  =>(
   <div>
-    <Glyphicon glyph="glyphicon glyphicon-plus-sign" style={{fontSize:'15px', marginRight:'5px'}}/>
+    <Glyphicon glyph="glyphicon glyphicon-plus-sign" style={{color:'#e84b3d',fontSize:'15px', marginRight:'5px'}}/>
     <Link to="/pets/edit">Ajouter un animal</Link>
   </div>
 )

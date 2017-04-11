@@ -1,68 +1,65 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import {PageHeader , Glyphicon , Grid, Row, Col, Image} from 'react-bootstrap'
+import {Grid, Row, Col, Image, Button, Glyphicon} from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router';
+import {AgeFromDate } from 'age-calculator';
 
  export class PetsList extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props);
   }
 
   render() {
-    return <PageHeader as='h4'>Work in progress</PageHeader>
-    /*
     return(
-      <div>
-        <PageHeader as='h2'>Mes animaux de compagnie</PageHeader>
-
-        {displayPets(this.props.pets)}
-        <div><Glyphicon glyph="star" />
-          <Link to="/pets/edit">
-             Ajouter un animal
-          </Link>
-        </div>
-      </div>
+      <Grid>
+        {renderPetRow(this.props.pets)}
+      </Grid>
     )
-    */
   }
+
 };
 
-const displayPets = (pets) =>{
-  if(pets){
-    return(
-      pets.map(function(pet, i){
-        console.log(pet);
-        return (
-          <PetComponent pet={pet} key={i}/>
-        );
-      })
+const renderPetRow = (pets) => {
+  return pets.map(function(pet,i){
+    console.log(pet);
+    const sex = pet.sex=='MALE' ? 'Mâle': 'Femelle';
+    const age = new AgeFromDate(pet.birthday).age;
+
+    return (
+      <div>
+        <Row key={i}>
+          <Col sm={2}>
+            <Image responsive rounded src='/img/no_pic_cat.jpg'  />
+          </Col>
+          <Col sm={10}>
+            <span>{pet.name}</span><Glyphicon glyph="glyphicon glyphicon-cog" style={{fontSize:'15px', 'marginLeft':'15px'}}/><br /><br />
+            {sex}, {age} ans<br />
+            {pet.race}<br />
+            {pet.description}<br />
+            <br />
+
+            <div>
+              <Glyphicon glyph="glyphicon glyphicon-remove" style={{color:'red', fontSize:'15px', marginRight:'5px'}}/>
+              {pet.name} n'est pas encore abonné.
+              <Link to='#'>Abonner {pet.name}</Link>
+            </div>
+            <div>
+              {pet.name} n'a pas de campagnes de remboursements en cours.
+            </div>
+          </Col>
+        </Row>
+        <Row>
+          <hr />
+      </Row>
+    </div>
     )
-  } else return null;
+  })
+
 }
 
-const PetComponent = ({pet}) =>{
-  return(
-  <div  style={{width:'650px'}}>
-    <Grid  >
-      <Row>
-        <Col>
-          <ProfilPicture src='chien3.jpg' />
-        </Col>
-        <Col>
-          <div>{pet.name}</div>
-          <div>{pet.type}</div>
-          <div>{pet.sex}</div>
-          <div>{pet.birthday}</div>
-          <div>{pet.origin}</div>
-          <div>{pet.sterilized}</div>
-        </Col>
-      </Row>
-    </Grid>
-    <hr />
-  </div>
-  )
-}
+
 
 const ProfilPicture = ({src}) => {
   if(!src){
