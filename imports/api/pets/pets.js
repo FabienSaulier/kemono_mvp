@@ -8,7 +8,8 @@ export default Pets;
 Pets.schema = new SimpleSchema({
   _id:{
     type:String,
-    regEx:SimpleSchema.RegEx.Id
+    regEx:SimpleSchema.RegEx.Id,
+    optional:true // case of upsert, create with validation
   },
   name: {
     type: String,

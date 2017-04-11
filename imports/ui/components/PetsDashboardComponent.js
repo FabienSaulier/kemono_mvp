@@ -22,6 +22,8 @@ const PetsDashboardComponent = ({ pets }) => {
 }
 
 const renderPetCard = (pets) => {
+  if(!pets) return null;
+  
   return pets.map(function(pet,i){
     return (
       <Col sm={2} key={i}>

@@ -13,35 +13,31 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
     let bdDay = -1;
     let bdMonth = -1;
     let bdYear = -1;
-    if(pet.birthday){
+    if(pet && pet.birthday){
       console.log(pet.birthday);
       bdDay = moment(pet.birthday).date();
       bdMonth = moment(pet.birthday).month();
       bdYear = moment(pet.birthday).year();
     }
 
-    const SELECT_INIT_VALUE_TYPE = pet.type ? pet.type: "DOG";
-    const SELECT_INIT_VALUE_ORIGIN = pet.origin ? pet.origin : "BREEDING";
-    const SELECT_INIT_VALUE_LIVING_AREA = pet.livingArea ? pet.livingArea : "INSIDE_AND_OUTSIDE"
-
     this.state = {
-      name:pet.name,
-      type:SELECT_INIT_VALUE_TYPE,
-      sex:pet.sex,
+      name: pet?pet.name:'',
+      type:pet ? pet.type: "DOG",
+      sex:pet? pet.sex:'',
       bdDay: bdDay,
       bdMonth: bdMonth,
       bdYear: bdYear,
       birthday:'',
-      origin:SELECT_INIT_VALUE_ORIGIN,
-      race:pet.race,
-      sterilized:pet.sterilized,
-      vaccines:pet.vaccines,
+      origin:pet ? pet.origin : "BREEDING",
+      race:pet?pet.race:'',
+      sterilized:pet?pet.sterilized:'',
+      vaccines:pet?pet.vaccines:'',
       vaccinesPics:'',
-      healthProblem:pet.healthProblem,
-      healthProblemDesc:pet.healthProblemDesc,
+      healthProblem:pet?pet.healthProblem:'',
+      healthProblemDesc:pet?pet.healthProblemDesc:'',
       picture:'',
-      livingArea:SELECT_INIT_VALUE_LIVING_AREA,
-      description:pet.description
+      livingArea:pet ? pet.livingArea : "INSIDE_AND_OUTSIDE",
+      description:pet?pet.description:''
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.getBdDate = this.getBdDate.bind(this);
@@ -100,9 +96,9 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
     let petToUpsert = {};
     petToUpsert = Object.assign(petToUpsert, this.state)
 
-    if(this.props.pet._id)
+    if(this.props.pet)
       petToUpsert._id = this.props.pet._id;
-      
+
     petToUpsert.birthday = this.getBdDate();
 
     delete petToUpsert.bdDay;
@@ -229,7 +225,7 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
               <Col sm={1} style={{marginRight:'32px'}}>
                 <FormControl componentClass="select" name="bdYear" value={this.state.bdYear} onChange={this.handleInputChange}
                   value={this.state.bdYear != -1 ? this.state.bdYear : -1}>
-                  <option value={-1}>Année</option>
+                  <option value={undefined}>Année</option>
                   <option value={2017}>2017</option>
                   <option value={2016}>2016</option>
                   <option value={2015}>2015</option>
