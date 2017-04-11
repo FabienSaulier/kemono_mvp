@@ -4,6 +4,7 @@ import {Grid, Row, Col, Image, Button, Glyphicon} from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router';
 import {AgeFromDate } from 'age-calculator';
+import {AddPet} from '../components/AddPet'
 
  export class PetsList extends React.Component {
   constructor(props) {
@@ -15,6 +16,13 @@ import {AgeFromDate } from 'age-calculator';
     return(
       <Grid>
         {renderPetRow(this.props.pets)}
+        <Row >
+          <Col sm={2}>
+          </Col>
+          <Col sm={10}>
+            <AddPet />
+          </Col>
+        </Row>
       </Grid>
     )
   }
@@ -28,8 +36,8 @@ const renderPetRow = (pets) => {
     const age = new AgeFromDate(pet.birthday).age;
 
     return (
-      <div>
-        <Row key={i}>
+      <div  key={i} style={{marginBottom:'25px'}}>
+        <Row>
           <Col sm={2}>
             <Image responsive rounded src='/img/no_pic_cat.jpg'  />
           </Col>
@@ -42,7 +50,7 @@ const renderPetRow = (pets) => {
 
             <div>
               <Glyphicon glyph="glyphicon glyphicon-remove" style={{color:'red', fontSize:'15px', marginRight:'5px'}}/>
-              {pet.name} n'est pas encore abonné.
+              {pet.name} n'est pas encore abonné.<br />
               <Link to='#'>Abonner {pet.name}</Link>
             </div>
             <div>
@@ -52,8 +60,8 @@ const renderPetRow = (pets) => {
         </Row>
         <Row>
           <hr />
-      </Row>
-    </div>
+        </Row>
+      </div>
     )
   })
 

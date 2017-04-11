@@ -34,8 +34,8 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
       birthday:'',
       origin:SELECT_INIT_VALUE_ORIGIN,
       race:'',
-      sterilized:true,
-      vaccines:true,
+      sterilized:'',
+      vaccines:'',
       vaccinesPics:'',
       healthProblem:'',
       healthProblemDesc:'',
@@ -290,8 +290,8 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
                 Animal stérilisé?
               </Col>
               <Col sm={4}>
-                <Radio inline  name='sterilized' value={true} checked={true == this.state.sterilized} onChange={this.handleInputChange} >Oui</Radio>
-                <Radio inline  name='sterilized' value={false} checked={false == this.state.sterilized} onChange={this.handleInputChange} >Non</Radio>
+                <Radio inline  name='sterilized' value={true} checked={true === this.state.sterilized} onChange={this.handleInputChange} >Oui</Radio>
+                <Radio inline  name='sterilized' value={false} checked={false === this.state.sterilized} onChange={this.handleInputChange} >Non</Radio>
               </Col>
             </FormGroup>
 
@@ -300,8 +300,8 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
                 Vaccins à jour?
               </Col>
               <Col sm={4}>
-                <Radio inline  name='vaccines' value={true} checked={true == this.state.vaccines} onChange={this.handleInputChange} >Oui</Radio>
-                <Radio inline  name='vaccines' value={false} checked={false == this.state.vaccines} onChange={this.handleInputChange} >Non</Radio>
+                <Radio inline  name='vaccines' value={true} checked={true === this.state.vaccines} onChange={this.handleInputChange} >Oui</Radio>
+                <Radio inline  name='vaccines' value={false} checked={false === this.state.vaccines} onChange={this.handleInputChange} >Non</Radio>
               </Col>
             </FormGroup>
 
@@ -319,8 +319,8 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
                 Animal ne présente aucune maladie?
               </Col>
               <Col sm={4}>
-                <Radio inline  name='healthProblem' value={true} checked={true == this.state.healthProblem} onChange={this.handleInputChange} >Oui</Radio>
-                <Radio inline  name='healthProblem' value={false} checked={false == this.state.healthProblem} onChange={this.handleInputChange} >Non</Radio>
+                <Radio inline  name='healthProblem' value={true} checked={true === this.state.healthProblem} onChange={this.handleInputChange} >Oui</Radio>
+                <Radio inline  name='healthProblem' value={false} checked={false === this.state.healthProblem} onChange={this.handleInputChange} >Non</Radio>
               </Col>
             </FormGroup>
 
