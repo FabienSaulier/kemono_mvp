@@ -20,6 +20,14 @@ a {
 	}
 }
 
+.thumbnail{
+	width:108px;
+	height:127px;
+	.caption{
+		text-align: center;
+	}
+}
+
 .btn{
 	color: $gris_clair;
 	background-color: $gris_moyen;

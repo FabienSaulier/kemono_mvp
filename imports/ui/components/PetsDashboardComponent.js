@@ -11,8 +11,10 @@ const PetsDashboardComponent = ({ pets }) => {
     <Grid>
       <Row>
         {renderPetCard(pets)}
-        <Col sm={2}>
-          <AddPet />
+        <Col sm={2} >
+          <div style={{marginTop:'55px'}}>
+            <AddPet />
+          </div>
         </Col>
       </Row>
     </Grid>
