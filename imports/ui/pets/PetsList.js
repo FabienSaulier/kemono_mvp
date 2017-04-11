@@ -59,7 +59,7 @@ const renderPetRow = (pets) => {
 
             <div>
               <Glyphicon glyph="glyphicon glyphicon-remove" style={{color:'red', fontSize:'15px', marginRight:'5px'}}/>
-              {pet.name} n'est pas encore abonné.<br />
+              {pet.name} n'est pas encore abonné{pet.sex=='FEMALE'?'e':''}.<br />
             </div>
             <OverlayTrigger trigger="click" rootClose placement="top" overlay={popoverTop}>
               <Button>Abonner {pet.name}</Button>
