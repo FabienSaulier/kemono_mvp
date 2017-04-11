@@ -10,9 +10,9 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
     console.log(props.pet);
 
     const pet = props.pet;
-    let bdDay = -1;
-    let bdMonth = -1;
-    let bdYear = -1;
+    let bdDay = undefined;
+    let bdMonth = undefined;
+    let bdYear = undefined;
     if(pet && pet.birthday){
       console.log(pet.birthday);
       bdDay = moment(pet.birthday).date();
@@ -170,7 +170,7 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
               <Col sm={1} style={{marginRight:'32px'}}>
                 <FormControl componentClass="select" name="bdDay"
                   value={this.state.bdDay != -1 ? this.state.bdDay : -1} onChange={this.handleInputChange} >
-                  <option value={-1}>Jour</option>
+                  <option value={undefined}>Jour</option>
                   <option value={1}>1</option>
                   <option value={2}>2</option>
                   <option value={3}>3</option>
@@ -207,7 +207,7 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
               <Col sm={1} style={{marginRight:'32px'}}>
                 <FormControl componentClass="select" name="bdMonth" value={this.state.bdMonth} onChange={this.handleInputChange}
                   value={this.state.bdMonth != -1 ? this.state.bdMonth : -1}>
-                  <option value={-1}>Mois</option>
+                  <option value={undefined}>Mois</option>
                   <option value={0}>Janvier</option>
                   <option value={1}>Février</option>
                   <option value={2}>Mars</option>
