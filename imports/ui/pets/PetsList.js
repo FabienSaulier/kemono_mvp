@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import {Grid, Row, Col, Image, Button, Glyphicon} from 'react-bootstrap'
+import {Grid, Row, Col, Image, Button, Glyphicon, Popover, OverlayTrigger} from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router';
 import {AgeFromDate } from 'age-calculator';
@@ -29,6 +29,12 @@ import {AddPet} from '../components/AddPet'
 
 };
 
+const popoverTop = (
+  <Popover id="popover-positioned-top">
+    Raté, c'est pas encore fait!
+  </Popover>
+)
+
 const renderPetRow = (pets) => {
   return pets.map(function(pet,i){
     console.log(pet);
@@ -42,7 +48,10 @@ const renderPetRow = (pets) => {
             <Image responsive rounded src='/img/no_pic_cat.jpg'  />
           </Col>
           <Col sm={10}>
-            <span>{pet.name}</span><Glyphicon glyph="glyphicon glyphicon-cog" style={{fontSize:'15px', 'marginLeft':'15px'}}/><br /><br />
+            <span>{pet.name}</span>
+            <Link to={'/pets/edit/'+pet._id} >
+              <Glyphicon glyph="glyphicon glyphicon-cog" style={{fontSize:'15px', 'marginLeft':'15px'}}/><br /><br />
+            </Link>
             {sex}, {age} ans<br />
             {pet.race}<br />
             {pet.description}<br />
@@ -51,8 +60,12 @@ const renderPetRow = (pets) => {
             <div>
               <Glyphicon glyph="glyphicon glyphicon-remove" style={{color:'red', fontSize:'15px', marginRight:'5px'}}/>
               {pet.name} n'est pas encore abonné.<br />
-              <Link to='#'>Abonner {pet.name}</Link>
             </div>
+            <OverlayTrigger trigger="click" rootClose placement="top" overlay={popoverTop}>
+              <Button>Abonner {pet.name}</Button>
+            </OverlayTrigger>
+            <br />
+            <br />
             <div>
               {pet.name} n'a pas de campagnes de remboursements en cours.
             </div>

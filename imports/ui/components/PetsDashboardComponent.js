@@ -25,10 +25,12 @@ const renderPetCard = (pets) => {
   return pets.map(function(pet,i){
     return (
       <Col sm={2} key={i}>
-        <Thumbnail  >
-          <Image src='/img/no_pic_cat.jpg' rounded height='80px' width='80px' />
-          <h5>{pet.name}</h5>
-        </Thumbnail>
+        <Link to='/pets'>
+          <Thumbnail  >
+            <Image src='/img/no_pic_cat.jpg' rounded height='80px' width='80px' />
+            <h5>{pet.name}</h5>
+          </Thumbnail>
+        </Link>
       </Col>
     )
   })
