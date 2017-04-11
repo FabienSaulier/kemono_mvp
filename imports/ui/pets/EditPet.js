@@ -6,42 +6,42 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
  export class EditPet extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
 
-    //let userProfile = props.currentUser.profile;
+    console.log(props.pet);
+
+    const pet = props.pet;
     let bdDay = -1;
     let bdMonth = -1;
     let bdYear = -1;
-    /*
-    if(userProfile.birthday){
-      console.log(userProfile.birthday);
-      bdDay = moment(userProfile.birthday).date();
-      bdMonth = moment(userProfile.birthday).month();
-      bdYear = moment(userProfile.birthday).year();
+    if(pet.birthday){
+      console.log(pet.birthday);
+      bdDay = moment(pet.birthday).date();
+      bdMonth = moment(pet.birthday).month();
+      bdYear = moment(pet.birthday).year();
     }
-    */
-    const SELECT_INIT_VALUE_TYPE = "DOG";
-    const SELECT_INIT_VALUE_ORIGIN = "BREEDING";
-    const SELECT_INIT_VALUE_LIVING_AREA = "INSIDE_AND_OUTSIDE"
+
+    const SELECT_INIT_VALUE_TYPE = pet.type ? pet.type: "DOG";
+    const SELECT_INIT_VALUE_ORIGIN = pet.origin ? pet.origin : "BREEDING";
+    const SELECT_INIT_VALUE_LIVING_AREA = pet.livingArea ? pet.livingArea : "INSIDE_AND_OUTSIDE"
 
     this.state = {
-      name:'',
+      name:pet.name,
       type:SELECT_INIT_VALUE_TYPE,
-      sex:'',
+      sex:pet.sex,
       bdDay: bdDay,
       bdMonth: bdMonth,
       bdYear: bdYear,
       birthday:'',
       origin:SELECT_INIT_VALUE_ORIGIN,
-      race:'',
-      sterilized:'',
-      vaccines:'',
+      race:pet.race,
+      sterilized:pet.sterilized,
+      vaccines:pet.vaccines,
       vaccinesPics:'',
-      healthProblem:'',
-      healthProblemDesc:'',
+      healthProblem:pet.healthProblem,
+      healthProblemDesc:pet.healthProblemDesc,
       picture:'',
       livingArea:SELECT_INIT_VALUE_LIVING_AREA,
-      description:''
+      description:pet.description
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.getBdDate = this.getBdDate.bind(this);
@@ -100,6 +100,9 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
     let petToUpsert = {};
     petToUpsert = Object.assign(petToUpsert, this.state)
 
+    if(this.props.pet._id)
+      petToUpsert._id = this.props.pet._id;
+      
     petToUpsert.birthday = this.getBdDate();
 
     delete petToUpsert.bdDay;

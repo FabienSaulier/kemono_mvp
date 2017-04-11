@@ -6,6 +6,10 @@ export default Pets;
 
 
 Pets.schema = new SimpleSchema({
+  _id:{
+    type:String,
+    regEx:SimpleSchema.RegEx.Id
+  },
   name: {
     type: String,
     min:3
