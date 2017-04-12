@@ -29,11 +29,16 @@ import {AddPet} from '../components/AddPet'
 
 };
 
-const popoverTop = (
-  <Popover id="popover-positioned-top">
-    Raté, c'est pas encore fait!
-  </Popover>
-)
+const sendMail = () => {
+  Meteor.call('mails.testMail'
+    , (error, res) => {
+      if (error) {
+        console.log(error);
+      } else {
+        Bert.alert("Envoyé avec succès", 'success');
+      }
+    });
+}
 
 const renderPetRow = (pets) => {
   return pets.map(function(pet,i){
@@ -61,9 +66,7 @@ const renderPetRow = (pets) => {
               <Glyphicon glyph="glyphicon glyphicon-remove" style={{color:'red', fontSize:'15px', marginRight:'5px'}}/>
               {pet.name} n'est pas encore abonné{pet.sex=='FEMALE'?'e':''}.<br />
             </div>
-            <OverlayTrigger trigger="click" rootClose placement="top" overlay={popoverTop}>
-              <Button>Abonner {pet.name}</Button>
-            </OverlayTrigger>
+            <Button onClick={sendMail}>Abonner {pet.name}</Button>
             <br />
             <br />
             <div>
