@@ -1,4 +1,10 @@
 {
-  "public": {},
-  "private": {}
+  "public": {
+
+  },
+  "private": {
+    "AWS_ACCESS_KEY_ID" : "AKIAJADTDPVNR4HXZYOA",
+    "AWS_SECRET_ACCESS_KEY" : "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",
+    "S3_BUCKET" :"kemono1"
+  }
 }

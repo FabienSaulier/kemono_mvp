@@ -1,18 +1,22 @@
 import React from 'react';
-import { Meteor } from 'meteor/meteor';
-import {Form, PageHeader, FormGroup, FormControl,Row, Grid, Col, Checkbox, Button, ControlLabel, Radio, Panel, Image} from 'react-bootstrap'
-import { browserHistory } from 'react-router';
-import  moment from 'moment';
+import {Meteor} from 'meteor/meteor';
+import {Form, PageHeader, FormGroup, FormControl,Row, Grid, Col, Checkbox,
+  Glyphicon, Button, ControlLabel, Radio, Panel, Image} from 'react-bootstrap'
+import {browserHistory} from 'react-router';
+import moment from 'moment';
 
- export class EditProfil extends React.Component {
+import Images from '../../api/files/images.js';
+
+
+export class EditProfil extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props);
     let userProfile = props.currentUser.profile;
     let bdDay = -1;
     let bdMonth = -1;
     let bdYear = -1;
     if(userProfile.birthday){
-      console.log(userProfile.birthday);
       bdDay = moment(userProfile.birthday).date();
       bdMonth = moment(userProfile.birthday).month();
       bdYear = moment(userProfile.birthday).year();
@@ -22,21 +26,47 @@ import  moment from 'moment';
       'lastName':userProfile.lastName,
       'firstName':userProfile.firstName,
       'sex': userProfile.sex,
-      'bdDay': bdDay,
-      'bdMonth': bdMonth,
-      'bdYear': bdYear,
+      'bdDay': bdDay, // not saved
+      'bdMonth': bdMonth, // not saved
+      'bdYear': bdYear, // not saved
       'address': userProfile.address,
       'zipCode':userProfile.zipCode,
       'city': userProfile.city,
       'country': 'France',
       'phone': userProfile.phone,
       'picture': userProfile.picture,
-      'description': userProfile.description
+      'description': userProfile.description,
+      'pictureUploaded': false // not saved
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.save = this.save.bind(this);
     this.getBdDate = this.getBdDate.bind(this);
+    this.handleInputFile = this.handleInputFile.bind(this);
+    this.handleUploadedFile = this.handleUploadedFile.bind(this);
+  }
+
+  handleUploadedFile(fileObj){
+    console.log(fileObj);
+    const uploadedFileName = fileObj._id+"-"+fileObj.original.name;
+    this.setState({'picture':uploadedFileName});
+    this.setState({'pictureUploaded':true});
+  }
+
+  handleInputFile(event){
+    const f = event.target.files[0];
+    const newFile = new FS.File(f);
+    newFile.user_id = Meteor.userId();
+    var self = this;
+    Images.insert(newFile, function (error, fileObj){
+      if (error) {
+        console.log(error);
+        Bert.alert(error.reason, 'danger');
+      } else {
+        self.handleUploadedFile(fileObj);
+        Bert.alert("Uploadé avec succès", 'success');
+      }
+    });
   }
 
   handleInputChange(event) {
@@ -49,31 +79,30 @@ import  moment from 'moment';
   }
 
   getBdDate(){
-    if(!this.state.bdYear || !this.state.bdMonth || !this.state.bdDay)
-      return null;
-    else{
+    if( this.state.bdYear >=0  && this.state.bdMonth  >=0 && this.state.bdDay>=0){
       let bdDate = moment({year:this.state.bdYear,month:this.state.bdMonth, day:this.state.bdDay}).toDate();
-      console.log(moment(bdDate).isValid());
+      console.log(bdDate);
       if(moment(bdDate).isValid())
         return bdDate;
       else
         return null;
     }
+    else{
+      console.log(this.state);
+      return null;
+    }
   }
 
   save(event){
-    console.log(this.state);
     event.preventDefault();
     let userToUpdate = {};
     userToUpdate = Object.assign(userToUpdate, this.state)
-
     userToUpdate.birthday = this.getBdDate();
-
     delete userToUpdate.bdDay;
     delete userToUpdate.bdMonth;
     delete userToUpdate.bdYear;
+    delete userToUpdate.pictureUploaded;
 
-console.log(userToUpdate);
     Meteor.call('updateUserProfile',
       userToUpdate
       , (error, res) => {
@@ -89,11 +118,11 @@ console.log(userToUpdate);
     return (
       <Grid>
       <Col sm={2}>
-        <Image responsive rounded src='/img/no_pic_human.png'  />
+        <Image responsive rounded src={'https://s3.eu-central-1.amazonaws.com/kemono1/Images/'+this.props.currentUser.profile.picture} />
+
       </Col>
       <Col sm={10}>
         <Form horizontal>
-
           <Panel header="Informations privées - Cela reste entre vous et nous !"  >
             <FormGroup controlId="formHorizontalEmail" bsSize="small">
               <Col componentClass={ControlLabel} sm={2}>
@@ -348,9 +377,13 @@ console.log(userToUpdate);
                 Photo portrait
               </Col>
               <Col sm={6}>
-                <FormControl type="file" placeholder="Photo portrait" name='picture' onChange={this.handleInputChange}  />
+                <FormControl type="file" placeholder="Photo portrait" name='picture' onChange={this.handleInputFile} style={{float:'left'}} />
+                <Glyphicon glyph="glyphicon glyphicon-ok"
+                  style={{display:this.state.pictureUploaded? 'true':'none'}}/>
               </Col>
             </FormGroup>
+
+
             <FormGroup controlId="formControlsTextarea" bsSize="small">
               <Col componentClass={ControlLabel} sm={2}>
                 Description

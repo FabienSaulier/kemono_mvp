@@ -3,6 +3,7 @@ import { BrowserPolicy } from 'meteor/browser-policy-common';
 BrowserPolicy.content.allowFontOrigin("data:");
 
 BrowserPolicy.content.allowFontDataUrl();
+BrowserPolicy.content.allowImageOrigin("https://s3.eu-central-1.amazonaws.com");
 
 BrowserPolicy.content.allowOriginForAll("www.google-analytics.com");
 
