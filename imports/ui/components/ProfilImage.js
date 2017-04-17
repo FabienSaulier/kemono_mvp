@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Image} from 'react-bootstrap';
 
 const ProfilImage = (props) => {
@@ -10,6 +11,11 @@ const ProfilImage = (props) => {
     else
       return <Image responsive rounded src='/img/no_pic_cat.jpg' />
   }
+}
+
+ProfilImage.propTypes = {
+  idImage: PropTypes.string,
+  type: PropTypes.string
 }
 
 export default ProfilImage;
