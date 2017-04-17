@@ -24,7 +24,7 @@ const signup = () => {
       Bert.alert(error.reason, 'danger');
     } else {
       browserHistory.push('/');
-      Bert.alert('Welcome!', 'success');
+      Bert.alert('Bienvenue!', 'success');
     }
   });
 };
@@ -44,23 +44,23 @@ const validate = () => {
       },
       password: {
         required: true,
-        minlength: 6,
+        minlength: 8,
       },
     },
     messages: {
       firstName: {
-        required: 'First name?',
+        required: 'Prénom?',
       },
       lastName: {
-        required: 'Last name?',
+        required: 'Nom??',
       },
       emailAddress: {
-        required: 'Need an email address here.',
-        email: 'Is this email address legit?',
+        required: 'Une adresse mail est nécessaire.',
+        email: 'Cette adresse mail est-elle valide?',
       },
       password: {
-        required: 'Need a password here.',
-        minlength: 'Use at least six characters, please.',
+        required: 'Un mot de passe est nécessaire.',
+        minlength: 'Utiliser au moins 8 caractères, svp.',
       },
     },
     submitHandler() { signup(); },

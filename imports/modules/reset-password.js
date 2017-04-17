@@ -15,7 +15,7 @@ const handleReset = () => {
       Bert.alert(error.reason, 'danger');
     } else {
       browserHistory.push('/');
-      Bert.alert('Password reset!', 'success');
+      Bert.alert('Mot de passe réinitialisé!', 'success');
     }
   });
 };
@@ -25,22 +25,22 @@ const validate = () => {
     rules: {
       newPassword: {
         required: true,
-        minlength: 6,
+        minlength: 8,
       },
       repeatNewPassword: {
         required: true,
-        minlength: 6,
+        minlength: 8,
         equalTo: '[name="newPassword"]',
       },
     },
     messages: {
       newPassword: {
-        required: 'Enter a new password, please.',
-        minlength: 'Use at least six characters, please.',
+        required: 'Entrer un nouveau mot de passe, svp.',
+        minlength: 'Utiliser au moins 6 caractères, svp.',
       },
       repeatNewPassword: {
-        required: 'Repeat your new password, please.',
-        equalTo: 'Hmm, your passwords don\'t match. Try again?',
+        required: 'Répéter votre nouveau mot de passe, svp.',
+        equalTo: 'Ummh, vos mots de passe ne correspondent pas.',
       },
     },
     submitHandler() { handleReset(); },
