@@ -6,7 +6,7 @@ import {browserHistory} from 'react-router';
 import moment from 'moment';
 
 import Images from '../../api/files/images.js';
-
+import ProfilImage from '../components/ProfilImage';
 
 export class EditProfil extends React.Component {
   constructor(props) {
@@ -47,7 +47,6 @@ export class EditProfil extends React.Component {
   }
 
   handleUploadedFile(fileObj){
-    console.log(fileObj);
     const uploadedFileName = fileObj._id+"-"+fileObj.original.name;
     this.setState({'picture':uploadedFileName});
     this.setState({'pictureUploaded':true});
@@ -81,14 +80,12 @@ export class EditProfil extends React.Component {
   getBdDate(){
     if( this.state.bdYear >=0  && this.state.bdMonth  >=0 && this.state.bdDay>=0){
       let bdDate = moment({year:this.state.bdYear,month:this.state.bdMonth, day:this.state.bdDay}).toDate();
-      console.log(bdDate);
       if(moment(bdDate).isValid())
         return bdDate;
       else
         return null;
     }
     else{
-      console.log(this.state);
       return null;
     }
   }
@@ -118,8 +115,7 @@ export class EditProfil extends React.Component {
     return (
       <Grid>
       <Col sm={2}>
-        <Image responsive rounded src={'https://s3.eu-central-1.amazonaws.com/kemono1/Images/'+this.props.currentUser.profile.picture} />
-
+        <ProfilImage idImage={this.props.currentUser.profile.picture} type='human' />
       </Col>
       <Col sm={10}>
         <Form horizontal>

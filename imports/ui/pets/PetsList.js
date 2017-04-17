@@ -6,6 +6,8 @@ import { Link } from 'react-router';
 import {AgeFromDate } from 'age-calculator';
 import {AddPet} from '../components/AddPet'
 
+import ProfilImage from '../components/ProfilImage';
+
  export class PetsList extends React.Component {
   constructor(props) {
     super(props);
@@ -26,7 +28,6 @@ import {AddPet} from '../components/AddPet'
       </Grid>
     )
   }
-
 };
 
 const sendMail = () => {
@@ -41,6 +42,8 @@ const sendMail = () => {
 }
 
 const renderPetRow = (pets) => {
+  if(!pets) return null;
+
   return pets.map(function(pet,i){
     console.log(pet);
     const sex = pet.sex=='MALE' ? 'Mâle': 'Femelle';
@@ -50,7 +53,7 @@ const renderPetRow = (pets) => {
       <div  key={i} style={{marginBottom:'25px'}}>
         <Row>
           <Col sm={2}>
-            <Image responsive rounded src='/img/no_pic_cat.jpg'  />
+            <ProfilImage idImage={pet.picture} type="pet" />
           </Col>
           <Col sm={10}>
             <span>{pet.name}</span>
@@ -61,7 +64,6 @@ const renderPetRow = (pets) => {
             {pet.race}<br />
             {pet.description}<br />
             <br />
-
             <div>
               <Glyphicon glyph="glyphicon glyphicon-remove" style={{color:'red', fontSize:'15px', marginRight:'5px'}}/>
               {pet.name} n'est pas encore abonné{pet.sex=='FEMALE'?'e':''}.<br />
@@ -80,14 +82,4 @@ const renderPetRow = (pets) => {
       </div>
     )
   })
-
-}
-
-
-
-const ProfilPicture = ({src}) => {
-  if(!src){
-    src = 'noImage.png';
-  }
-  return  <Image responsive rounded src={'/img/'+src}  />
 }

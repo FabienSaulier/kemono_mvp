@@ -2,6 +2,8 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { browserHistory } from 'react-router';
 import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button, ControlLabel, Radio} from 'react-bootstrap'
+import ProfilImage from '../components/ProfilImage';
+import moment from 'moment';
 
  export class EditPet extends React.Component {
   constructor(props) {
@@ -14,7 +16,6 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
     let bdMonth = undefined;
     let bdYear = undefined;
     if(pet && pet.birthday){
-      console.log(pet.birthday);
       bdDay = moment(pet.birthday).date();
       bdMonth = moment(pet.birthday).month();
       bdYear = moment(pet.birthday).year();
@@ -42,14 +43,12 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
     this.handleInputChange = this.handleInputChange.bind(this);
     this.getBdDate = this.getBdDate.bind(this);
     this.save = this.save.bind(this);
+    this.handleUploadedFile = this.handleUploadedFile.bind(this);
+    this.handleInputFile = this.handleInputFile.bind(this);
   }
 
   handleInputChange(event) {
     const target = event.target;
-    console.log(target);
-
-    console.log(target.value);
-
     let value = null;
     switch(target.type){
       case 'checkbox':{
@@ -68,7 +67,6 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
         break;
       }
     }
-
 //    const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
     this.setState({
@@ -76,16 +74,38 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
     });
   }
 
+  handleUploadedFile(fileObj){
+    const uploadedFileName = fileObj._id+"-"+fileObj.original.name;
+    this.setState({'picture':uploadedFileName});
+  }
+  
+
+  handleInputFile(event){
+    const f = event.target.files[0];
+    const newFile = new FS.File(f);
+    newFile.user_id = Meteor.userId();
+    var self = this;
+    Images.insert(newFile, function (error, fileObj){
+      if (error) {
+        console.log(error);
+        Bert.alert(error.reason, 'danger');
+      } else {
+        self.handleUploadedFile(fileObj);
+        Bert.alert("Uploadé avec succès", 'success');
+      }
+    });
+  }
+
   getBdDate(){
-    if(!this.state.bdYear || !this.state.bdMonth || !this.state.bdDay)
-      return null;
-    else{
+    if( this.state.bdYear >=0  && this.state.bdMonth  >=0 && this.state.bdDay>=0){
       let bdDate = moment({year:this.state.bdYear,month:this.state.bdMonth, day:this.state.bdDay}).toDate();
-      console.log(moment(bdDate).isValid());
       if(moment(bdDate).isValid())
         return bdDate;
       else
         return null;
+    }
+    else{
+      return null;
     }
   }
 
@@ -105,7 +125,6 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
     delete petToUpsert.bdMonth;
     delete petToUpsert.bdYear;
 
-    console.log(petToUpsert);
     Meteor.call('pets.upsert',
       petToUpsert
       , (error, res) => {
@@ -117,14 +136,13 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
           browserHistory.push('/pets');
         }
       });
-
   }
 
   render() {
     return (
       <Grid>
       <Col sm={2}>
-        <Image responsive rounded src='/img/no_pic_cat.jpg'  />
+        <ProfilImage idImage={this.props.pet ? this.props.pet.picture : undefined} type='pet' />
       </Col>
       <Col sm={10}>
         <Form horizontal>
@@ -340,7 +358,7 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
                 Photo de portrait
               </Col>
               <Col sm={4}>
-                <FormControl type="file" name='picture' placeholder="Photo de portrait" onChange={this.handleInputChange} />
+                <FormControl type="file" name='picture' placeholder="Photo de portrait" onChange={this.handleInputFile} />
               </Col>
             </FormGroup>
             <FormGroup controlId="formControlsSelect" bsSize="small">
