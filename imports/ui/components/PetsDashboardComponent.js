@@ -23,13 +23,14 @@ const PetsDashboardComponent = ({ pets }) => {
 
 const renderPetCard = (pets) => {
   if(!pets) return null;
-  
+
   return pets.map(function(pet,i){
+    const src = pet.picture? 'https://s3.eu-central-1.amazonaws.com/kemono1/Images/'+pet.picture : '/img/no_pic_cat.jpg';
     return (
       <Col sm={2} key={i}>
         <Link to='/pets'>
           <Thumbnail  >
-            <Image src='/img/no_pic_cat.jpg' rounded height='80px' width='80px' />
+            <Image src={src} rounded height='80px' width='80px' />
             <h5>{pet.name}</h5>
           </Thumbnail>
         </Link>
