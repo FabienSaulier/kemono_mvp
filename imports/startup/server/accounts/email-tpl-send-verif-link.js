@@ -10,13 +10,13 @@ emailTemplates.from = from;
 
 emailTemplates.verifyEmail = {
   subject() {
-    return `[${name}] Vérifier votre adresse mail`;
+    return `[${name}] Vérifier votre adresse e-mail`;
   },
   text(user, url) {
     const userEmail = user.emails[0].address;
     const urlWithoutHash = url.replace('#/', '');
 
-    let emailBody = `Pour vérifier votre adresse email (${userEmail}) visitez le lien suivant::\n\n${urlWithoutHash}\n\n Si vous n'avez pas demandé cette vérification, ignorez cet email. Si vous avez besoin d'un renseignement, contactez notre équipe support: ${email}.`;
+    let emailBody = `Pour vérifier votre adresse e-mail (${userEmail}) visitez le lien suivant::\n\n${urlWithoutHash}\n\n Si vous n'avez pas demandé cette vérification, ignorez cet email. Si vous avez besoin d'un renseignement, contactez notre équipe support: ${email}.`;
 
     return emailBody;
   }

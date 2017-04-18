@@ -67,8 +67,8 @@ const validate = () => {
         required: 'Nom??',
       },
       emailAddress: {
-        required: 'Une adresse mail est nécessaire.',
-        email: 'Cette adresse mail est-elle valide?',
+        required: 'Une adresse e-mail est nécessaire.',
+        email: 'Cette adresse e-mail est-elle valide?',
       },
       password: {
         required: 'Un mot de passe est nécessaire.',

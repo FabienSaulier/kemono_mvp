@@ -30,7 +30,7 @@ export default class RecoverPassword extends React.Component {
                     type="email"
                     ref="emailAddress"
                     name="emailAddress"
-                    placeholder="Email Address"
+                    placeholder="E-mail Address"
                   />
                 </FormGroup>
                 <Button type="submit" bsStyle="success">Récupérer votre mot de passe</Button>

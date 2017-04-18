@@ -18,55 +18,28 @@ export default class Signup extends React.Component {
         <Row>
           <Col xs={ 12 } sm={ 6 } md={ 4 }>
             <Panel header="Inscription">
-              <form
-                ref={ form => (this.signupForm = form) }
-                onSubmit={ this.handleSubmit }
-              >
+              <form ref={ form => (this.signupForm = form) } onSubmit={ this.handleSubmit }>
                 <Row>
                   <Col xs={ 6 } sm={ 6 }>
                     <FormGroup>
                       <ControlLabel>Prénom</ControlLabel>
-                      <FormControl
-                        type="text"
-                        ref="firstName"
-                        name="firstName"
-                        placeholder="Prénom"
-                        className="shadowed-input"
-                      />
+                      <FormControl type="text" ref="firstName" name="firstName" placeholder="Prénom"/>
                     </FormGroup>
                   </Col>
                   <Col xs={ 6 } sm={ 6 }>
                     <FormGroup>
                       <ControlLabel>Nom</ControlLabel>
-                      <FormControl
-                        type="text"
-                        ref="lastName"
-                        name="lastName"
-                        placeholder="Nom"
-                        className="shadowed-input"
-                      />
+                      <FormControl type="text" name="lastName" placeholder="Nom" />
                     </FormGroup>
                   </Col>
                 </Row>
                 <FormGroup>
                   <ControlLabel>Email</ControlLabel>
-                  <FormControl
-                    type="text"
-                    ref="emailAddress"
-                    name="emailAddress"
-                    placeholder="Email"
-                    className="shadowed-input"
-                  />
+                  <FormControl type="text" ref="emailAddress" name="emailAddress" placeholder="E-mail"/>
                 </FormGroup>
                 <FormGroup>
                   <ControlLabel>Mot de passe</ControlLabel>
-                  <FormControl
-                    type="password"
-                    ref="password"
-                    name="password"
-                    placeholder="Mot de passe"
-                    className="shadowed-input"
-                  />
+                  <FormControl type="password" ref="password" name="password" placeholder="Mot de passe"/>
                 </FormGroup>
                 <Button type="submit" bsStyle="success">Inscription</Button>
               </form>
