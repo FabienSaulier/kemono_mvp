@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
-import './accounts/email-templates';
+import './accounts/email-tpl-reset-pwd';
+import './accounts/email-tpl-send-verif-link';
 import './browser-policy';
-import './fixtures';
 import './api';
 import './mail-url.js';
 

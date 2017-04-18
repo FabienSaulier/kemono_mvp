@@ -152,7 +152,7 @@ export class EditProfil extends React.Component {
               <Col sm={1} style={{marginRight:'32px'}}>
                 <FormControl componentClass="select" name="bdDay"
                   value={this.state.bdDay != -1 ? this.state.bdDay : -1} onChange={this.handleInputChange} >
-                  <option value={-1}>Jour</option>
+                  <option value={undefined}>Jour</option>
                   <option value={1}>1</option>
                   <option value={2}>2</option>
                   <option value={3}>3</option>
@@ -189,7 +189,7 @@ export class EditProfil extends React.Component {
               <Col sm={1} style={{marginRight:'32px'}}>
                 <FormControl componentClass="select" name="bdMonth" value={this.state.bdMonth} onChange={this.handleInputChange}
                   value={this.state.bdMonth != -1 ? this.state.bdMonth : -1}>
-                  <option value={-1}>Mois</option>
+                  <option value={undefined}>Mois</option>
                   <option value={0}>Janvier</option>
                   <option value={1}>Février</option>
                   <option value={2}>Mars</option>
@@ -207,7 +207,7 @@ export class EditProfil extends React.Component {
               <Col sm={1} style={{marginRight:'32px'}}>
                 <FormControl componentClass="select" name="bdYear" value={this.state.bdYear} onChange={this.handleInputChange}
                   value={this.state.bdYear != -1 ? this.state.bdYear : -1}>
-                  <option value={-1}>Année</option>
+                  <option value={undefined}>Année</option>
                   <option value={2017}>2017</option>
                   <option value={2016}>2016</option>
                   <option value={2015}>2015</option>

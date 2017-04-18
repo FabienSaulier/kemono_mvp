@@ -6,7 +6,6 @@ import { Link } from 'react-router'
 import {AddPet} from './AddPet'
 
 const PetsDashboardComponent = ({ pets }) => {
-  console.log(pets);
   return(
     <Grid>
       <Row>

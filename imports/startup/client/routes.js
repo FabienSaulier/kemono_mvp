@@ -14,6 +14,7 @@ import NotFound from '../../ui/pages/NotFound.js';
 import RecoverPassword from '../../ui/pages/RecoverPassword.js';
 import ResetPassword from '../../ui/pages/ResetPassword.js';
 import Signup from '../../ui/pages/Signup.js';
+import VerifyEmail from '../../modules/verify-email'
 
 import IndexContainer from '../../ui/containers/IndexContainer.js';
 
@@ -50,6 +51,8 @@ Meteor.startup(() => {
         <Route name="login" path="/login" component={ Login } />
         <Route name="recover-password" path="/recover-password" component={ RecoverPassword } />
         <Route name="reset-password" path="/reset-password/:token" component={ ResetPassword } />
+        <Route name="verify-email" path="/verify-email/:token" component={ VerifyEmail }  />
+
         <Route name="signup" path="/signup" component={ Signup } />
 
         <Route name="pets" path="/pets" component={ PetsListContainer } onEnter={ authenticate } />

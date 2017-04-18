@@ -2,6 +2,17 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import rateLimit from '../../../modules/rate-limit.js';
 
+export const sendVerificationLink = new ValidatedMethod({
+  name: 'sendVerificationLink',
+  validate: null,
+  run() {
+    let userId = Meteor.userId();
+    if (userId) {
+      return Accounts.sendVerificationEmail(userId);
+    }
+  }
+});
+
 export const updateUserProfile = new ValidatedMethod({
   name: 'updateUserProfile',
   validate: new SimpleSchema({
