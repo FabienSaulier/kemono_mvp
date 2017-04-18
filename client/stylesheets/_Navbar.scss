@@ -1,5 +1,19 @@
 
 
+/** Dropdown menu **/
+.dropdown.btn-group, .open{
+  .dropdown-toggle.btn.btn-default{
+    background-color: $framboise;
+    box-shadow:none;
+    border:none;
+    padding-top:15px;
+    color:$gris_clair;
+  }
+}
+
+
+
+
 /** Insider menu **/
 .insider-menu.navbar-inverse{
   background-color: $gris_fonce;
@@ -83,7 +97,6 @@
 	table-layout: fixed;
 	float:none;
 	height:75px;
-	padding-top: 20px;
 }
 
 .navbar-default.brand, .navbar-default .nav > li > a:hover {
