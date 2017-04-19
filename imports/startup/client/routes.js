@@ -37,6 +37,15 @@ const authenticate = (nextState, replace) => {
   }
 };
 
+const checkAuth = (nextState, replace) => {
+  if (Meteor.loggingIn() || Meteor.userId()) {
+    replace({
+      pathname: '/',
+      state: { nextPathname: nextState.location.pathname },
+    });
+  }
+}
+
 
 Meteor.startup(() => {
   render(
@@ -48,12 +57,12 @@ Meteor.startup(() => {
         <Route name="newDocument" path="/documents/new" component={ NewDocument } onEnter={ authenticate } />
         <Route name="editDocument" path="/documents/:_id/edit" component={ EditDocument } onEnter={ authenticate } />
         <Route name="viewDocument" path="/documents/:_id" component={ ViewDocument } onEnter={ authenticate } />
-        <Route name="login" path="/login" component={ Login } />
+        <Route name="login" path="/login" component={ Login } onEnter={checkAuth} />
+        <Route name="signup" path="/signup" component={ Signup } onEnter={checkAuth} />
         <Route name="recover-password" path="/recover-password" component={ RecoverPassword } />
         <Route name="reset-password" path="/reset-password/:token" component={ ResetPassword } />
         <Route name="verify-email" path="/verify-email/:token" component={ VerifyEmail }  />
 
-        <Route name="signup" path="/signup" component={ Signup } />
 
         <Route name="pets" path="/pets" component={ PetsListContainer } onEnter={ authenticate } />
         <Route name="editPet" path="/pets/edit" component={ EditPetContainer } onEnter={ authenticate } />
