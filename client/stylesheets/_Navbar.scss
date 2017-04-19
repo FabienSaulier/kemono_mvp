@@ -11,9 +11,6 @@
   }
 }
 
-
-
-
 /** Insider menu **/
 .insider-menu.navbar-inverse{
   background-color: $gris_fonce;
@@ -91,12 +88,15 @@
 	font-family: "Comfortaa";
 }
 
-.navbar-nav{
+.navbar-nav.navbar-right{
 	margin: 0 auto;
 	display: table;
 	table-layout: fixed;
 	float:none;
 	height:75px;
+  li{
+    padding-top:20px;
+  }
 }
 
 .navbar-default.brand, .navbar-default .nav > li > a:hover {
