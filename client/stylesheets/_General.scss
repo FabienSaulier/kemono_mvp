@@ -91,6 +91,15 @@ textarea:focus, select:focus, radio-inline:focus, input:focus, .uneditable-input
     outline: 0 none !important;
 }
 
+/**  .required asterisque for required form field **/
+.required.col-sm-2.control-label{
+	padding-right:7px;
+}
+.required.col-sm-2.control-label:after{
+	content:" *";
+	color:red;
+}
+
 .shadowed-input{
 	background-color: $gris_clair;
 	border: 1px solid $gris_clair;

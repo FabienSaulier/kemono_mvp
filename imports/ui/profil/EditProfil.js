@@ -121,7 +121,7 @@ export class EditProfil extends React.Component {
         <Form horizontal>
           <Panel header="Informations privées - Cela reste entre vous et nous !"  >
             <FormGroup controlId="formHorizontalEmail" bsSize="small">
-              <Col componentClass={ControlLabel} sm={2}>
+              <Col className='required' componentClass={ControlLabel} sm={2}>
                 Nom
               </Col>
               <Col sm={6}>
@@ -129,7 +129,7 @@ export class EditProfil extends React.Component {
               </Col>
             </FormGroup>
             <FormGroup controlId="formHorizontalEmail" bsSize="small">
-              <Col componentClass={ControlLabel} sm={2}>
+              <Col className='required' componentClass={ControlLabel} sm={2}>
                 Prénom
               </Col>
               <Col sm={6}>
@@ -137,7 +137,7 @@ export class EditProfil extends React.Component {
               </Col>
             </FormGroup>
             <FormGroup controlId="formHorizontalPassword" bsSize="small">
-              <Col componentClass={ControlLabel} sm={2}>
+              <Col className='required' componentClass={ControlLabel} sm={2}>
                 Sexe
               </Col>
               <Col sm={6}>
@@ -145,8 +145,8 @@ export class EditProfil extends React.Component {
                 <Radio inline  name='sex' value="woman" checked={"woman" == this.state.sex}  onChange={this.handleInputChange} >Femme</Radio>
               </Col>
             </FormGroup>
-            <FormGroup controlId="formControlsSelect" bsSize="small">
-              <Col componentClass={ControlLabel} sm={2}>
+            <FormGroup  controlId="formControlsSelect" bsSize="small">
+              <Col className='required' componentClass={ControlLabel} sm={2}>
                 Date de naissance
               </Col>
               <Col sm={1} style={{marginRight:'32px'}}>
@@ -323,7 +323,7 @@ export class EditProfil extends React.Component {
             </FormGroup>
 
             <FormGroup controlId="formHorizontalEmail" bsSize="small">
-              <Col componentClass={ControlLabel} sm={2}>
+              <Col className='required' componentClass={ControlLabel} sm={2}>
                 N° et rue
               </Col>
               <Col sm={6}>
@@ -331,7 +331,7 @@ export class EditProfil extends React.Component {
               </Col>
             </FormGroup>
             <FormGroup controlId="formHorizontalEmail" bsSize="small">
-              <Col componentClass={ControlLabel} sm={2}>
+              <Col className='required' componentClass={ControlLabel} sm={2}>
                 Code postal
               </Col>
               <Col sm={6}>
@@ -339,7 +339,7 @@ export class EditProfil extends React.Component {
               </Col>
             </FormGroup>
             <FormGroup controlId="formHorizontalEmail" bsSize="small">
-              <Col componentClass={ControlLabel} sm={2}>
+              <Col className='required' componentClass={ControlLabel} sm={2}>
                 Ville
               </Col>
               <Col sm={6}>
@@ -347,7 +347,7 @@ export class EditProfil extends React.Component {
               </Col>
             </FormGroup>
             <FormGroup controlId="formControlsSelect" bsSize="small">
-              <Col componentClass={ControlLabel} sm={2}>
+              <Col className='required' componentClass={ControlLabel} sm={2}>
                 Pays
               </Col>
               <Col sm={6}>
@@ -358,7 +358,7 @@ export class EditProfil extends React.Component {
             </FormGroup>
 
             <FormGroup controlId="formHorizontalEmail" bsSize="small">
-              <Col componentClass={ControlLabel} sm={2}>
+              <Col className='required' componentClass={ControlLabel} sm={2}>
                 Téléphone
               </Col>
               <Col sm={6}>
