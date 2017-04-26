@@ -1,7 +1,7 @@
 import React from 'react';
 import {Meteor} from 'meteor/meteor';
 import {HTTP} from 'meteor/http';
-import {Button, Modal, FormControl} from 'react-bootstrap'
+import {Button, Modal, FormControl, Image} from 'react-bootstrap'
 import {Cropper} from 'react-image-cropper'
 import Images from '../../api/files/images.js';
 
@@ -11,7 +11,8 @@ constructor(props){
   super(props);
   this.state={
     showModal:false,
-    displayPic:'none'
+    displayPic:'none',
+    displayCroppedPic:'non'
 
   }
   this.handleInputFile = this.handleInputFile.bind(this);
@@ -20,8 +21,8 @@ constructor(props){
   this.open = this.open.bind(this);
   this.checkImageAvailable = this.checkImageAvailable.bind(this);
   this.handleHttpResponse = this.handleHttpResponse.bind(this);
-  this.crop = this.crop.bind(this);
-  this.saveCroppedPicture = this.saveCroppedPicture.bind(this);
+  this.cropAndSavePicture = this.cropAndSavePicture.bind(this);
+  this.savePic = this.savePic.bind(this);
 
 }
 
@@ -36,7 +37,7 @@ handleInputFile(event){
       Bert.alert(error.reason, 'danger');
     } else {
       self.handleUploadedFile(fileObj);
-      Bert.alert("Uploadé avec succès", 'success');
+      Bert.alert("uploaded on s3: succès", 'success');
     }
   });
 }
@@ -51,12 +52,7 @@ open() {this.setState({ showModal: true })}
 
 close() {this.setState({ showModal: false })}
 
-crop(){
-  let node = this.refs['piccrop'];
-  this.setState({
-      ['piccrop']: node.crop()
-  });
-}
+
 
 checkImageAvailable(){
   const imgUrl = "https://s3.eu-central-1.amazonaws.com/kemono1/Images/"+this.state.pictureId
@@ -73,24 +69,18 @@ handleHttpResponse(error, response) {
     this.setState({displayPic:'block'})
 }}
 
-displayCropper(){
-  if(this.state.displayPic=='block'){
-    return  (
-      <div>
-        <Cropper src={"https://s3.eu-central-1.amazonaws.com/kemono1/Images/"+this.state.pictureId} ref="piccrop"/>
-        <Button onClick={this.crop}>Crop</Button>
-        {this.state.piccrop ? <img src={this.state.piccrop} alt=""/> : null}
-      </div>
-    )
-  } else
-    return (
-      "loading"
-    )
+cropAndSavePicture(){
+  console.log("cropAndSavePicture");
+  let node = this.refs['piccrop'];
+  const self = this;
+  this.setState({
+      ['piccrop']: node.crop()
+  }, ()=>{self.savePic()});
 }
 
-saveCroppedPicture(){
-  console.log("saveCroppedPicture");
+savePic(){
   const f = this.state.piccrop;
+  console.log(f);
   const newFile = new FS.File(f);
   newFile.user_id = Meteor.userId();
   var self = this;
@@ -99,30 +89,40 @@ saveCroppedPicture(){
       console.log(error);
       Bert.alert(error.reason, 'danger');
     } else {
-
       console.log(fileObj);
       self.props.handleValidatedPic(fileObj._id+"-"+fileObj.original.name)
       Bert.alert("Uploadé avec succès", 'success');
-      this.close();
+      self.close();
     }
   });
+}
+
+displayCropper(){
+  if(this.state.displayPic=='block'){
+    return  (
+      <div>
+        <Cropper src={"https://s3.eu-central-1.amazonaws.com/kemono1/Images/"+this.state.pictureId} ref="piccrop"/>
+      </div>
+    )
+  } else
+    return (
+      "loading"
+    )
 }
 
 render() {
   return (
     <div>
       <FormControl type="file" placeholder="Photo portrait" name='picture' onChange={this.handleInputFile} style={{float:'left'}} />
+      {this.state.piccrop ? <img src={this.state.piccrop} alt=""/> : null}
       <Modal show={this.state.showModal} onHide={this.close}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {this.state.pictureId}
-          <br />
           {this.displayCropper()}
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={this.saveCroppedPicture}>Valider</Button>
+          <Button onClick={this.cropAndSavePicture}>Valider</Button>
           <Button onClick={this.close}>Annuler</Button>
         </Modal.Footer>
       </Modal>
