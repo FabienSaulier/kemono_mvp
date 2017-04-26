@@ -34,6 +34,7 @@ handleInputFile(event){
   Images.insert(newFile, function (error, fileObj){
     if (error) {
       console.log(error);
+      event.target.value=null; // reset the input file
       Bert.alert(error.reason, 'danger');
     } else {
       self.handleUploadedFile(fileObj);
@@ -48,11 +49,12 @@ handleUploadedFile(fileObj){
   this.open();
 }
 
-open() {this.setState({ showModal: true })}
+open() {
+  this.setState({ showModal: true });
+  document.getElementsByName("fileUpToCrop").value = "";
+}
 
 close() {this.setState({ showModal: false })}
-
-
 
 checkImageAvailable(){
   const imgUrl = "https://s3.eu-central-1.amazonaws.com/kemono1/Images/"+this.state.pictureId
@@ -101,7 +103,8 @@ displayCropper(){
   if(this.state.displayPic=='block'){
     return  (
       <div>
-        <Cropper src={"https://s3.eu-central-1.amazonaws.com/kemono1/Images/"+this.state.pictureId} ref="piccrop"/>
+        <Cropper originX={100} originY={100} allowNewSelection={false} ref="piccrop"
+          src={"https://s3.eu-central-1.amazonaws.com/kemono1/Images/"+this.state.pictureId} />
       </div>
     )
   } else
@@ -113,8 +116,8 @@ displayCropper(){
 render() {
   return (
     <div>
-      <FormControl type="file" placeholder="Photo portrait" name='picture' onChange={this.handleInputFile} style={{float:'left'}} />
-      {this.state.piccrop ? <img src={this.state.piccrop} alt=""/> : null}
+      <FormControl type="file" placeholder="Photo portrait" name='fileUpToCrop' onChange={this.handleInputFile} style={{float:'left'}} />
+      {this.state.piccrop ? <img src={this.state.piccrop} style={{height:'200px', width:'200px', marginTop:'10px'}}/> : null}
       <Modal show={this.state.showModal} onHide={this.close}>
         <Modal.Header closeButton>
         </Modal.Header>

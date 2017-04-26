@@ -98,7 +98,6 @@ export class EditProfil extends React.Component {
       <Grid>
       <Col sm={2}>
         <ProfilImage idImage={this.props.currentUser.profile.picture} type='human' />
-        {this.state.picture}
       </Col>
       <Col sm={10}>
         <Form horizontal>
@@ -137,12 +136,9 @@ export class EditProfil extends React.Component {
               </Col>
               <Col sm={1} style={{marginRight:'32px'}}>
                 <FormSelectMonth bdMonth={this.state.bdMonth} handleInputChange={this.handleInputChange} />
-
               </Col>
               <Col sm={1} style={{marginRight:'32px'}}>
                 <FormSelectYear bdYear={this.state.bdYear} handleInputChange={this.handleInputChange} />
-
-
               </Col>
             </FormGroup>
             <FormGroup controlId="formHorizontalEmail" bsSize="small">
@@ -196,12 +192,9 @@ export class EditProfil extends React.Component {
                 Photo portrait
               </Col>
               <Col sm={6}>
-                <div>display the existing picture miniature</div>
                 <UploadFileModalWithCropper handleValidatedPic={this.handleValidatedPic}/>
               </Col>
             </FormGroup>
-
-
             <FormGroup controlId="formControlsTextarea" bsSize="small">
               <Col componentClass={ControlLabel} sm={2}>
                 Description
@@ -213,7 +206,7 @@ export class EditProfil extends React.Component {
             </FormGroup>
           </Panel>
 
-          <Button type='submit' onClick={this.save}  size='big'>Enregistrer</Button>
+          <Button type='submit' className={'flashyBtn'} onClick={this.save}  size='big'>Enregistrer</Button>
         </Form>
       </Col>
       </Grid>
