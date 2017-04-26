@@ -1,7 +1,5 @@
 import React from 'react';
 import {Meteor} from 'meteor/meteor';
-import {HTTP} from 'meteor/http';
-import { EJSON } from 'meteor/ejson';
 import {Form, PageHeader, FormGroup, FormControl,Row, Grid, Col, Checkbox,
   Glyphicon, Button, ControlLabel, Radio, Panel, Image, Modal} from 'react-bootstrap'
 import {browserHistory} from 'react-router';
@@ -10,6 +8,7 @@ import {Cropper} from 'react-image-cropper'
 
 import Images from '../../api/files/images.js';
 import ProfilImage from '../components/ProfilImage';
+import {UploadFileModalWithCropper} from '../components/UploadFileModalWithCropper';
 import {FormSelectDay, FormSelectYear, FormSelectMonth} from '../components/FormSelectDMY';
 
 export class EditProfil extends React.Component {
@@ -39,58 +38,18 @@ export class EditProfil extends React.Component {
       'country': 'France',
       'phone': userProfile.phone,
       'picture': userProfile.picture,
-      'description': userProfile.description,
-      'pictureUploaded': false // not saved
+      'description': userProfile.description
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.save = this.save.bind(this);
     this.getBdDate = this.getBdDate.bind(this);
-  //  this.handleInputFile = this.handleInputFile.bind(this);
-  //  this.handleUploadedFile = this.handleUploadedFile.bind(this);
+    this.handleValidatedPic = this.handleValidatedPic.bind(this);
   }
 
-/*
-  handleUploadedFile(fileObj){
-    const uploadedFileName = fileObj._id+"-"+fileObj.original.name;
-    this.setState({'picture':uploadedFileName});
-    this.setState({'pictureUploaded':true});
+  handleValidatedPic(fileName){
+    this.setState({'picture':fileName});
   }
-
-
-  handleSelectedFile(file){
-    const newFile = new FS.File(file);
-    newFile.user_id = Meteor.userId();
-    console.log(this.state);
-    var self = this;
-    Images.insert(newFile, function (error, fileObj){
-      if (error) {
-        console.log(error);
-        Bert.alert(error.reason, 'danger');
-      } else {
-        self.handleUploadedFile(fileObj);
-        Bert.alert("Uploadé avec succès", 'success');
-      }
-    });
-  }
-*/
-/*
-  handleInputFile(event){
-    const f = event.target.files[0];
-    const newFile = new FS.File(f);
-    newFile.user_id = Meteor.userId();
-    var self = this;
-    Images.insert(newFile, function (error, fileObj){
-      if (error) {
-        console.log(error);
-        Bert.alert(error.reason, 'danger');
-      } else {
-        self.handleUploadedFile(fileObj);
-        Bert.alert("Uploadé avec succès", 'success');
-      }
-    });
-  }
-  */
 
   handleInputChange(event) {
     const target = event.target;
@@ -122,7 +81,6 @@ export class EditProfil extends React.Component {
     delete userToUpdate.bdDay;
     delete userToUpdate.bdMonth;
     delete userToUpdate.bdYear;
-    delete userToUpdate.pictureUploaded;
 
     Meteor.call('updateUserProfile',
       userToUpdate
@@ -140,6 +98,7 @@ export class EditProfil extends React.Component {
       <Grid>
       <Col sm={2}>
         <ProfilImage idImage={this.props.currentUser.profile.picture} type='human' />
+        {this.state.picture}
       </Col>
       <Col sm={10}>
         <Form horizontal>
@@ -238,7 +197,7 @@ export class EditProfil extends React.Component {
               </Col>
               <Col sm={6}>
                 <div>display the existing picture miniature</div>
-                <TestModal />
+                <UploadFileModalWithCropper handleValidatedPic={this.handleValidatedPic}/>
               </Col>
             </FormGroup>
 
@@ -261,102 +220,3 @@ export class EditProfil extends React.Component {
     )
   }
 };
-
-class TestModal extends React.Component {
-  constructor(props){
-    super(props);
-    this.state={
-      showModal:false,
-      displayPic:'none'
-    }
-    this.handleInputFile = this.handleInputFile.bind(this);
-    this.handleUploadedFile = this.handleUploadedFile.bind(this);
-    this.close = this.close.bind(this);
-    this.open = this.open.bind(this);
-    this.checkImageAvailable = this.checkImageAvailable.bind(this);
-    this.handleHttpResponse = this.handleHttpResponse.bind(this);
-  }
-
-  handleInputFile(event){
-    this.setState({displayPic:'none'})
-    const newFile = new FS.File(event.target.files[0]);
-    newFile.user_id = Meteor.userId();
-    var self = this;
-    Images.insert(newFile, function (error, fileObj){
-      if (error) {
-        console.log(error);
-        Bert.alert(error.reason, 'danger');
-      } else {
-        self.handleUploadedFile(fileObj);
-        Bert.alert("Uploadé avec succès", 'success');
-      }
-    });
-  }
-
-  handleUploadedFile(fileObj){
-    this.setState({pictureId: fileObj._id+"-"+fileObj.original.name})
-    this.checkImageAvailable();
-    this.open();
-  }
-
-  open() {this.setState({ showModal: true })}
-
-  close() {this.setState({ showModal: false })}
-
-  checkImageAvailable(){
-    console.log("in checkImageAvailable");
-    const imgUrl = "https://s3.eu-central-1.amazonaws.com/kemono1/Images/"+this.state.pictureId
-    HTTP.get(imgUrl, this.handleHttpResponse);
-  }
-
-  handleHttpResponse(error, response) {
-    const self = this;
-    if ( error ) {
-      console.log(error.response.statusCode);
-        Meteor.setTimeout(function(){
-          console.log("in timeout..");
-          self.checkImageAvailable();
-        },2000);
-        console.log("after timout");
-    } else {
-      this.setState({displayPic:'block'})
-  }}
-
-  displayCropper(){
-    if(this.state.displayPic=='block'){
-      return  (
-        <Cropper src={"https://s3.eu-central-1.amazonaws.com/kemono1/Images/"+this.state.pictureId} ref="cropper"/>
-      )
-
-    } else
-      return (
-        "loadgin"
-      )
-  }
-
-  render() {
-    return (
-      <div>
-
-        <FormControl type="file" placeholder="Photo portrait" name='picture' onChange={this.handleInputFile} style={{float:'left'}} />
-
-        <Modal show={this.state.showModal} onHide={this.close}>
-          <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            {this.state.pictureId}
-            <br />
-            {this.displayCropper()}
-
-
-
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={this.close}>Close</Button>
-          </Modal.Footer>
-        </Modal>
-      </div>
-    );
-  }
-}
