@@ -5,6 +5,12 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button,
 import ProfilImage from '../components/ProfilImage';
 import moment from 'moment';
 
+import {FormSelectDay, FormSelectYearShort, FormSelectMonth} from '../components/FormSelectDMY';
+import {UploadFileInput} from '../components/UploadFileInput';
+import {UploadFileModalWithCropper} from '../components/UploadFileModalWithCropper';
+
+
+
  export class EditPet extends React.Component {
   constructor(props) {
     super(props);
@@ -33,18 +39,26 @@ import moment from 'moment';
       race:pet?pet.race:'',
       sterilized:pet?pet.sterilized:'',
       vaccines:pet?pet.vaccines:'',
-      vaccinesPics:'',
+      vaccinesPics:pet?pet.vaccinesPics:'',
       healthProblem:pet?pet.healthProblem:'',
       healthProblemDesc:pet?pet.healthProblemDesc:'',
-      picture:'',
+      picture:pet?pet.picture:'',
       livingArea:pet ? pet.livingArea : "INSIDE_AND_OUTSIDE",
       description:pet?pet.description:''
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.getBdDate = this.getBdDate.bind(this);
     this.save = this.save.bind(this);
-    this.handleUploadedFile = this.handleUploadedFile.bind(this);
-    this.handleInputFile = this.handleInputFile.bind(this);
+    this.handleUploadedVaccinesPic = this.handleUploadedVaccinesPic.bind(this);
+    this.handleUploadedProfilPic = this.handleUploadedProfilPic.bind(this);
+  }
+
+  handleUploadedProfilPic(fileId){
+    this.setState({'picture':fileId}, ()=>{console.log(this.state)});
+  }
+
+  handleUploadedVaccinesPic(fileId){
+    this.setState({'vaccinesPics':fileId}, ()=>{console.log(this.state)});
   }
 
   handleInputChange(event) {
@@ -78,23 +92,7 @@ import moment from 'moment';
     const uploadedFileName = fileObj._id+"-"+fileObj.original.name;
     this.setState({'picture':uploadedFileName});
   }
-  
 
-  handleInputFile(event){
-    const f = event.target.files[0];
-    const newFile = new FS.File(f);
-    newFile.user_id = Meteor.userId();
-    var self = this;
-    Images.insert(newFile, function (error, fileObj){
-      if (error) {
-        console.log(error);
-        Bert.alert(error.reason, 'danger');
-      } else {
-        self.handleUploadedFile(fileObj);
-        Bert.alert("Uploadé avec succès", 'success');
-      }
-    });
-  }
 
   getBdDate(){
     if( this.state.bdYear >=0  && this.state.bdMonth  >=0 && this.state.bdDay>=0){
@@ -186,93 +184,13 @@ import moment from 'moment';
                 Date de naissance
               </Col>
               <Col sm={1} style={{marginRight:'32px'}}>
-                <FormControl componentClass="select" name="bdDay"
-                  value={this.state.bdDay != -1 ? this.state.bdDay : -1} onChange={this.handleInputChange} >
-                  <option value={undefined}>Jour</option>
-                  <option value={1}>1</option>
-                  <option value={2}>2</option>
-                  <option value={3}>3</option>
-                  <option value={4}>4</option>
-                  <option value={5}>5</option>
-                  <option value={6}>6</option>
-                  <option value={7}>7</option>
-                  <option value={8}>8</option>
-                  <option value={9}>9</option>
-                  <option value={10}>10</option>
-                  <option value={11}>11</option>
-                  <option value={12}>12</option>
-                  <option value={13}>13</option>
-                  <option value={14}>14</option>
-                  <option value={15}>15</option>
-                  <option value={16}>16</option>
-                  <option value={17}>17</option>
-                  <option value={18}>18</option>
-                  <option value={19}>19</option>
-                  <option value={20}>20</option>
-                  <option value={21}>21</option>
-                  <option value={22}>22</option>
-                  <option value={23}>23</option>
-                  <option value={24}>24</option>
-                  <option value={25}>25</option>
-                  <option value={26}>26</option>
-                  <option value={27}>27</option>
-                  <option value={28}>28</option>
-                  <option value={29}>29</option>
-                  <option value={30}>30</option>
-                  <option value={31}>31</option>
-                </FormControl>
+                <FormSelectDay bdDay={this.state.bdDay} handleInputChange={this.handleInputChange} />
               </Col>
               <Col sm={1} style={{marginRight:'32px'}}>
-                <FormControl componentClass="select" name="bdMonth" value={this.state.bdMonth} onChange={this.handleInputChange}
-                  value={this.state.bdMonth != -1 ? this.state.bdMonth : -1}>
-                  <option value={undefined}>Mois</option>
-                  <option value={0}>Janvier</option>
-                  <option value={1}>Février</option>
-                  <option value={2}>Mars</option>
-                  <option value={3}>Avril</option>
-                  <option value={4}>Mai</option>
-                  <option value={5}>Juin</option>
-                  <option value={6}>Juillet</option>
-                  <option value={7}>Août</option>
-                  <option value={8}>Septembre</option>
-                  <option value={9}>Octobre</option>
-                  <option value={10}>Novembre</option>
-                  <option value={11}>Décembre</option>
-                </FormControl>
+                <FormSelectMonth bdMonth={this.state.bdMonth} handleInputChange={this.handleInputChange} />
               </Col>
               <Col sm={1} style={{marginRight:'32px'}}>
-                <FormControl componentClass="select" name="bdYear" value={this.state.bdYear} onChange={this.handleInputChange}
-                  value={this.state.bdYear != -1 ? this.state.bdYear : -1}>
-                  <option value={undefined}>Année</option>
-                  <option value={2017}>2017</option>
-                  <option value={2016}>2016</option>
-                  <option value={2015}>2015</option>
-                  <option value={2014}>2014</option>
-                  <option value={2013}>2013</option>
-                  <option value={2012}>2012</option>
-                  <option value={2011}>2011</option>
-                  <option value={2010}>2010</option>
-                  <option value={2009}>2009</option>
-                  <option value={2008}>2008</option>
-                  <option value={2007}>2007</option>
-                  <option value={2006}>2006</option>
-                  <option value={2005}>2005</option>
-                  <option value={2004}>2004</option>
-                  <option value={2003}>2003</option>
-                  <option value={2002}>2002</option>
-                  <option value={2001}>2001</option>
-                  <option value={2000}>2000</option>
-                  <option value={1999}>1999</option>
-                  <option value={1998}>1998</option>
-                  <option value={1997}>1997</option>
-                  <option value={1996}>1996</option>
-                  <option value={1995}>1995</option>
-                  <option value={1994}>1994</option>
-                  <option value={1993}>1993</option>
-                  <option value={1992}>1992</option>
-                  <option value={1991}>1991</option>
-                  <option value={1990}>1990</option>
-                </FormControl>
+                <FormSelectYearShort bdYear={this.state.bdYear} handleInputChange={this.handleInputChange} />
               </Col>
             </FormGroup>
 
@@ -327,10 +245,10 @@ import moment from 'moment';
                 Copie de la page 1 du carnet de santé
               </Col>
               <Col sm={4}>
-                <FormControl type="file" name="vaccinesPics" placeholder="Carnet de vaccins" onChange={this.handleInputChange} />
+                <UploadFileInput handleUploadedPic={this.handleUploadedVaccinesPic} />
+                {this.state.vaccinesPics ? <img src={S3_IMG_URL+this.state.vaccinesPics} style={{height:'200px', width:'200px', marginTop:'10px'}}/> : null}
               </Col>
             </FormGroup>
-
             <FormGroup controlId="formHorizontalPassword" bsSize="small">
               <Col componentClass={ControlLabel} sm={2}>
                 Animal ne présente aucune maladie?
@@ -358,7 +276,7 @@ import moment from 'moment';
                 Photo de portrait
               </Col>
               <Col sm={4}>
-                <FormControl type="file" name='picture' placeholder="Photo de portrait" onChange={this.handleInputFile} />
+                <UploadFileModalWithCropper handleValidatedPic={this.handleUploadedProfilPic}/>
               </Col>
             </FormGroup>
             <FormGroup controlId="formControlsSelect" bsSize="small">

@@ -14,14 +14,10 @@ constructor(props){
     displayPic:'none',
   }
   this.handleInputFile = this.handleInputFile.bind(this);
-  //this.handleUploadedFile = this.handleUploadedFile.bind(this);
   this.close = this.close.bind(this);
   this.open = this.open.bind(this);
-  //this.checkImageAvailable = this.checkImageAvailable.bind(this);
-  //this.handleHttpResponse = this.handleHttpResponse.bind(this);
   this.cropAndSavePicture = this.cropAndSavePicture.bind(this);
   this.savePic = this.savePic.bind(this);
-
 }
 
 handleInputFile(event){
@@ -37,13 +33,6 @@ handleInputFile(event){
      },()=>{console.log("to open"); self.open();})
    }.bind(this);
 }
-/*
-handleUploadedFile(fileObj){
-  this.setState({pictureId: fileObj._id+"-"+fileObj.original.name})
-  this.checkImageAvailable();
-  this.open();
-}
-*/
 
 open() {
   console.log("oepn");
@@ -52,23 +41,6 @@ open() {
 }
 
 close() {this.setState({ showModal: false })}
-
-/*
-checkImageAvailable(){
-  const imgUrl = "https://s3.eu-central-1.amazonaws.com/kemono1/Images/"+this.state.pictureId
-  HTTP.get(imgUrl, this.handleHttpResponse);
-}
-
-handleHttpResponse(error, response) {
-  const self = this;
-  if ( error ) {
-      Meteor.setTimeout(function(){
-        self.checkImageAvailable();
-      },2000);
-  } else {
-    this.setState({displayPic:'block'})
-}}
-*/
 
 cropAndSavePicture(){
   let node = this.refs['piccrop'];
