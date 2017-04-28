@@ -245,8 +245,7 @@ import {UploadFileModalWithCropper} from '../components/UploadFileModalWithCropp
                 Copie de la page 1 du carnet de santé
               </Col>
               <Col sm={4}>
-                <UploadFileInput handleUploadedPic={this.handleUploadedVaccinesPic} />
-                {this.state.vaccinesPics ? <img src={S3_IMG_URL+this.state.vaccinesPics} style={{height:'200px', width:'200px', marginTop:'10px'}}/> : null}
+                <UploadFileInput handleUploadedPic={this.handleUploadedVaccinesPic} currentPic={this.state.vaccinesPics} />
               </Col>
             </FormGroup>
             <FormGroup controlId="formHorizontalPassword" bsSize="small">
