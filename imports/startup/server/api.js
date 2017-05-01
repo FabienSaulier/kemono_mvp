@@ -8,3 +8,6 @@ import '../../api/pets/server/methods.js';
 import '../../api/pets/server/publications.js';
 
 import '../../api/files/server/publications.js';
+
+import '../../api/mangopay/server/usersMethods.js';
+import '../../api/mangopay/server/walletsMethods.js';

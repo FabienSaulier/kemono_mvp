@@ -76,6 +76,7 @@
     "bootstrap": "^3.3.7",
     "jquery": "^2.2.4",
     "jquery-validation": "^1.15.1",
+    "mangopay2-nodejs-sdk": "^1.4.3",
     "prop-types": "^15.5.8",
     "react": "^15.3.2",
     "react-addons-pure-render-mixin": "^15.3.2",

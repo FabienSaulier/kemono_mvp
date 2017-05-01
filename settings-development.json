@@ -5,6 +5,10 @@
   "private": {
     "AWS_ACCESS_KEY_ID" : "AKIAJADTDPVNR4HXZYOA",
     "AWS_SECRET_ACCESS_KEY" : "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",
-    "S3_BUCKET" :"kemono1"
+    "S3_BUCKET" :"kemono1",
+	
+	"MANGOPAY_CLIENT_ID":"foobinou",
+	"MANGOPAY_CLIENT_PWD":"oyQ1WYx6R2bTCPfH4Cu2iMG3gBbJgsAcL2eojZbSSO7k7rXrMe",
+	"BASE_URL":"https://api.sandbox.mangopay.com"
   }
 }

@@ -2,6 +2,17 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import rateLimit from '../../../modules/rate-limit.js';
 
+export const updateMangoPUserId = new ValidatedMethod({
+  name: "updateMangoPUserId",
+  validate: new SimpleSchema({
+    mpUserId:{type:String}
+  }).validator(),
+  run({mpUserId}) {
+    return Meteor.users.upsert(Meteor.userId(), {$set: {'mangop.user_id': mpUserId}});
+  }
+});
+
+
 export const sendVerificationLink = new ValidatedMethod({
   name: 'sendVerificationLink',
   validate: null,

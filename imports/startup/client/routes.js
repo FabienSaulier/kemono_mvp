@@ -20,6 +20,7 @@ import IndexContainer from '../../ui/containers/IndexContainer.js';
 
 import PetsListContainer from '../../ui/pets/PetsListContainer.js';
 import EditPetContainer from '../../ui/pets/EditPetContainer.js';
+import SubscriptionContainer from '../../ui/subscription/SubscriptionContainer.js';
 
 import CampaignsList from '../../ui/pages/CampaignsList.js';
 
@@ -67,6 +68,8 @@ Meteor.startup(() => {
         <Route name="pets" path="/pets" component={ PetsListContainer } onEnter={ authenticate } />
         <Route name="editPet" path="/pets/edit" component={ EditPetContainer } onEnter={ authenticate } />
         <Route name="editPet" path="/pets/edit/:id" component={ EditPetContainer } onEnter={ authenticate } />
+
+        <Route name="subscription" path="/subscription/" component={ SubscriptionContainer } onEnter={ authenticate } />
 
         <Route name="campaignsList" path="/campaignsList" component={ CampaignsList } onEnter={ authenticate } />
 

@@ -90,6 +90,17 @@ Schema.UserProfile = new SimpleSchema({
     }
 });
 
+Schema.MangoP = new SimpleSchema({
+    user_id:{
+      type:String,
+      optional:true
+    },
+    wallet_id:{
+      type:String,
+      optional:true
+    }
+});
+
 Schema.User = new SimpleSchema({
     username: {
         type: String,
@@ -162,6 +173,10 @@ Schema.User = new SimpleSchema({
     pets_id:{
       type: [String],
       optional: true
+    },
+    mangop:{
+      type: Schema.MangoP,
+      optional:true
     }
 });
 
