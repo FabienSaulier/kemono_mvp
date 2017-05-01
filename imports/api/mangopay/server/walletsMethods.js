@@ -10,20 +10,21 @@ const createKemoWallet = new ValidatedMethod({
   validate: null,
   run() {
     console.log("createKemoWallet");
-    const wallet = new MangoPayApi.Wallets.create({
+    const wallet = new MangoPayApi.models.Wallet({
       "Tag": "custom meta",
-  //    "Owners": [ "8494514" ],Meteor.user().profile.mangoPayId
+      "Owners":[Meteor.user().mangop.user_id],
+      "Description": "user personal wallet",
       "Currency": "EUR"
     });
-    MangoPayApi.Users.create(myUser,  function(error, result) {
-      if(error){
-        console.log(error);
-        console.log(result);
+    MangoPayApi.Wallets.create(wallet,  Meteor.bindEnvironment(function(response) {
+      if(response.errors){
+        console.log("print error: ");
+        console.log(response.errors);
+      }else{
+        let mpWalleterId = {mpWalleterId:response.Id};
+        let res =   Meteor.call("updateMangoPUserWalletId", mpWalleterId);
+        console.log(res);
       }
-      else {
-          console.log(result);
-      }
-
-    });
+    }));
   }
 });
