@@ -8,7 +8,7 @@ BrowserPolicy.content.allowImageOrigin("https://s3.eu-central-1.amazonaws.com");
 BrowserPolicy.content.allowOriginForAll("www.google-analytics.com");
 
 BrowserPolicy.content.allowOriginForAll("https://homologation-secure-p.payline.com");
-
+BrowserPolicy.content.allowOriginForAll("https://api.sandbox.mangopay.com");
 
 BrowserPolicy.content.allowStyleOrigin("fonts.googleapis.com");
 BrowserPolicy.content.allowStyleOrigin("maxcdn.bootstrapcdn.com");

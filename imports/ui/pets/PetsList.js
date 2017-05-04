@@ -30,25 +30,12 @@ import ProfilImage from '../components/ProfilImage';
   }
 };
 
-const sendMail = () => {
-  Meteor.call('mails.testMail'
-    , (error, res) => {
-      if (error) {
-        console.log(error);
-      } else {
-        Bert.alert("Envoyé avec succès", 'success');
-      }
-    });
-}
-
 const renderPetRow = (pets) => {
   if(!pets) return null;
 
   return pets.map(function(pet,i){
-    console.log(pet);
     const sex = pet.sex=='MALE' ? 'Mâle': 'Femelle';
     const age = new AgeFromDate(pet.birthday).age;
-
     return (
       <div  key={i} style={{marginBottom:'25px'}}>
         <Row>
@@ -68,7 +55,9 @@ const renderPetRow = (pets) => {
               <Glyphicon glyph="glyphicon glyphicon-remove" style={{color:'red', fontSize:'15px', marginRight:'5px'}}/>
               {pet.name} n'est pas encore abonné{pet.sex=='FEMALE'?'e':''}.<br />
             </div>
-            <Button onClick={sendMail}>Abonner {pet.name}</Button>
+            <LinkContainer to={"/pets/subscribe/"+pet._id}>
+              <Button>Abonner {pet.name}</Button>
+            </LinkContainer>
             <br />
             <br />
             <div>

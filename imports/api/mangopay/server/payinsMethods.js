@@ -28,7 +28,7 @@ const testPayin = new ValidatedMethod({
         "Currency": "EUR",
         "Amount": 100
       },
-      "ReturnURL": "http://localhost:3000/",
+  //    "ReturnURL": "http://localhost:3000/",
       "CreditedWalletId": "24944941",  // kemono for sandbox
       "CardType": "CB_VISA_MASTERCARD",
       "SecureMode": "DEFAULT",
