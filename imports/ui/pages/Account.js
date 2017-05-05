@@ -3,9 +3,7 @@ import { Jumbotron } from 'react-bootstrap';
 
 const Account = () => (
   <div className="Index">
-    <Jumbotron className="text-center">
-      <h2>Account</h2>
-    </Jumbotron>
+    <h3>Historique des paiements.</h3>
   </div>
 );
 
