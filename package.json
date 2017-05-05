@@ -88,6 +88,7 @@
     "react-image-cropper": "^1.1.0",
     "react-komposer": "^1.13.1",
     "react-router": "^3.0.2",
-    "react-router-bootstrap": "^0.23.1"
+    "react-router-bootstrap": "^0.23.1",
+    "react-spinkit": "^2.1.2"
   }
 }

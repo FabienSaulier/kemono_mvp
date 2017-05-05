@@ -1,16 +1,21 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { browserHistory } from 'react-router';
-import {Grid, Form, Panel, Image, FormGroup, FormControl, Col, Checkbox, Button, ControlLabel, Radio} from 'react-bootstrap'
+import {Grid, Form, Panel, Image, FormGroup, FormControl,
+  Modal, Col, Checkbox, Button, ControlLabel, Radio} from 'react-bootstrap';
 import ProfilImage from '../components/ProfilImage';
-import moment from 'moment';
+import {Bert} from 'meteor/themeteorchef:bert';
+import Spinner from 'react-spinkit';
 
 export class SubscribePet extends React.Component {
   constructor(props) {
     super(props);
     console.log(props);
-    this.state = {};
+    this.state = {
+      showLoadingModal: false
+    };
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleClickPaiement = this.handleClickPaiement.bind(this);
   }
 
   handleInputChange(event) {
@@ -22,17 +27,41 @@ export class SubscribePet extends React.Component {
     });
   }
 
+  handleClickPaiement(){
+
+    Meteor.call('paiementToKemonoWallet',
+      {sub:this.state.sub, ok_monthly: this.state.ok_monthly, ok_refound: this.state.ok_refound},
+      (error, result) => {
+        if (error) {
+          Bert.alert(error.reason, 'danger');
+        } else {
+          console.log(result);
+          console.log(result.RedirectURL);
+          console.log(result.Id);
+          this.setState({showLoadingModal:true});
+          window.location.replace(result.RedirectURL)
+        }
+      });
+  }
 
 
   render(){
-    const toto = {
+    const radioStyle = {
       marginLeft: 'auto',
       marginRight: 'auto',
       width: '1em'
     };
-    const titi = "jjjj";
     return(
       <div>
+        <Modal show={this.state.showLoadingModal}>
+          <Modal.Body>
+            Vous allez être redirigé vers notre prestataire de paiement
+            <br />
+            <br />
+            <Spinner spinnerName="three-bounce" />
+          </Modal.Body>
+        </Modal>
+
         <Image style={{float:'left', height:'100px'}} src="/img/04_Illustration_com_animaux.png" />
         <p>Vous souhaitez protéger {this.props.name} en rejoignant la communauté des Kemonautes abonnés ?
   Excellente idée ! On vous explique tout les détails ci-dessous.</p>
@@ -62,7 +91,7 @@ export class SubscribePet extends React.Component {
               <br />
               <p>15€ par mois</p>
               <p>Jusqu'à 800€ remboursé par an</p>
-              <Radio style={toto}  name='sub' value="basic" checked={"basic" == this.state.sub} onChange={this.handleInputChange} />
+              <Radio style={radioStyle}  name='sub' value="basic" checked={"basic" == this.state.sub} onChange={this.handleInputChange} />
             </Panel>
           </Col>
           <Col sm={4}>
@@ -71,21 +100,21 @@ export class SubscribePet extends React.Component {
               <br />
               <p>45€ par mois</p>
               <p>Jusqu'à 2500€ remboursé par an</p>
-              <Radio  style={toto}  name='sub' value="premium" checked={"premium" == this.state.sub} onChange={this.handleInputChange} />
+              <Radio  style={radioStyle}  name='sub' value="premium" checked={"premium" == this.state.sub} onChange={this.handleInputChange} />
             </Panel>
           </Col>
           <Col sm={2}>
           </Col>
         </Grid>
-        <Checkbox>
+        <Checkbox name='ok_monthly' onChange={this.handleInputChange} >
           En cochant cette case,
           je déclare être conscient du paiement mensuel, à date anniversaire. Je serais informé par email de chaque paiement et
           trouverais un récapitulatif sur /moncompte/. Je pourrais mettre fin à l'abonnement quand je le souhaite.
         </Checkbox>
-        <Checkbox>En cochant cette case,
+        <Checkbox name='ok_refound' onChange={this.handleInputChange} >En cochant cette case,
           je déclare être conscient que Kemono n’a aucune obligation concernant le pourcentage de remboursement effectif des demandes.
         </Checkbox>
-        <Button>Abonner mon animal à la protection solidaire Kemono (paiement par carte bancaire)</Button>
+        <Button onClick={this.handleClickPaiement} >Abonner mon animal à la protection solidaire Kemono (paiement par carte bancaire)</Button>
         <p>Vous allez être redirigé vers notre prestataire de paiement.</p>
       </div>
     )
