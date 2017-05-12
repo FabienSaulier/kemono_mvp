@@ -3,23 +3,15 @@ import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import rateLimit from '../../../modules/rate-limit.js';
 import { Meteor } from 'meteor/meteor';
 
-import mp2 from 'mangopay2-nodejs-sdk';
+import {MangoPayApi} from './mangoPayApi';
 
-//import {MangoPayApi} from './mangoPayApi';
 
-const MangoPayApi = new mp2({
-    clientId: Meteor.settings.private.MANGOPAY_CLIENT_ID,
-    clientPassword: Meteor.settings.private.MANGOPAY_CLIENT_PWD,
-    debugMode:false,
-    // Set the right production API url. If testing, omit the property since it defaults to sandbox URL
-    baseUrl: Meteor.settings.private.BASE_URL,
-});
 
-const createMangoPayUser = new ValidatedMethod({
-  name: 'createMangoPayUser',
+const createMangoNaturalUser = new ValidatedMethod({
+  name: 'createMangoNaturalUser',
   validate: null,
   run() {
-    console.log("createMangoPayUser");
+    console.log("createMangoNaturalUser");
     usrData = Meteor.user().profile;
     const user = new MangoPayApi.models.UserNatural({
       FirstName: usrData.firstName,
@@ -46,7 +38,7 @@ const createMangoPayUser = new ValidatedMethod({
         console.log(response.errors);
       }else{
         let mpUserId = {mpUserId:response.Id};
-        let res =   Meteor.call("updateMangoPUserId", mpUserId);
+        let res =   Meteor.call("insertMangoPUserId", mpUserId);
         console.log(res);
       }
     }));

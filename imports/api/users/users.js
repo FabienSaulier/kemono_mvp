@@ -90,7 +90,7 @@ Schema.UserProfile = new SimpleSchema({
     }
 });
 
-Schema.MangoP = new SimpleSchema({
+Schema.Mangopay = new SimpleSchema({
     user_id:{
       type:String,
       optional:true
@@ -174,8 +174,8 @@ Schema.User = new SimpleSchema({
       type: [String],
       optional: true
     },
-    mangop:{
-      type: Schema.MangoP,
+    mangopay:{
+      type: Schema.Mangopay,
       optional:true
     }
 });

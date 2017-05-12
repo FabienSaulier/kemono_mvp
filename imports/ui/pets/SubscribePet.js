@@ -28,9 +28,13 @@ export class SubscribePet extends React.Component {
   }
 
   handleClickPaiement(){
-
     Meteor.call('paiementToKemonoWallet',
-      {sub:this.state.sub, ok_monthly: this.state.ok_monthly, ok_refound: this.state.ok_refound},
+      {
+          sub:this.state.sub,
+          ok_monthly: this.state.ok_monthly,
+          ok_refound: this.state.ok_refound,
+          pet_id: this.props.pet._id
+      },
       (error, result) => {
         if (error) {
           Bert.alert(error.reason, 'danger');
@@ -63,7 +67,7 @@ export class SubscribePet extends React.Component {
         </Modal>
 
         <Image style={{float:'left', height:'100px'}} src="/img/04_Illustration_com_animaux.png" />
-        <p>Vous souhaitez protéger {this.props.name} en rejoignant la communauté des Kemonautes abonnés ?
+        <p>Vous souhaitez protéger {this.props.pet.name} en rejoignant la communauté des Kemonautes abonnés ?
   Excellente idée ! On vous explique tout les détails ci-dessous.</p>
         <br />
         <br />
@@ -72,7 +76,7 @@ export class SubscribePet extends React.Component {
         <p>Chaque début de mois, les Kemonautes versent un abonnement qui vient remplir
           une cagnotte globale, que Kemono utilise pour rembourser les frais vétérinaires.
            Cette contribution vous donne le droit de créer une demande de remboursement,
-           si {this.props.name} tombe malade ou a un accident.
+           si {this.props.pet.name} tombe malade ou a un accident.
            Kemono réinjecte 80% des abonnements dans les demandes de remboursement afin de vous offrir la meilleure protection possible.</p>
         <br />
         <br />
@@ -114,7 +118,7 @@ export class SubscribePet extends React.Component {
         <Checkbox name='ok_refound' onChange={this.handleInputChange} >En cochant cette case,
           je déclare être conscient que Kemono n’a aucune obligation concernant le pourcentage de remboursement effectif des demandes.
         </Checkbox>
-        <Button onClick={this.handleClickPaiement} >Abonner mon animal à la protection solidaire Kemono (paiement par carte bancaire)</Button>
+        <Button onClick={this.handleClickPaiement} >Abonner {this.props.pet.name} à la protection solidaire Kemono (paiement par carte bancaire)</Button>
         <p>Vous allez être redirigé vers notre prestataire de paiement.</p>
       </div>
     )

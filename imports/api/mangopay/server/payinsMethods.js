@@ -1,7 +1,8 @@
+import { Meteor } from 'meteor/meteor';
+import { EJSON } from 'meteor/ejson';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import rateLimit from '../../../modules/rate-limit.js';
-
 import {MangoPayApi} from './mangoPayApi';
 
 import Future from 'fibers/future';
@@ -13,7 +14,8 @@ const paiementToKemonoWallet = new ValidatedMethod({
   validate:  new SimpleSchema({
     sub: { type: String, allowedValues:['basic', 'premium']},
     ok_monthly: { type: Boolean, allowedValues:[true]},
-    ok_refound: { type: Boolean, allowedValues:[true]}
+    ok_refound: { type: Boolean, allowedValues:[true]},
+    pet_id:{type:String}
   }).validator(),
   run(payData) {
 
@@ -29,11 +31,18 @@ const paiementToKemonoWallet = new ValidatedMethod({
       fees = 500;
     }
 
+    customTag = {pet_id:payData.pet_id};
+    customTagString = EJSON.stringify(customTag);
+
+    if(!Meteor.user().mangopay)
+      throw new Meteor.Error('NO_MANGOPAY_ACCOUNT', 'No mangopay account', 'l\'utilisateur n\'a pas de compte use mangopay');
+
+
     // TODO get ici le author id pour éviter les truc bizarre
 
     console.log("paiementToKemonoWallet");
       const payin = {
-      "Tag": "custom meta",
+      "Tag": customTagString,
       "AuthorId": "24942064", // user id chez mangopay
       "CreditedUserId": "24898802", // kemono user id for sandbox
       "DebitedFunds": {
@@ -56,6 +65,7 @@ const paiementToKemonoWallet = new ValidatedMethod({
       "PaymentType": "CARD",
       "ExecutionType": "WEB",
     };
+
 
     let future = new Future();
     MangoPayApi.PayIns.create(payin, (result)=>{

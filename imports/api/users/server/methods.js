@@ -2,13 +2,16 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import rateLimit from '../../../modules/rate-limit.js';
 
-const updateMangoPUserId = new ValidatedMethod({
-  name: "updateMangoPUserId",
+const insertMangoPUserId = new ValidatedMethod({
+  name: "insertMangoPUserId",
   validate: new SimpleSchema({
     mpUserId:{type:String}
   }).validator(),
   run({mpUserId}) {
-    return Meteor.users.upsert(Meteor.userId(), {$set: {'mangop.user_id': mpUserId}});
+    if(!Meteor.user().mangopay)
+      return Meteor.users.update(Meteor.userId(), {$set: {'mangopay.user_id': mpUserId}});
+    else
+      Meteor.Error("Mangopay_user_exist", "User already has a mangopay id");
   }
 });
 
@@ -18,7 +21,7 @@ const updateMangoPUserWalletId = new ValidatedMethod({
     mpWalleterId:{type:String}
   }).validator(),
   run({mpWalleterId}) {
-    return Meteor.users.upsert(Meteor.userId(), {$set: {'mangop.wallet_id': mpWalleterId}});
+    return Meteor.users.upsert(Meteor.userId(), {$set: {'mangopay.wallet_id': mpWalleterId}});
   }
 });
 
@@ -83,7 +86,24 @@ export const updateUserProfile = new ValidatedMethod({
   }).validator(),
   run(userToUpdate) {
     console.log(userToUpdate);
-    Meteor.users.update(Meteor.userId(), {$set: {profile: userToUpdate}});
+    Meteor.users.update(Meteor.userId(), {$set: {profile: userToUpdate}}, function(error, res){
+
+      if(error){
+        console.log(error);
+      } else {
+        if(!Meteor.user().mangopay){
+          console.log("creatino mango pay user");
+          Meteor.call('createMangoNaturalUser', (err, res) => {
+            if(err) {
+              err
+            } else {
+              res
+            }
+          });
+        }
+
+      }
+    });
   }
 });
 
