@@ -29,7 +29,7 @@ import CampaignsList from '../../ui/pages/CampaignsList.js';
 import ViewProfilContainer from '../../ui/profil/ViewProfilContainer.js';
 import EditProfilContainer from '../../ui/profil/EditProfilContainer.js';
 
-import Account from '../../ui/pages/Account.js';
+import AccountContainer from '../../ui/containers/AccountContainer.js';
 
 const authenticate = (nextState, replace) => {
   if (!Meteor.loggingIn() && !Meteor.userId()) {
@@ -79,7 +79,7 @@ Meteor.startup(() => {
         <Route name="profil" path="/profil" component={ ViewProfilContainer } onEnter={ authenticate } />
         <Route name="editProfil" path="/profil/edit/" component={ EditProfilContainer } onEnter={ authenticate } />
 
-        <Route name="account" path="/account" component={ Account } onEnter={ authenticate } />
+        <Route name="account" path="/account" component={ AccountContainer } onEnter={ authenticate } />
 
         <Route path="*" component={ NotFound } />
       </Route>

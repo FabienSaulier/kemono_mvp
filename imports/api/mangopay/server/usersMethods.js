@@ -4,6 +4,7 @@ import rateLimit from '../../../modules/rate-limit.js';
 import { Meteor } from 'meteor/meteor';
 
 import {MangoPayApi} from './mangoPayApi';
+import Future from 'fibers/future';
 
 
 
@@ -42,5 +43,26 @@ const createMangoNaturalUser = new ValidatedMethod({
         console.log(res);
       }
     }));
+  }
+});
+
+const getUserTransactionsList = new ValidatedMethod({
+  name: 'getUserTransactionsList',
+  validate: null,
+  run() {
+    let future = new Future();
+    MangoPayApi.Users.getTransactions(Meteor.user().mangopay.user_id,  function(response) {
+
+      future.return(response);
+
+      if(response.errors){
+        console.log("print error: ");
+        console.log(response.errors);
+      }else{
+        console.log(response);
+      }
+    //  return future.wait();
+    });
+    return future.wait();
   }
 });

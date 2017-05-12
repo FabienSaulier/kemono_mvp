@@ -8,7 +8,6 @@ import {MangoPayApi} from './mangoPayApi';
 import Future from 'fibers/future';
 
 
-//TODO rename: paiementToKemonoWallet
 const paiementToKemonoWallet = new ValidatedMethod({
   name: 'paiementToKemonoWallet',
   validate:  new SimpleSchema({
@@ -43,7 +42,7 @@ const paiementToKemonoWallet = new ValidatedMethod({
     console.log("paiementToKemonoWallet");
       const payin = {
       "Tag": customTagString,
-      "AuthorId": "24942064", // user id chez mangopay
+      "AuthorId": Meteor.user().mangopay.user_id, // user id chez mangopay
       "CreditedUserId": "24898802", // kemono user id for sandbox
       "DebitedFunds": {
         "Currency": "EUR",
