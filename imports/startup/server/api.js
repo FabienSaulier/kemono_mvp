@@ -13,3 +13,4 @@ import '../../api/files/server/publications.js';
 import '../../api/mangopay/server/usersMethods.js';
 import '../../api/mangopay/server/walletsMethods.js';
 import '../../api/mangopay/server/payinsMethods.js';
+import '../../api/mangopay/server/cardRegistrationsMethods.js';

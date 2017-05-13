@@ -73,3 +73,51 @@ const paiementToKemonoWallet = new ValidatedMethod({
     return future.wait();
   }
 });
+
+
+
+
+const testAutoPay = new ValidatedMethod({
+  name: 'testAutoPay',
+  validate: null,
+  run() {
+
+    console.log("testAutoPay");
+
+    debitedFounds = 4500;
+    creditedFunds = 4000;
+    fees = 500;
+
+    const payin = {
+    "AuthorId": Meteor.user().mangopay.user_id, // user id chez mangopay
+    "CreditedUserId": "24898802", // kemono user id for sandbox
+    "DebitedFunds": {
+      "Currency": "EUR",
+      "Amount": debitedFounds
+    },
+    "CreditedFunds": {
+      "Currency": "EUR",
+      "Amount": creditedFunds
+    },
+    "Fees": {
+      "Currency": "EUR",
+      "Amount": fees
+    },
+    "CreditedWalletId": "24944941",  // kemono wallet id for sandbox
+    "CardId": '25534491',
+    "SecureMode": "DEFAULT",
+    "PaymentType":"CARD",
+    "ExecutionType": "DIRECT",
+    "SecureModeReturnURL":"localhost:3000"
+
+  };
+
+
+  let future = new Future();
+  MangoPayApi.PayIns.create(payin, (result)=>{
+    console.log(result);
+  //    future.return(result);
+  });
+//  return future.wait();
+  }
+});

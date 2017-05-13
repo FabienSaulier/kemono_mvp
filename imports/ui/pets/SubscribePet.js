@@ -6,6 +6,7 @@ import {Grid, Form, Panel, Image, FormGroup, FormControl,
 import ProfilImage from '../components/ProfilImage';
 import {Bert} from 'meteor/themeteorchef:bert';
 import Spinner from 'react-spinkit';
+import mangoPay from 'mangopay-cardregistration-js-kit';
 
 export class SubscribePet extends React.Component {
   constructor(props) {
@@ -16,6 +17,12 @@ export class SubscribePet extends React.Component {
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleClickPaiement = this.handleClickPaiement.bind(this);
+
+    this.createCardReg = this.createCardReg.bind(this);
+    this.registerCard = this.registerCard.bind(this);
+    this.updateCardReg = this.updateCardReg.bind(this);
+    this.getCard = this.getCard.bind(this);
+    this.testAutoPay = this.testAutoPay.bind(this);
   }
 
   handleInputChange(event) {
@@ -26,6 +33,86 @@ export class SubscribePet extends React.Component {
       [name]: value
     });
   }
+
+  createCardReg(){
+    Meteor.call('createCardRegistration',
+      (error, result) => {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log(result);
+        }
+    });
+  }
+
+  updateCardReg(){
+    Meteor.call('updateCardRegistration',
+      (error, result) => {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log(result);
+        }
+    });
+  }
+
+  testAutoPay(){
+    Meteor.call('testAutoPay',
+      (error, result) => {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log(result);
+        }
+    });
+  }
+
+  getCard(){
+    Meteor.call('getCard',
+      (error, result) => {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log(result);
+        }
+    });
+  }
+
+  registerCard(){
+    console.log("registerCard");
+    mangoPay.cardRegistration.init({
+         cardRegistrationURL : "https://homologation-webpayment.payline.com/webpayment/getToken",
+         preregistrationData : 'S8HjKhXaPXeNlzbaHMqIv-OWclzgP_EN3XuDm5PyK0bDkPOcaFHhHJIV5wpB08h1S4wCy-yiraxeE65tmxOe8A',
+         accessKey : '1X0m87dmM2LiwFgxPLBJ',
+         Id : '25534280'
+     });
+
+     mangoPay.cardRegistration.baseURL = "https://api.sandbox.mangopay.com";
+     mangoPay.cardRegistration.clientId = 'foobinou';
+
+
+     var cardData = {
+          cardNumber: '4706750000000009',
+          cardExpirationDate: '1120',
+          cardCvx: '888',
+          cardType: 'CB_VISA_MASTERCARD'
+     };
+
+     mangoPay.cardRegistration.registerCard(
+         cardData,
+         function(res) {
+           console.log("REGISTRATION SUCCESS");
+           console.log(res);
+             // Success, you can use res.CardId now that points to registered card
+         },
+         function(res) {
+           console.log("REG FAILED");
+           console.log(res);
+             // Handle error, see res.ResultCode and res.ResultMessage
+         }
+     );
+  }
+
 
   handleClickPaiement(){
     Meteor.call('paiementToKemonoWallet',
@@ -57,6 +144,13 @@ export class SubscribePet extends React.Component {
     };
     return(
       <div>
+        <button onClick={this.createCardReg}>createCardReg</button>
+        <button onClick={this.registerCard}>registerCard</button>
+        <button onClick={this.updateCardReg}>updateCardReg</button>
+        <button onClick={this.getCard}>getCard</button>
+        <button onClick={this.testAutoPay}>testAutoPay</button>
+
+
         <Modal show={this.state.showLoadingModal}>
           <Modal.Body>
             Vous allez être redirigé vers notre prestataire de paiement
