@@ -3,8 +3,10 @@ import { Meteor } from 'meteor/meteor';
 import { browserHistory } from 'react-router';
 import {Grid, Form, Panel, Image, FormGroup, FormControl,
   Modal, Col, Checkbox, Button, ControlLabel, Radio} from 'react-bootstrap';
-import ProfilImage from '../components/ProfilImage';
+import { LinkContainer } from 'react-router-bootstrap';
 import {Bert} from 'meteor/themeteorchef:bert';
+
+import ProfilImage from '../components/ProfilImage';
 import Spinner from 'react-spinkit';
 import mangoPay from 'mangopay-cardregistration-js-kit';
 
@@ -144,13 +146,6 @@ export class SubscribePet extends React.Component {
     };
     return(
       <div>
-        <button onClick={this.createCardReg}>createCardReg</button>
-        <button onClick={this.registerCard}>registerCard</button>
-        <button onClick={this.updateCardReg}>updateCardReg</button>
-        <button onClick={this.getCard}>getCard</button>
-        <button onClick={this.testAutoPay}>testAutoPay</button>
-
-
         <Modal show={this.state.showLoadingModal}>
           <Modal.Body>
             Vous allez être redirigé vers notre prestataire de paiement
@@ -204,6 +199,11 @@ export class SubscribePet extends React.Component {
           <Col sm={2}>
           </Col>
         </Grid>
+
+        <LinkContainer to={"/pets/subscribe/paiement/"+"mon_abo"+"/"+this.props.pet._id>
+          <Button>Continuer</Button>
+        </LinkContainer>
+
         <Checkbox name='ok_monthly' onChange={this.handleInputChange} >
           En cochant cette case,
           je déclare être conscient du paiement mensuel, à date anniversaire. Je serais informé par email de chaque paiement et

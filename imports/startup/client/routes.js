@@ -23,6 +23,9 @@ import EditPetContainer from '../../ui/pets/EditPetContainer.js';
 import SubscribePetContainer from '../../ui/pets/SubscribePetContainer.js';
 
 import SubscriptionContainer from '../../ui/subscription/SubscriptionContainer.js';
+import SubPetPaiementContainer from '../../ui/subscription/SubPetPaiementContainer.js';
+import SubPetConfirmContainer from '../../ui/subscription/SubPetConfirmContainer.js';
+
 
 import CampaignsList from '../../ui/pages/CampaignsList.js';
 
@@ -66,12 +69,12 @@ Meteor.startup(() => {
         <Route name="reset-password" path="/reset-password/:token" component={ ResetPassword } />
         <Route name="verify-email" path="/verify-email/:token" component={ VerifyEmail }  />
 
-
         <Route name="pets" path="/pets" component={ PetsListContainer } onEnter={ authenticate } />
-        <Route name="editPet" path="/pets/edit" component={ EditPetContainer } onEnter={ authenticate } />
         <Route name="editPet" path="/pets/edit/:id" component={ EditPetContainer } onEnter={ authenticate } />
-        <Route name="subscribePet" path="/pets/subscribe/:id" component={ SubscribePetContainer } onEnter={ authenticate } />
 
+        <Route name="subscribePet" path="/pets/subscribe/:id" component={ SubscribePetContainer } onEnter={ authenticate } />
+        <Route name="subPaiement" path="/pets/subscribe/paiement/:sub/:id" component={ SubPetPaiementContainer } onEnter={ authenticate } />
+        <Route name="subConfirmation" path="/pets/subscribe/confirm/:id" component={ SubPetConfirmContainer } onEnter={ authenticate } />
         <Route name="subscription" path="/subscription/" component={ SubscriptionContainer } onEnter={ authenticate } />
 
         <Route name="campaignsList" path="/campaignsList" component={ CampaignsList } onEnter={ authenticate } />
