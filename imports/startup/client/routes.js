@@ -20,12 +20,10 @@ import IndexContainer from '../../ui/containers/IndexContainer.js';
 
 import PetsListContainer from '../../ui/pets/PetsListContainer.js';
 import EditPetContainer from '../../ui/pets/EditPetContainer.js';
-import SubscribePetContainer from '../../ui/pets/SubscribePetContainer.js';
 
-import SubscriptionContainer from '../../ui/subscription/SubscriptionContainer.js';
+import SubscribePetContainer from '../../ui/subscription/SubscribePetContainer.js';
 import SubPetPaiement from '../../ui/subscription/SubPetPaiement.js';
 import SubPetConfirmContainer from '../../ui/subscription/SubPetConfirmContainer.js';
-
 
 import CampaignsList from '../../ui/pages/CampaignsList.js';
 
@@ -52,7 +50,6 @@ const checkAuth = (nextState, replace) => {
   }
 }
 
-
 Meteor.startup(() => {
   render(
     <Router history={ browserHistory }>
@@ -75,7 +72,6 @@ Meteor.startup(() => {
         <Route name="subscribePet" path="/pets/subscribe/:id" component={ SubscribePetContainer } onEnter={ authenticate } />
         <Route name="subPaiement" path="/pets/subscribe/paiement/:sub/:id" component={ SubPetPaiement } onEnter={ authenticate } />
         <Route name="subConfirmation" path="/pets/subscribe/confirm/:id" component={ SubPetConfirmContainer } onEnter={ authenticate } />
-        <Route name="subscription" path="/subscription/" component={ SubscriptionContainer } onEnter={ authenticate } />
 
         <Route name="campaignsList" path="/campaignsList" component={ CampaignsList } onEnter={ authenticate } />
 

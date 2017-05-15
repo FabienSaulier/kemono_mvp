@@ -6,10 +6,12 @@ import Pets from '../../api/pets/pets';
 
 const composer = ({ params }, onData) => {
   const subscription = Meteor.subscribe('userData');
+  console.log(params);
+  
   /*
   if(subscription.ready()) {
     onData(null, null);
-    
+
     if(!Meteor.user().pets_id){
       onData(null, {pets:null});
     } else {

@@ -21,7 +21,6 @@ export default class InsiderMenu extends Component {
           <Nav>
             <LinkContainer to="/dashboard"><NavItem>Tableau de bord</NavItem></LinkContainer>
             <LinkContainer to="/pets"><NavItem>Mes animaux</NavItem></LinkContainer>
-            <LinkContainer to="/subscription/"><NavItem>Abonnements</NavItem></LinkContainer>
             <LinkContainer to="/campaignsList"><NavItem>Mes remboursements</NavItem></LinkContainer>
             <LinkContainer to="/profil/edit/"><NavItem>Profil</NavItem></LinkContainer>
             <LinkContainer to="/account"><NavItem>Compte</NavItem></LinkContainer>
