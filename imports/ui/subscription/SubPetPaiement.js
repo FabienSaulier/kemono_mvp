@@ -13,35 +13,51 @@ export class SubPetPaiement extends React.Component {
     this.state={};
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleClickProceedPaiement = this.handleClickProceedPaiement.bind(this);
+    this.authorizationOK = this.authorizationOK.bind(this);
+  }
+
+  authorizationOK(){
+    if(!this.state.ok_monthly){
+      Bert.alert('Vous devez accepter le paiement mensuel', 'danger');
+      return false;
+    }
+    if(!this.state.ok_save){
+      Bert.alert('Vous devez accepter la sauvegarde de vos coordonner bancaire', 'danger');
+      return false;
+    }
+    if(!this.state.ok_refound){
+      Bert.alert('Vous devez cocher la case je déclare être conscient que Kemono n’a aucune obligation concernant le pourcentage de remboursement effectif des demandes.', 'danger');
+      return false;
+    }
+    return true;
   }
 
   handleClickProceedPaiement(){
     const self = this;
+    if(!this.authorizationOK()) return;
+
     // Create registration card
-    Meteor.call("createCardRegistration", (err, res) => {
+    Meteor.call("createCardRegistration", (err, retour) => {
       if(err) {
         console.log(err);
       } else {
-        console.log(res);
-        console.log("register card");
-
         // construct card registration data with info provide by mangopay
         mangoPay.cardRegistration.baseURL = "https://api.sandbox.mangopay.com";
         mangoPay.cardRegistration.clientId = 'foobinou';
         mangoPay.cardRegistration.init({
-            cardRegistrationURL : res.CardRegistrationURL,
-            preregistrationData : res.PreregistrationData,
-            accessKey : res.AccessKey,
-            Id : res.Id,
+            cardRegistrationURL : retour.CardRegistrationURL,
+            preregistrationData : retour.PreregistrationData,
+            accessKey : retour.AccessKey,
+            Id : retour.Id,
          });
 
         var cardData = {
-             cardNumber: '4706750000000033',
-             cardExpirationDate: '1120',
-             cardCvx: '123',
+             cardNumber: self.state.cardNumber,
+             cardExpirationDate: self.state.expirationDate,
+             cardCvx: self.state.securityCode,
              cardType: 'CB_VISA_MASTERCARD'
         };
-
+console.log(cardData);
         // register the card
         mangoPay.cardRegistration.registerCard(
             cardData,
@@ -68,17 +84,18 @@ export class SubPetPaiement extends React.Component {
                   let subscription = self.props.params.sub;
                   Meteor.call("initPaiementRegistration", subscription, (err, res) => {
                     if(err) {
+                      console.log("paiement failed");
                       console.log(err);
                     } else {
+                      console.log("paiement succeeded");
                       console.log(res);
                     }
                   });
                 }
               });
             },
-            function(res) {
-              console.log("REG FAILED");
-              console.log(res);
+            function(error) {
+              Bert.alert(error.ResultMessage,'danger');
             }
         );
       }
@@ -100,21 +117,21 @@ export class SubPetPaiement extends React.Component {
         <h4>Paiement</h4>
         <div>
           <form>
-            <FormGroup controlId='numCard'>
+            <FormGroup controlId='cardNumber'>
               <ControlLabel>N° de carte</ControlLabel>
-              <FormControl componentClass="input" placeholder="N° de carte" style={{width :'350px'}} />
+              <FormControl name='cardNumber' componentClass="input" placeholder="N° de carte" style={{width :'350px'}} onChange={this.handleInputChange} />
             </FormGroup>
             <FormGroup controlId='name'>
               <ControlLabel>Nom</ControlLabel>
-              <FormControl componentClass="input" placeholder="Nom" style={{width :'350px'}} />
+              <FormControl name='userName' componentClass="input" placeholder="Nom" style={{width :'350px'}} onChange={this.handleInputChange} />
             </FormGroup>
             <FormGroup controlId='expirationDate'>
               <ControlLabel>Date d'expiration</ControlLabel>
-              <FormControl componentClass="input" placeholder="Forme MMYY (sans tiret)" style={{width :'350px'}} />
+              <FormControl name='expirationDate' componentClass="input" placeholder="Forme MMYY (sans tiret)" style={{width :'350px'}} onChange={this.handleInputChange} />
             </FormGroup>
             <FormGroup controlId='securityCode'>
               <ControlLabel>Code de sécurité</ControlLabel>
-              <FormControl componentClass="input" placeholder="Code de sécurité" style={{width :'350px'}} />
+              <FormControl name='securityCode' componentClass="input" placeholder="Code de sécurité" style={{width :'350px'}} onChange={this.handleInputChange} />
             </FormGroup>
             <Checkbox name='ok_monthly' onChange={this.handleInputChange} >
               En cochant cette case,

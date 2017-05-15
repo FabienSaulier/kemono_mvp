@@ -116,6 +116,7 @@ const initPaiementRegistration = new ValidatedMethod({
   let future = new Future();
   MangoPayApi.PayIns.create(payin, (result)=>{
     console.log(result);
+    console.log(subscription);
   //    future.return(result);
   });
 //  return future.wait();
