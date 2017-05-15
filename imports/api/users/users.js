@@ -8,41 +8,6 @@ Meteor.users.deny({
 
 Schema = {};
 
-AddressSchema = new SimpleSchema({
-  street: {
-    type: String,
-    max: 100
-  },
-  city: {
-    type: String,
-    max: 50
-  },
-  country: {
-    type: String
-  },
-  zip: {
-    type: String,
-    regEx: SimpleSchema.RegEx.ZipCode
-  }
-});
-
-VetSchema = new SimpleSchema({
-  firstName: {
-    type: String,
-    optional: true
-  },
-  lastName: {
-    type: String,
-    optional: true
-  },
-  phone:{
-    type: String
-  },
-  adress:{
-    type:AddressSchema
-  }
-})
-
 Schema.UserProfile = new SimpleSchema({
     firstName: {
       type: String
@@ -83,20 +48,38 @@ Schema.UserProfile = new SimpleSchema({
     description:{
       type:String,
       optional:true
-    },
-    vet:{
-      type:VetSchema,
-      optional:true
     }
 });
 
+CardInfo = new SimpleSchema({
+    id:{
+      type:String
+    },
+    type:{
+      type:String,
+      allowedValues: ["CB_VISA_MASTERCARD"]
+    },
+    currency:{
+      type:String,
+      allowedValues: ["EUR"]
+    },
+    status:{
+      type:String,
+      allowedValues:["VALIDATED"]
+    }
+});
+export {CardInfo};
+
 Schema.Mangopay = new SimpleSchema({
     user_id:{
-      type:String,
-      optional:true
+      type:String
     },
     wallet_id:{
       type:String,
+      optional:true
+    },
+    card:{
+      type:CardInfo,
       optional:true
     }
 });

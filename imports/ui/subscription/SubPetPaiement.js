@@ -33,9 +33,9 @@ export class SubPetPaiement extends React.Component {
          });
 
         var cardData = {
-             cardNumber: '4706750000000009',
+             cardNumber: '4706750000000033',
              cardExpirationDate: '1120',
-             cardCvx: '888',
+             cardCvx: '123',
              cardType: 'CB_VISA_MASTERCARD'
         };
         mangoPay.cardRegistration.registerCard(
@@ -43,6 +43,18 @@ export class SubPetPaiement extends React.Component {
             function(res) {
               console.log("REGISTRATION SUCCESS");
               console.log(res);
+
+              let cardInfo = {id:res.Id, type:res.CardType, currency:res.Currency, status:res.Status};
+
+              Meteor.call("saveCardInfo", cardInfo,  (err, res) => {
+                if(err) {
+                  console.log(err);
+                } else {
+                  console.log(res);
+                }
+              });
+
+
               regData = {
                 Id:res.Id,
                 RegistrationData:res.RegistrationData

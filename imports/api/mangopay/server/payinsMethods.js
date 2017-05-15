@@ -102,7 +102,7 @@ const testAutoPay = new ValidatedMethod({
       "Amount": fees
     },
     "CreditedWalletId": "24944941",  // kemono wallet id for sandbox
-    "CardId": '25534491',
+    "CardId": Meteor.user().mangopay.user_id,
     "SecureMode": "DEFAULT",
     "PaymentType":"CARD",
     "ExecutionType": "DIRECT",

@@ -2,6 +2,18 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import rateLimit from '../../../modules/rate-limit.js';
 
+import {CardInfo} from '../users';
+
+const saveCardInfo = new ValidatedMethod({
+  name: 'saveCardInfo',
+  validate: CardInfo.validator(),
+  run(cardInfo) {
+    console.log("saveCardInfo");
+    console.log(cardInfo);
+    Meteor.users.update(Meteor.userId(), {$set: {'mangopay.card': cardInfo}});
+  }
+});
+
 const insertMangoPUserId = new ValidatedMethod({
   name: "insertMangoPUserId",
   validate: new SimpleSchema({

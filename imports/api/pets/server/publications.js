@@ -7,7 +7,6 @@ import Pets from '../pets';
 Publish only the user's Pets
 **/
 Meteor.publish('userPets', function (userPetsId) {
-  console.log("publish userPet: "+userPetsId);
   check(userPetsId, [String]);
   if(userPetsId){
     if (this.userId) {
@@ -19,6 +18,5 @@ Meteor.publish('userPets', function (userPetsId) {
 });
 
 Meteor.publish('pets', function () {
-  console.log("publish pets");
   return Pets.find();
 });
