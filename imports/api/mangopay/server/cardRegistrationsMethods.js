@@ -5,24 +5,40 @@ import rateLimit from '../../../modules/rate-limit.js';
 import {MangoPayApi} from './mangoPayApi';
 import mangoPay from 'mangopay-cardregistration-js-kit';
 
+import Future from 'fibers/future';
+
+
 const createCardRegistration = new ValidatedMethod({
   name: 'createCardRegistration',
   validate: null,
   run() {
     console.log("createCardRegistration");
+    if(!Meteor.user().mangopay.user_id)
+      throw new Meteor.Error("no_mangopay_id", "You don't have a mangopay user id.");
+
     const cardRegistration = new MangoPayApi.models.CardRegistration({
       "UserId": Meteor.user().mangopay.user_id,
       "Currency": "EUR",
       "CardType": "CB_VISA_MASTERCARD"
     });
+
+    let future = new Future();
     MangoPayApi.CardRegistrations.create(cardRegistration,  function(response) {
       if(response.errors){
         console.log("print error: ");
         console.log(response.errors);
       }else{
         console.log(response);
+        ret = {
+          CardRegistrationURL: response.CardRegistrationURL,
+          PreregistrationData: response.PreregistrationData,
+          AccessKey: response.AccessKey,
+          Id: response.Id
+        }
+        future.return(ret);
       }
     });
+    return future.wait();
   }
 });
 
@@ -45,46 +61,6 @@ const updateCardRegistration = new ValidatedMethod({
         console.log(response);
       }
     });
-  }
-});
-
-const registerCard = new ValidatedMethod({
-  name: 'registerCard',
-  validate: null,
-  run() {
-    console.log("registerCard");
-    mangoPay.cardRegistration.init({
-         cardRegistrationURL : "https://homologation-webpayment.payline.com/webpayment/getToken",
-         preregistrationData : 'S8HjKhXaPXeNlzbaHMqIv-OWclzgP_EN3XuDm5PyK0bDkPOcaFHhHJIV5wpB08h1S4wCy-yiraxeE65tmxOe8A',
-         accessKey : '1X0m87dmM2LiwFgxPLBJ',
-         Id : '25534280'
-     });
-
-     mangoPay.cardRegistration.baseURL = "https://api.sandbox.mangopay.com";
-     mangoPay.cardRegistration.clientId = 'foobinou';
-
-
-     var cardData = {
-          cardNumber: '4706750000000009',
-          cardExpirationDate: '1120',
-          cardCvx: '888',
-          cardType: 'CB_VISA_MASTERCARD'
-     };
-
-     mangoPay.cardRegistration.registerCard(
-         cardData,
-         function(res) {
-           console.log("REGISTRATION SUCCESS");
-           console.log(res);
-             // Success, you can use res.CardId now that points to registered card
-         },
-         function(res) {
-           console.log("REG FAILED");
-           console.log(res);
-             // Handle error, see res.ResultCode and res.ResultMessage
-         }
-     );
-
   }
 });
 

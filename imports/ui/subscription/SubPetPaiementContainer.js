@@ -6,9 +6,10 @@ import Pets from '../../api/pets/pets';
 
 const composer = ({ params }, onData) => {
   const subscription = Meteor.subscribe('userData');
+  /*
   if(subscription.ready()) {
     onData(null, null);
-    /*
+    
     if(!Meteor.user().pets_id){
       onData(null, {pets:null});
     } else {
@@ -20,8 +21,9 @@ const composer = ({ params }, onData) => {
         onData(null, {pets:pets});
       }
     }
-    */
+
   }
+  */
 };
 
 export default SubPetPaiementContainer = composeWithTracker(composer, Loading)(SubPetPaiement);

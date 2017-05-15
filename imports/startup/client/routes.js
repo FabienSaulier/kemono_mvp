@@ -23,7 +23,7 @@ import EditPetContainer from '../../ui/pets/EditPetContainer.js';
 import SubscribePetContainer from '../../ui/pets/SubscribePetContainer.js';
 
 import SubscriptionContainer from '../../ui/subscription/SubscriptionContainer.js';
-import SubPetPaiementContainer from '../../ui/subscription/SubPetPaiementContainer.js';
+import SubPetPaiement from '../../ui/subscription/SubPetPaiement.js';
 import SubPetConfirmContainer from '../../ui/subscription/SubPetConfirmContainer.js';
 
 
@@ -73,7 +73,7 @@ Meteor.startup(() => {
         <Route name="editPet" path="/pets/edit/:id" component={ EditPetContainer } onEnter={ authenticate } />
 
         <Route name="subscribePet" path="/pets/subscribe/:id" component={ SubscribePetContainer } onEnter={ authenticate } />
-        <Route name="subPaiement" path="/pets/subscribe/paiement/:sub/:id" component={ SubPetPaiementContainer } onEnter={ authenticate } />
+        <Route name="subPaiement" path="/pets/subscribe/paiement/:sub/:id" component={ SubPetPaiement } onEnter={ authenticate } />
         <Route name="subConfirmation" path="/pets/subscribe/confirm/:id" component={ SubPetConfirmContainer } onEnter={ authenticate } />
         <Route name="subscription" path="/subscription/" component={ SubscriptionContainer } onEnter={ authenticate } />
 
