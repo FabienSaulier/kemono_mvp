@@ -17,7 +17,6 @@ const paiementToKemonoWallet = new ValidatedMethod({
     pet_id:{type:String}
   }).validator(),
   run(payData) {
-    console.log(payData.sub);
     if(payData.sub == 'basic'){
       debitedFounds = 1500;
       creditedFunds = 1300;
@@ -75,16 +74,21 @@ const paiementToKemonoWallet = new ValidatedMethod({
 
 
 
-const testAutoPay = new ValidatedMethod({
-  name: 'testAutoPay',
+const initPaiementRegistration = new ValidatedMethod({
+  name: 'initPaiementRegistration',
   validate: null,
-  run() {
+  run(subscription) {
 
-    console.log("testAutoPay");
-
-    debitedFounds = 4500;
-    creditedFunds = 4000;
-    fees = 500;
+    console.log("initPaiementRegistration");
+    if(subscription == 'basic'){
+      debitedFounds = 1500;
+      creditedFunds = 1300;
+      fees = 200;
+    } else if(subscription == 'premium'){
+      debitedFounds = 4500;
+      creditedFunds = 4000;
+      fees = 500;
+    }
 
     const payin = {
     "AuthorId": Meteor.user().mangopay.user_id, // user id chez mangopay
@@ -102,14 +106,12 @@ const testAutoPay = new ValidatedMethod({
       "Amount": fees
     },
     "CreditedWalletId": "24944941",  // kemono wallet id for sandbox
-    "CardId": Meteor.user().mangopay.user_id,
+    "CardId": Meteor.user().mangopay.card.id,
     "SecureMode": "DEFAULT",
     "PaymentType":"CARD",
     "ExecutionType": "DIRECT",
     "SecureModeReturnURL":"localhost:3000"
-
   };
-
 
   let future = new Future();
   MangoPayApi.PayIns.create(payin, (result)=>{

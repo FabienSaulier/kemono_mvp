@@ -19,7 +19,8 @@ const createCardRegistration = new ValidatedMethod({
     const cardRegistration = new MangoPayApi.models.CardRegistration({
       "UserId": Meteor.user().mangopay.user_id,
       "Currency": "EUR",
-      "CardType": "CB_VISA_MASTERCARD"
+      "CardType": "CB_VISA_MASTERCARD",
+      "Country":"FR"
     });
 
     let future = new Future();

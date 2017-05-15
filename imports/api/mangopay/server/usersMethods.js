@@ -51,17 +51,14 @@ const getUserTransactionsList = new ValidatedMethod({
   validate: null,
   run() {
     let future = new Future();
-    MangoPayApi.Users.getTransactions(Meteor.user().mangopay.user_id,  function(response) {
-
+    MangoPayApi.Users.getTransactions(Meteor.user().mangopay.user_id, function(response) {
       future.return(response);
-
       if(response.errors){
         console.log("print error: ");
         console.log(response.errors);
       }else{
         console.log(response);
       }
-    //  return future.wait();
     });
     return future.wait();
   }

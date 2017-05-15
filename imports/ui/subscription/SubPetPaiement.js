@@ -10,19 +10,22 @@ export class SubPetPaiement extends React.Component {
   constructor(props) {
     super(props);
     console.log(props);
-    this.state={
-    }
+    this.state={};
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleClickProceedPaiement = this.handleClickProceedPaiement.bind(this);
   }
 
-
   handleClickProceedPaiement(){
+    const self = this;
+    // Create registration card
     Meteor.call("createCardRegistration", (err, res) => {
       if(err) {
         console.log(err);
       } else {
         console.log(res);
         console.log("register card");
+
+        // construct card registration data with info provide by mangopay
         mangoPay.cardRegistration.baseURL = "https://api.sandbox.mangopay.com";
         mangoPay.cardRegistration.clientId = 'foobinou';
         mangoPay.cardRegistration.init({
@@ -38,14 +41,13 @@ export class SubPetPaiement extends React.Component {
              cardCvx: '123',
              cardType: 'CB_VISA_MASTERCARD'
         };
+
+        // register the card
         mangoPay.cardRegistration.registerCard(
             cardData,
             function(res) {
               console.log("REGISTRATION SUCCESS");
-              console.log(res);
-
-              let cardInfo = {id:res.Id, type:res.CardType, currency:res.Currency, status:res.Status};
-
+              let cardInfo = {id:res.CardId, type:res.CardType, currency:res.Currency, status:res.Status};
               Meteor.call("saveCardInfo", cardInfo,  (err, res) => {
                 if(err) {
                   console.log(err);
@@ -54,20 +56,25 @@ export class SubPetPaiement extends React.Component {
                 }
               });
 
-
-              regData = {
-                Id:res.Id,
-                RegistrationData:res.RegistrationData
-              }
-
+              // update the card to confirme the registration
+              regData = {Id:res.Id, RegistrationData:res.RegistrationData }
               Meteor.call("updateCardRegistration", regData, (err, res) => {
                 if(err) {
                   console.log(err);
                 } else {
                   console.log(res);
+
+                  // make the initial paiement
+                  let subscription = self.props.params.sub;
+                  Meteor.call("initPaiementRegistration", subscription, (err, res) => {
+                    if(err) {
+                      console.log(err);
+                    } else {
+                      console.log(res);
+                    }
+                  });
                 }
               });
-
             },
             function(res) {
               console.log("REG FAILED");
