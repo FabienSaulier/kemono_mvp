@@ -5,9 +5,16 @@ import Loading from '../components/Loading.js';
 import Pets from '../../api/pets/pets';
 
 const composer = ({ params }, onData) => {
-  const subscription = Meteor.subscribe('userData');
-  console.log(params);
-  
+
+  const subscription = Meteor.subscribe('pets');
+  if (subscription.ready()) {
+    // Here it's a find one !! not a cursor
+    const pet = Pets.findOne({_id:params.id});
+    console.log(pet);
+    onData(null, {pet:pet});
+  }
+
+
   /*
   if(subscription.ready()) {
     onData(null, null);
@@ -23,9 +30,12 @@ const composer = ({ params }, onData) => {
         onData(null, {pets:pets});
       }
     }
+    
 
   }
   */
 };
+
+
 
 export default SubPetPaiementContainer = composeWithTracker(composer, Loading)(SubPetPaiement);

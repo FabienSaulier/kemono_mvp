@@ -6,6 +6,15 @@ import Pets from '../../api/pets/pets';
 
 const composer = ({ params }, onData) => {
 
+  const subscription = Meteor.subscribe('pets');
+  if (subscription.ready()) {
+    // Here it's a find one !! not a cursor
+    const pet = Pets.findOne({_id:params.id});
+    console.log(pet);
+    onData(null, {pet:pet});
+  }
+
+  /*
   if(params.id){
     // ensure that pets are owned by the current user.
     const subscription = Meteor.subscribe('userData');
@@ -29,7 +38,8 @@ const composer = ({ params }, onData) => {
       onData(null, {currentUser});
     }
   }
+  */
 
 };
 
-export default EditPetContainer = composeWithTracker(composer, Loading)(SubscribePet);
+export default SubscribePetContainer = composeWithTracker(composer, Loading)(SubscribePet);

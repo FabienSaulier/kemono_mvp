@@ -17,3 +17,8 @@ Meteor.publish('userPets', function (userPetsId) {
     }
   }
 });
+
+Meteor.publish('pets', function () {
+  console.log("publish pets");
+  return Pets.find();
+});

@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 import mangoPay from 'mangopay-cardregistration-js-kit';
 
 
-export default class SubPetPaiement extends React.Component {
+export class SubPetPaiement extends React.Component {
   constructor(props) {
     super(props);
     console.log(props);
@@ -110,7 +110,7 @@ export default class SubPetPaiement extends React.Component {
               je déclare être conscient que Kemono n’a aucune obligation concernant le pourcentage de remboursement effectif des demandes.
             </Checkbox>
 
-            <Button onClick={this.handleClickProceedPaiement} >Abonner XXXXXXXXXXXX à la protection solidaire Kemono (paiement par carte bancaire)</Button>
+            <Button onClick={this.handleClickProceedPaiement} >Abonner {this.props.pet.name} à la protection solidaire Kemono (paiement par carte bancaire)</Button>
 
           </form>
 
