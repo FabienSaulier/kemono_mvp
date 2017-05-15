@@ -1,6 +1,7 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import {Image, Button, Glyphicon, Checkbox, FormGroup, FormControl, ControlLabel} from 'react-bootstrap'
+import {Image, Button, Glyphicon, Checkbox, FormGroup, FormControl, ControlLabel,
+        Grid, Col, Panel} from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router';
 import mangoPay from 'mangopay-cardregistration-js-kit';
@@ -113,47 +114,55 @@ console.log(cardData);
 
   render() {
     return(
-      <div>
-        <h4>Paiement</h4>
+      <Grid>
+      <Col sm={2}>
+        <Panel>
+          Résumé abonnement {this.props.params.sub}
+        </Panel>
+      </Col>
+      <Col sm={8}>
         <div>
-          <form>
-            <FormGroup controlId='cardNumber'>
-              <ControlLabel>N° de carte</ControlLabel>
-              <FormControl name='cardNumber' componentClass="input" placeholder="N° de carte" style={{width :'350px'}} onChange={this.handleInputChange} />
-            </FormGroup>
-            <FormGroup controlId='name'>
-              <ControlLabel>Nom</ControlLabel>
-              <FormControl name='userName' componentClass="input" placeholder="Nom" style={{width :'350px'}} onChange={this.handleInputChange} />
-            </FormGroup>
-            <FormGroup controlId='expirationDate'>
-              <ControlLabel>Date d'expiration</ControlLabel>
-              <FormControl name='expirationDate' componentClass="input" placeholder="Forme MMYY (sans tiret)" style={{width :'350px'}} onChange={this.handleInputChange} />
-            </FormGroup>
-            <FormGroup controlId='securityCode'>
-              <ControlLabel>Code de sécurité</ControlLabel>
-              <FormControl name='securityCode' componentClass="input" placeholder="Code de sécurité" style={{width :'350px'}} onChange={this.handleInputChange} />
-            </FormGroup>
-            <Checkbox name='ok_monthly' onChange={this.handleInputChange} >
-              En cochant cette case,
-              je déclare être conscient du paiement mensuel, à date anniversaire. Je serais informé par email de chaque paiement et
-              trouverais un récapitulatif sur /moncompte/. Je pourrais mettre fin à l'abonnement quand je le souhaite.
-            </Checkbox>
-            <Checkbox name='ok_save' onChange={this.handleInputChange} >
-              En cochant cette case,
-              j'autorise le prestataire bancaire à conserver les informations de ma carte pour le paiement mensuel.
-            </Checkbox>
-            <Checkbox name='ok_refound' onChange={this.handleInputChange} >En cochant cette case,
-              je déclare être conscient que Kemono n’a aucune obligation concernant le pourcentage de remboursement effectif des demandes.
-            </Checkbox>
+          <h4>Paiement</h4>
+          <div>
+            <form>
+              <FormGroup controlId='cardNumber'>
+                <ControlLabel>N° de carte</ControlLabel>
+                <FormControl name='cardNumber' componentClass="input" placeholder="N° de carte" style={{width :'350px'}} onChange={this.handleInputChange} />
+              </FormGroup>
+              <FormGroup controlId='name'>
+                <ControlLabel>Nom</ControlLabel>
+                <FormControl name='userName' componentClass="input" placeholder="Nom" style={{width :'350px'}} onChange={this.handleInputChange} />
+              </FormGroup>
+              <FormGroup controlId='expirationDate'>
+                <ControlLabel>Date d'expiration</ControlLabel>
+                <FormControl name='expirationDate' componentClass="input" placeholder="Forme MMYY (sans tiret)" style={{width :'350px'}} onChange={this.handleInputChange} />
+              </FormGroup>
+              <FormGroup controlId='securityCode'>
+                <ControlLabel>Code de sécurité</ControlLabel>
+                <FormControl name='securityCode' componentClass="input" placeholder="Code de sécurité" style={{width :'350px'}} onChange={this.handleInputChange} />
+              </FormGroup>
+              <Checkbox name='ok_monthly' onChange={this.handleInputChange} >
+                En cochant cette case,
+                je déclare être conscient du paiement mensuel, à date anniversaire. Je serais informé par email de chaque paiement et
+                trouverais un récapitulatif sur /moncompte/. Je pourrais mettre fin à l'abonnement quand je le souhaite.
+              </Checkbox>
+              <Checkbox name='ok_save' onChange={this.handleInputChange} >
+                En cochant cette case,
+                j'autorise le prestataire bancaire à conserver les informations de ma carte pour le paiement mensuel.
+              </Checkbox>
+              <Checkbox name='ok_refound' onChange={this.handleInputChange} >En cochant cette case,
+                je déclare être conscient que Kemono n’a aucune obligation concernant le pourcentage de remboursement effectif des demandes.
+              </Checkbox>
 
-            <Button onClick={this.handleClickProceedPaiement} >Abonner {this.props.pet.name} à la protection solidaire Kemono (paiement par carte bancaire)</Button>
+              <Button onClick={this.handleClickProceedPaiement} >Abonner {this.props.pet.name} à la protection solidaire Kemono (paiement par carte bancaire)</Button>
 
-          </form>
+            </form>
+
+          </div>
 
         </div>
-
-      </div>
-
+      </Col>
+      </Grid>
     )
   }
 };
