@@ -45,13 +45,13 @@ const createCardRegistration = new ValidatedMethod({
 const updateCardRegistration = new ValidatedMethod({
   name: 'updateCardRegistration',
   validate: null,
-  run() {
+  run(regData) {
     console.log("updateCardRegistration");
     const cardRegistration = new MangoPayApi.models.CardRegistration({
-      "Id": '25534280',
+      "Id": regData.Id,
       "UserId": Meteor.user().mangopay.user_id,
 
-      "RegistrationData": "data=nyE9OPhlGammVS88Gn2dOwhs1HO6eR3hAIq-iHPnJQI3-FoXLfTL7Y6qUwpkjO4AoJaV4X2ZQ7zZQJk_a0sTjMYCJGTMTkCTkCr8DVAjl4uHQ2H0qqH8lwbKsRRnUvf50ftIYwFxOdfmDQ5GtM_cIg"
+      "RegistrationData": regData.RegistrationData
     });
     MangoPayApi.CardRegistrations.update(cardRegistration,  function(response) {
       if(response.errors){

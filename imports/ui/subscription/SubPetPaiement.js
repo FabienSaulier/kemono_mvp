@@ -16,7 +16,7 @@ export default class SubPetPaiement extends React.Component {
   }
 
 
-  handleClickPaiement(){
+  handleClickProceedPaiement(){
     Meteor.call("createCardRegistration", (err, res) => {
       if(err) {
         console.log(err);
@@ -43,7 +43,19 @@ export default class SubPetPaiement extends React.Component {
             function(res) {
               console.log("REGISTRATION SUCCESS");
               console.log(res);
-                // Success, you can use res.CardId now that points to registered card
+              regData = {
+                Id:res.Id,
+                RegistrationData:res.RegistrationData
+              }
+
+              Meteor.call("updateCardRegistration", regData, (err, res) => {
+                if(err) {
+                  console.log(err);
+                } else {
+                  console.log(res);
+                }
+              });
+
             },
             function(res) {
               console.log("REG FAILED");
@@ -98,7 +110,7 @@ export default class SubPetPaiement extends React.Component {
               je déclare être conscient que Kemono n’a aucune obligation concernant le pourcentage de remboursement effectif des demandes.
             </Checkbox>
 
-            <Button onClick={this.handleClickPaiement} >Abonner XXXXXXXXXXXX à la protection solidaire Kemono (paiement par carte bancaire)</Button>
+            <Button onClick={this.handleClickProceedPaiement} >Abonner XXXXXXXXXXXX à la protection solidaire Kemono (paiement par carte bancaire)</Button>
 
           </form>
 

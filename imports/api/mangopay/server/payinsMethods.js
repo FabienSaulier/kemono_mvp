@@ -17,8 +17,6 @@ const paiementToKemonoWallet = new ValidatedMethod({
     pet_id:{type:String}
   }).validator(),
   run(payData) {
-
-
     console.log(payData.sub);
     if(payData.sub == 'basic'){
       debitedFounds = 1500;
